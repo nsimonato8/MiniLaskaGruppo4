@@ -8,8 +8,8 @@
 /*Definizione del tipo pedina*/
 struct cella{
     int id_player; /*BIANCHI = 0, NERI = 1*/
-    int id_pedina;
-    int grado;
+    int id_pedina; /*UTENTE = 0, PC = 1*/
+    int grado; /*SOLDATO = 0, UFFICIALE = 1*/
     pedina *middle;
     pedina *down;
 };
@@ -29,3 +29,11 @@ void setValuesMatrix(pedina **board, pedina **players);
 void printPedina(pedina *p);
 
 void printMatrix(int **m);
+
+int move(pedina **p, int from_x, int from_y, int to_x, int to_y);
+
+int distance(int from_x, int from_y, int to_x, int to_y);
+
+void capture(pedina **p, int from_x, int from_y, int to_x, int to_y);
+
+int gradeCheck(pedina **p, int from_y, int to_y);

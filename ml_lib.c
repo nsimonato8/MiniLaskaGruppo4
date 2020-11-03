@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include "ml_lib.h"
 
+/*---------------------------------SEZIONE FUNZIONI GESTIONE MEMORIA---------------------------------*/
 
 /*Restituisce un puntatore alla matrice contenente le pedine*/
 pedina **createPedine(){
@@ -112,6 +113,8 @@ void setValuesMatrix(pedina **board, pedina **players){
 	}*/
 }
 
+/*---------------------------------SEZIONE FUNZIONI OUTPUT---------------------------------*/
+
 void printPedina(pedina *p){
     if(p->id_player && p->grado)
         printf("N");
@@ -162,4 +165,71 @@ void printMatrix(pedina **m){
 		}
 		printf("\n");
 	}*/
+}
+
+/*---------------------------------SEZIONE FUNZIONI MOVE---------------------------------*/
+
+/*
+ * Restituisce 1 se la mossa è stata fatta, 0 se non è stato possibile
+*/
+int move(pedina **p, int from_x, int from_y, int to_x, int to_y){
+    int success = 1, d = distance(from_x,from_y,to_x,to_y), grade_control = gradeCheck(p,from_y,to_y);
+    if(to_x < 0 || to_y < 0 || to_x >= ROW || to_y >= COL || p[to_x][to_y] || d == -1 || !grade_control ) /*validazione input utente*/
+        success = 0;
+    else{
+        if(d == 1){
+            p[to_x][to_y] = p[from_x][from_y];
+            p[from_x][from_y] = 0;
+        }
+        else if(d == 2){
+            int middle_x = (from_x + to_x)/2,middle_y = (from_y+to_y)/2];
+            if(p[middle_x][middle_y]){ /*verifica esistenza pedina in mezzo*/
+                if(p[middle_x][middle_y]->id_player == p[from_x][from_y]->id_player)
+                    success = 0; /*se amica, annulla mossa*/
+                else
+                    capture(p,from_x,from_y,to_x,to_y); /*se nemica cattura*/
+            }
+            else
+                success = 0;
+        }
+        else
+            success = 0;
+    }
+    return success;
+}
+
+/*
+ * Restituisce la distanza in modulo tra due punti nella matrice:
+ * Se è maggiore di 2, uguale a 0, o la destinazione è in una casella non accessibile restituisce il codice errore -1
+*/
+int distance(int from_x, int from_y, int to_x, int to_y){
+    int result, dx = abs(to_x - from_x), dy = abs(to_y - from_y);
+    if((to_x % 2 && !(to_y % 2)) || (!(to_x % 2) && (to_y % 2))) /*DA MODIFICARE AL MOMENTO DELL'INPUT UTENTE*/
+        result = -1;
+    else if(dx == dy && dx)
+        result = dx;
+    else
+        result = -1; /* TODO: OTTIMIZZARE */
+
+    return result;
+}
+
+/*
+ * TODO: Implementa funzione cattura:
+ * Questa funzione si occupa catturare le pedine indicate
+*/
+void capture(pedina **p, int from_x, int from_y, int to_x, int to_y){
+
+}
+
+/*
+ * Verifica il grado della pedina mossa:
+ * restituisce 1 se la mossa è consentita, 0 se non è consentita*/
+int gradeCheck(pedina **p, int from_y, int to_y){
+    int success = 1;
+
+    if(p[from_x][from_y]->grado == 0 && (to_y - from_y) > 0)
+        success = 0;
+
+    return success;
 }
