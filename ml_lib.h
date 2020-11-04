@@ -5,16 +5,21 @@
 #define ROW 7
 #define COL 7
 
+enum id_p {User, Pc};
+enum gr {Soldier, Officer};
+
 /*Definizione del tipo pedina*/
 struct cella{
-    int id_player; /*BIANCHI = 0, NERI = 1*/
-    int id_pedina; /*UTENTE = 0, PC = 1*/
-    int grado; /*SOLDATO = 0, UFFICIALE = 1*/
+    id_p id_player; /*BIANCHI = 0, NERI = 1*/
+    int id_pedina;
+    gr grado; /*SOLDATO = 0, UFFICIALE = 1*/
     pedina *middle;
     pedina *down;
 };
 
 typedef struct cella pedina;
+
+int isForbiddenCell(int x,int y);
 
 pedina **createPedine();
 
