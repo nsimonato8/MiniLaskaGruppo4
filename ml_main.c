@@ -3,15 +3,21 @@
 
 int main(){
 	
-	int **m;
-	int r=7, c=7;
+	pedina ***board, ***players;
+
+	/*Inizializzazione campo di gioco*/
+	board = createMatrix();
+	players = createPedine();
 	
-	
-	m=createMatrix(r,c);
-	
-	setValuesMatrix(m,r,c);
-	
-	printMatrix(m,r,c);
+	setValuesMatrix(board,players);
+
+	/*Gioco*/
+	printMatrix(board);
+
+
+	/*Liberazione memoria*/
+	destroyMatrix(board);
+	destroyPedine(players);
 	
 	return 0;
 }

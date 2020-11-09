@@ -4,29 +4,32 @@
 /*---------------------------------SEZIONE FUNZIONI GESTIONE MEMORIA---------------------------------*/
 
 /*Restituisce un puntatore alla matrice contenente le pedine*/
-pedina **createPedine(){
+pedina ***createPedine(){
     int i,j;
-    pedina **p= (pedina**) malloc(11*2*sizeof(pedina));
+    pedina ***p= (pedina***) malloc(11*2*sizeof(pedina));
 
-    for(i =0; i < 2; i++){
-        for(j = 0; j < 11; j++){
-            p[i][j] = (pedina*) malloc(sizeof(pedina));
-            p[i][j]->id_pedina = j;
-            p[i][j]->id_giocatore = i;
-            p[i][j]->grado = 0;
+    if(!p)
+        return 0;
+    else{
+        for(i =0; i < 2; i++){
+            for(j = 0; j < 11; j++){
+                p[i][j] = (pedina*) malloc(sizeof(pedina));
+                p[i][j]->id_pedina = j;
+                p[i][j]->id_player = i;
+                p[i][j]->grado = 0;
+            }
         }
+        return p;
     }
-
-    return p;
 }
 
 /*Distrugge la matrice contenente le pedine*/
-void destroyPedine(pedina **p){
+void destroyPedine(pedina ***p){
     int i,j;
 
     for(i = 0; i < 2; i++){
         for(j = 0; j < 11; j++)
-            free(p[i][j]);
+            p[i][j] = 0;
     }
     free(p);
 }
@@ -34,14 +37,20 @@ void destroyPedine(pedina **p){
 /*
  * Funzione che crea la matrice della scacchiera
 */
-pedina **createMatrix(const pedina r, const pedina c){
+pedina ***createMatrix(){
 
-	pedina **m = (pedina**) malloc(r*c*sizeof(pedina));
-	
-	return m;
+	pedina ***m = (pedina***) malloc(ROW*COL*sizeof(pedina));
+
+	if(m)
+	    return m;
+	else
+	    return 0;
 }
 
-void destroyMatrix(pedina **board){
+/*
+ * Funzione che distrugge la matrice della scacchiera
+*/
+void destroyMatrix(pedina ***board){
     free(board);
 }
 
@@ -59,7 +68,7 @@ int isForbiddenCell(int x, int y){
 /*
 * Funzione che inizializza la matrice con le pedine dei player
 */
-void setValuesMatrix(pedina **board, pedina **players){
+void setValuesMatrix(pedina ***board, pedina ***players){
 
 	int i,j, p = 0;
 	
@@ -140,7 +149,7 @@ void printPedina(pedina *p){
 }
 
 /* Funzione che stampa la scacchiera in base al posizionamento delle pedine. */
-void printMatrix(pedina **m){
+void printMatrix(pedina ***m){
 
     int i,j;
 
@@ -187,8 +196,8 @@ void printMatrix(pedina **m){
  *
  * Le coordinate inserite sono corrette in fase di input (sono all'interno della scacchiera e non sono caselle proibite)
 */
-int move(pedina **p, int from_x, int from_y, int to_x, int to_y){
-    int success = 1, d = distance(from_x,from_y,to_x,to_y), grade_control = gradeCheck(p,from_y,to_y);
+int move(pedina ***p, int from_x, int from_y, int to_x, int to_y){
+    int success = 1, d = distance(from_x,from_y,to_x,to_y), grade_control = gradeCheck(p,from_x,from_y,to_y);
     if(p[to_x][to_y] || d == -1 || !grade_control )
         success = 0;
     else{
@@ -197,7 +206,7 @@ int move(pedina **p, int from_x, int from_y, int to_x, int to_y){
             p[from_x][from_y] = 0;
         }
         else if(d == 2){
-            int middle_x = (from_x + to_x)/2, middle_y = (from_y+to_y)/2];
+            int middle_x = (from_x + to_x)/2, middle_y = (from_y+to_y)/2;
             if(p[middle_x][middle_y]){ /*verifica esistenza pedina in mezzo*/
                 if(p[middle_x][middle_y]->id_player == p[from_x][from_y]->id_player)
                     success = 0; /*se amica, annulla mossa*/
@@ -231,17 +240,56 @@ int distance(int from_x, int from_y, int to_x, int to_y){
 }
 
 /*
- * TODO: Implementa funzione cattura
- * Questa funzione si occupa di catturare le pedine indicate
+ * Questa funzione si occupa di catturare le pedine indicate.
+ * Si assume la correttezza delle coordinate inserite, la legalità della mossa è verificata nella funzione move(...).
 */
-void capture(pedina **p, int from_x, int from_y, int to_x, int to_y){
+void capture(pedina ***p, int from_x, int from_y, int to_x, int to_y){
 
+    pedina *prisoner = p[(from_x+to_x)/2][(from_y+to_y)/2];
+    pedina *soldier =p[from_x][from_y];
+
+    if(prisoner->middle || prisoner-> down){ /*In questo ramo la pedina catturata ha pedine sottostanti*/
+        if(prisoner->middle->id_player == soldier->id_player && prisoner->down->id_player == soldier->id_player) {/*Se entrambe le pedine catturate dal prigioniero sono alleate*/
+            prisoner->middle->middle = prisoner->down;
+            p[(from_x+to_x)/2][(from_y+to_y)/2] = prisoner->middle;
+        }
+        else if(prisoner->middle->id_player == soldier->id_player && !(prisoner->down)){/*Se la pedina prigioniera è ha solo un prigioniero, alleato, l'altra è vuota*/
+            p[(from_x+to_x)/2][(from_y+to_y)/2] = prisoner->middle;
+        }
+        else if(prisoner->down->id_player == soldier->id_player){/*Se una delle pedine catturate dal prigioniero è alleata e l'altra è nemica*/
+            prisoner->down->middle = prisoner->middle;
+            p[(from_x+to_x)/2][(from_y+to_y)/2] = prisoner->down;
+        }
+        else{/*La pedina catturata ha sotto una pedina, nemica*/
+            if(!(soldier->down))
+                soldier->down = prisoner->middle;
+
+            p[(from_x+to_x)/2][(from_y+to_y)/2] = 0;
+        }
+
+        if(soldier->middle){
+            if(!soldier->down)  soldier->down = prisoner;
+        }else
+            soldier->middle = prisoner;
+    }
+    else{ /*In questo ramo la pedina catturata non ha pedine sottostanti*/
+        p[(from_x + to_x) / 2][(from_y + to_y) / 2] = 0;
+
+        if(soldier->middle && !(soldier->down)){  /*Sistema la pedina catturata nella pedina del catturante*/
+            soldier->down = prisoner;
+        }
+        else {
+            soldier->middle = prisoner;
+        }
+    }
+
+    p[to_x][to_y] = soldier;
 }
 
 /*
  * Verifica il grado della pedina mossa:
  * restituisce 1 se la mossa è consentita, 0 se non è consentita*/
-int gradeCheck(pedina **p, int from_y, int to_y){
+int gradeCheck(pedina ***p, int from_x, int from_y, int to_y){
     int success = 1;
 
     if(p[from_x][from_y]->grado == 0 && (to_y - from_y) > 0)
