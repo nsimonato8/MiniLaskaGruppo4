@@ -74,8 +74,11 @@ void setValuesMatrix(pedina ***board, pedina ***players){
 	
 	for(i = 0; i < ROW; i++){
 	    for(j = 0; j < COL; j++){
-	        if(isForbiddenCell(i,j) || i == 3)
-	            board[i][j] = 0;
+	        if(isForbiddenCell(i,j) || i == 3){
+                board[i][j] = 0;
+                if(i==3)
+                    p = 0;
+	        }
 	        else if(i < 3){
 	            board[i][j] = players[0][p];
 	            p++;
