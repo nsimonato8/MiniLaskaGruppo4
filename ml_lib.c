@@ -195,9 +195,41 @@ void printMatrix(pedina ***m){
 /*---------------------------------SEZIONE FUNZIONI MOVE---------------------------------*/
 
 /*
+ * Legge l'input dall'utente e traduce le coordinate in int, che vengono inseriti in un array apposito
+*/
+int catchInput(int *cord){
+    char *a;
+    size_t bufsize = 10;
+    int success = 1;
+
+    a=(char *)malloc(bufsize*sizeof(char));
+
+    if(a==NULL){
+        perror("Malloc error");
+        exit(1);
+    }
+
+    /*acquisizione stringa dall'input*/
+    getline(&a,&bufsize,stdin);
+
+    /*conversione in coordinate*/
+    cord[0]=((a[0]-96)-1);
+    cord[1]=(int)((a[1]-'0')-1);
+
+    cord[2]=((a[6]-96)-1);
+    cord[3]=(int)((a[7]-'0')-1);
+    free(a);
+    if((cord[0] >= 0 && cord[0] <= 6) && (cord[1] >= 0 && cord[1] <= 6) && (cord[2] >= 0 && cord[2] <= 6) && (cord[3] >= 0 && cord[3] <= 6))
+        success = 0;
+
+    return success;
+}
+
+/*
  * Restituisce 1 se la mossa è stata fatta, 0 se non è stato possibile
  *
  * Le coordinate inserite sono corrette in fase di input (sono all'interno della scacchiera e non sono caselle proibite)
+ * Verifica che la distanza ed il grado siano compatibili con la mossa
 */
 int move(pedina ***p, int from_x, int from_y, int to_x, int to_y){
     int success = 1, d = distance(from_x,from_y,to_x,to_y), grade_control = gradeCheck(p,from_x,from_y,to_y);
@@ -289,8 +321,7 @@ void capture(pedina ***p, int from_x, int from_y, int to_x, int to_y){
     p[to_x][to_y] = soldier;
 }
 
-/*
- * Verifica il grado della pedina mossa:
+/* Verifica il grado della pedina mossa:
  * restituisce 1 se la mossa è consentita, 0 se non è consentita*/
 int gradeCheck(pedina ***p, int from_x, int from_y, int to_y){
     int success = 1;

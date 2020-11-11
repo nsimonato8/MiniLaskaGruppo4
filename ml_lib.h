@@ -35,7 +35,9 @@ void printPedina(pedina *p);
 
 void printMatrix(pedina ***m);
 
-int move(pedina ***p, int from_x, int from_y, int to_x, int to_y);
+int catchInput(int *cord);
+
+int move(pedina ***p, int from_x, int from_y, int to_x, int to_y); /*TODO: Aggiungere controllo giocatore legittimo, aggiungere controllo mossa obbligatoria*/
 
 int distance(int from_x, int from_y, int to_x, int to_y);
 
@@ -43,14 +45,11 @@ void capture(pedina ***p, int from_x, int from_y, int to_x, int to_y);
 
 int gradeCheck(pedina ***p, int from_x, int from_y, int to_y);
 
-<<<<<<< Updated upstream
 /*TODO: DA IMPLEMENTARE*/
 
 int isWinner(pedina ***board,int player);
-=======
-/*TODO: Da implementare*/
 
-int isWinner(pedina ***board,int player);
+int isMandatory(pedina ***p, int from_x, int from_y, int to_x, int to_y); /*Verifica se una mossa è obbligatoria*/
 
-int isMandatory(pedina ***p, int from_x, int from_y, int to_x, int to_y);
->>>>>>> Stashed changes
+int printStatus(int turn);
+
