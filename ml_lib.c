@@ -324,7 +324,7 @@ int distance(int from_x, int from_y, int to_x, int to_y){
 */
 void capture(pedina ***p, int from_x, int from_y, int to_x, int to_y){
 
-    int middle_x = middle_x, middle_y = middle_y;
+    int middle_x = (from_x+to_x)/2, middle_y = (to_y+from_y)/2;
     pedina *prisoner = p[middle_x][middle_y];
     pedina *soldier =p[from_x][from_y];
 
