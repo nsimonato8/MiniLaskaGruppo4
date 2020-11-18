@@ -49,7 +49,7 @@ int gradeCheck(pedina ***p, int from_x, int from_y, int to_y);
 
 int isWinner(pedina ***board,int player);
 
-int isMandatory(pedina ***p, int from_x, int from_y, int to_x, int to_y); /*Verifica se una mossa è obbligatoria*/
+int existMandatory(pedina ***p, int from_x, int from_y, int to_x, int to_y); /*Verifica se esiste una mossa (obbligatoria) diversa che da quella tentata */
 
 int printStatus(int turn);
 

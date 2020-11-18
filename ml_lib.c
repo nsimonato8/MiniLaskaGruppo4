@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include "ml_lib.h"
 
 /*---------------------------------SEZIONE FUNZIONI GESTIONE MEMORIA---------------------------------*/
@@ -232,8 +233,8 @@ int catchInput(int *cord){
  * Verifica che la distanza ed il grado siano compatibili con la mossa
 */
 int move(pedina ***p, int from_x, int from_y, int to_x, int to_y){
-    int success = 1, d = distance(from_x,from_y,to_x,to_y), grade_control = gradeCheck(p,from_x,from_y,to_y);
-    if(p[to_x][to_y] || d == -1 || !grade_control )
+    int success = 1, d = distance(from_x,from_y,to_x,to_y), grade_control = gradeCheck(p,from_x,from_y,to_y), existM = existMandatory(p,from_x,from_y,to_x,to_y);
+    if(p[to_x][to_y] || d == -1 || !grade_control || existM)
         success = 0;
     else{
         if(d == 1){
@@ -328,6 +329,38 @@ int gradeCheck(pedina ***p, int from_x, int from_y, int to_y){
 
     if(p[from_x][from_y]->grado == 0 && (to_y - from_y) > 0)
         success = 0;
+
+    return success;
+}
+
+/* Verifica se, nel caso di non cattura, esiste una cattur obbligatoria da fare
+ * Restituisce 1 se esiste una mossa obbligatoria non tentata, altrimenti 0
+ */
+int existMandatory(pedina ***p, int from_x, int from_y, int to_x, int to_y){
+
+    int success, dx = to_x - from_x, dy = to_y - from_y;
+
+    if(distance(from_x,from_y,to_x,to_y) == 2){
+        success = 0;
+    }
+    else{
+        if(p[from_x-dx][from_y-dy] || p[from_x+dx][from_y-dy] || p[from_x-dx][from_y+dy]) { /*Verifico l'esitenza di pedine intorno alla posizione di partenza*/
+            if(p[from_x-dx][from_y-dy]){
+                if(p[from_x-dx][from_y-dy]->id_player != p[from_x][from_y] && !p[from_x-2*dx][from_y-2*dy]) /*Verifico che siano nemiche e che la casella successiva sia libera*/
+                    success = 1;
+            }
+            else if(p[from_x+dx][from_y-dy]){
+                if(p[from_x+dx][from_y-dy]->id_player != p[from_x][from_y] && !p[from_x+2*dx][from_y-2*dy])
+                    success = 1;
+            }
+            else{
+                if(p[from_x-dx][from_y+dy]->id_player != p[from_x][from_y] && !p[from_x-2*dx][from_y+2*dy])
+                    success = 1;
+            }
+        }
+        else
+            success = 0;
+    }
 
     return success;
 }
