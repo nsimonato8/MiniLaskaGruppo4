@@ -2,6 +2,48 @@
 #include<stdlib.h>
 #include "ml_lib.h"
 
+/*---------------------------------SEZIONE FUNZIONI AUSILIARIE---------------------------------*/
+
+/* Imposta l'id_player della pedina indicata dal puntatore*/
+void set_id_player(pedina *p, id_p value){
+    p->id_player = value;
+}
+
+/* Ritorna il p->id_player della pedina specificata */
+id_p get_id_player(pedina *p){
+    return p->id_player;
+}
+
+/* Imposta il valore value nella posizione indicata nella scacchiera*/
+void set_board_value(pedina ***p, int x, int y, pedina *value){
+    p[x][y] = value;
+}
+
+/* Ritorna il valore nella posizione indicata nella scacchiera*/
+pedina* get_board_value(pedina ***p, int x, int y){
+    return p[x][y];
+}
+
+/* Ritorna il valore della pedina middle nella posizione indicata nella scacchiera*/
+pedina* get_board_value_middle(pedina ***p, int x, int y){
+    return p[x][y]->middle;
+}
+
+/* Ritorna il valore della pedina down nella posizione indicata nella scacchiera*/
+pedina* get_board_value_down(pedina ***p, int x, int y){
+    return p[x][y]->down;
+}
+
+/* Imposta il grado di una pedina*/
+void set_grade(pedina *p,gr value){
+    p->grado = value;
+}
+
+/* Ritorna il grado di una pedina*/
+gr get_grade(pedina *p){
+    return p->grado;
+}
+
 /*---------------------------------SEZIONE FUNZIONI GESTIONE MEMORIA---------------------------------*/
 
 /*Restituisce un puntatore alla matrice contenente le pedine*/
@@ -16,8 +58,8 @@ pedina ***createPedine(){
             for(j = 0; j < 11; j++){
                 p[i][j] = (pedina*) malloc(sizeof(pedina));
                 p[i][j]->id_pedina = j;
-                p[i][j]->id_player = i;
-                p[i][j]->grado = 0;
+                set_id_player(p[i][j], i);
+                set_grade(p[i][j],0);
             }
         }
         return p;
@@ -30,7 +72,7 @@ void destroyPedine(pedina ***p){
 
     for(i = 0; i < 2; i++){
         for(j = 0; j < 11; j++)
-            p[i][j] = 0;
+            set_board_value(p,i,j,0);
     }
     free(p);
 }
@@ -76,16 +118,16 @@ void setValuesMatrix(pedina ***board, pedina ***players){
 	for(i = 0; i < ROW; i++){
 	    for(j = 0; j < COL; j++){
 	        if(isForbiddenCell(i,j) || i == 3){
-                board[i][j] = 0;
+                set_board_value(board,i,j,0);
                 if(i==3)
                     p = 0;
 	        }
 	        else if(i < 3){
-	            board[i][j] = players[0][p];
+                set_board_value(board,i,j,get_board_value(players,0,p));
 	            p++;
 	        }
 	        else{
-                board[i][j] = players[1][p];
+                set_board_value(board,i,j,get_board_value(players,1,p));
                 p++;
 	        }
 	    }
@@ -139,6 +181,7 @@ void setValuesMatrix(pedina ***board, pedina ***players){
 
 /*---------------------------------SEZIONE FUNZIONI OUTPUT---------------------------------*/
 
+/* Stampa un carattere ASCII identificativo del contenuto della casella p*/
 void printPedina(pedina *p){
     if(!p)
         printf(" ");
@@ -165,9 +208,9 @@ void printMatrix(pedina ***m){
                 printf("  ");                
             }
             else{
-                printPedina(m[i][j]);
-                printPedina(m[i][j]->middle);
-                printPedina(m[i][j]->down);
+                printPedina(get_board_value(p,i,j));
+                printPedina(get_board_value_middle(p,i,j));
+                printPedina(get_board_value_down(p,i,j));
             }
         }
         printf("\n");
@@ -234,17 +277,17 @@ int catchInput(int *cord){
 */
 int move(pedina ***p, int from_x, int from_y, int to_x, int to_y){
     int success = 1, d = distance(from_x,from_y,to_x,to_y), grade_control = gradeCheck(p,from_x,from_y,to_y), existM = existMandatory(p,from_x,from_y,to_x,to_y);
-    if(p[to_x][to_y] || d == -1 || !grade_control || existM)
+    if(get_board_value(p,to_x,to_y) || d == -1 || !grade_control || existM)
         success = 0;
     else{
         if(d == 1){
-            p[to_x][to_y] = p[from_x][from_y];
-            p[from_x][from_y] = 0;
+            set_board_value(p,to_x,to_y,get_board_value(p,from_x,from_y));
+            set_board_value(p,from_x,from_y,0);
         }
         else if(d == 2){
             int middle_x = (from_x + to_x)/2, middle_y = (from_y+to_y)/2;
-            if(p[middle_x][middle_y]){ /*verifica esistenza pedina in mezzo*/
-                if(p[middle_x][middle_y]->id_player == p[from_x][from_y]->id_player)
+            if(get_board_value(p,middle_x,middle_y)){ /*verifica esistenza pedina in mezzo*/
+                if(get_id_player(p[middle_x][middle_y]) == get_id_player(p[from_x][from_y]))
                     success = 0; /*se amica, annulla mossa*/
                 else
                     capture(p,from_x,from_y,to_x,to_y); /*se nemica cattura*/
@@ -281,35 +324,37 @@ int distance(int from_x, int from_y, int to_x, int to_y){
 */
 void capture(pedina ***p, int from_x, int from_y, int to_x, int to_y){
 
-    pedina *prisoner = p[(from_x+to_x)/2][(from_y+to_y)/2];
+    int middle_x = middle_x, middle_y = middle_y;
+    pedina *prisoner = p[middle_x][middle_y];
     pedina *soldier =p[from_x][from_y];
 
-    if(prisoner->middle || prisoner-> down){ /*In questo ramo la pedina catturata ha pedine sottostanti*/
-        if(prisoner->middle->id_player == soldier->id_player && prisoner->down->id_player == soldier->id_player) {/*Se entrambe le pedine catturate dal prigioniero sono alleate*/
+    if(prisoner->middle || prisoner->down){ /*In questo ramo la pedina catturata ha pedine sottostanti*/
+        if(get_id_player(prisoner->middle) == get_id_player(soldier) && get_id_player(prisoner->down) == get_id_player(soldier)) {/*Se entrambe le pedine catturate dal prigioniero sono alleate*/
             prisoner->middle->middle = prisoner->down;
-            p[(from_x+to_x)/2][(from_y+to_y)/2] = prisoner->middle;
+            p[middle_x][middle_y] = prisoner->middle;
         }
-        else if(prisoner->middle->id_player == soldier->id_player && !(prisoner->down)){/*Se la pedina prigioniera è ha solo un prigioniero, alleato, l'altra è vuota*/
-            p[(from_x+to_x)/2][(from_y+to_y)/2] = prisoner->middle;
+        else if(get_id_player(prisoner->middle) == get_id_player(soldier) && !(prisoner->down)){/*Se la pedina prigioniera è ha solo un prigioniero, alleato, l'altra è vuota*/
+            set_board_value(p,middle_x,middle_y,prisoner->middle);
         }
-        else if(prisoner->down->id_player == soldier->id_player){/*Se una delle pedine catturate dal prigioniero è alleata e l'altra è nemica*/
+        else if(get_id_player(prisoner->down) == get_id_player(soldier)){/*Se una delle pedine catturate dal prigioniero è alleata e l'altra è nemica*/
             prisoner->down->middle = prisoner->middle;
-            p[(from_x+to_x)/2][(from_y+to_y)/2] = prisoner->down;
+            set_board_value(p,middle_x,middle_y,prisoner->down);
         }
         else{/*La pedina catturata ha sotto una pedina, nemica*/
             if(!(soldier->down))
                 soldier->down = prisoner->middle;
 
-            p[(from_x+to_x)/2][(from_y+to_y)/2] = 0;
+            set_board_value(p,middle_x,middle_y,0);
         }
 
         if(soldier->middle){
-            if(!soldier->down)  soldier->down = prisoner;
+            if(!soldier->down)
+                soldier->down = prisoner;
         }else
             soldier->middle = prisoner;
     }
     else{ /*In questo ramo la pedina catturata non ha pedine sottostanti*/
-        p[(from_x + to_x) / 2][(from_y + to_y) / 2] = 0;
+        set_board_value(p,middle_x,middle_y,0);
 
         if(soldier->middle && !(soldier->down)){  /*Sistema la pedina catturata nella pedina del catturante*/
             soldier->down = prisoner;
@@ -319,15 +364,16 @@ void capture(pedina ***p, int from_x, int from_y, int to_x, int to_y){
         }
     }
 
-    p[to_x][to_y] = soldier;
+    set_board_value(p,middle_x,middle_y,soldier);
 }
 
 /* Verifica il grado della pedina mossa:
- * restituisce 1 se la mossa è consentita, 0 se non è consentita*/
+ * restituisce 1 se la mossa è consentita, 0 se non è consentita
+*/
 int gradeCheck(pedina ***p, int from_x, int from_y, int to_y){
     int success = 1;
 
-    if(p[from_x][from_y]->grado == 0 && (to_y - from_y) > 0)
+    if(!get_grade(p[from_x][from_y]) && (to_y - from_y) > 0)
         success = 0;
 
     return success;
@@ -344,17 +390,17 @@ int existMandatory(pedina ***p, int from_x, int from_y, int to_x, int to_y){
         success = 0;
     }
     else{
-        if(p[from_x-dx][from_y-dy] || p[from_x+dx][from_y-dy] || p[from_x-dx][from_y+dy]) { /*Verifico l'esitenza di pedine intorno alla posizione di partenza*/
-            if(p[from_x-dx][from_y-dy]){
-                if(p[from_x-dx][from_y-dy]->id_player != p[from_x][from_y] && !p[from_x-2*dx][from_y-2*dy]) /*Verifico che siano nemiche e che la casella successiva sia libera*/
+        if(get_board_value(p,from_x-dx,from_y-dy) || get_board_value(p,from_x+dx,from_y-dy) || get_board_value(p,from_x-dx,from_y+dy)) { /*Verifico l'esitenza di pedine intorno alla posizione di partenza*/
+            if(get_board_value(p,from_x-dx,from_y-dy)){
+                if(get_id_player(p[from_x-dx][from_y-dy]) != get_id_player(p[from_x][from_y]) && !p[from_x-2*dx][from_y-2*dy]) /*Verifico che siano nemiche e che la casella successiva sia libera*/
                     success = 1;
             }
-            else if(p[from_x+dx][from_y-dy]){
-                if(p[from_x+dx][from_y-dy]->id_player != p[from_x][from_y] && !p[from_x+2*dx][from_y-2*dy])
+            else if(get_board_value(p,from_x+dx,from_y-dy)){
+                if(get_id_player(p[from_x+dx][from_y-dy]) != get_id_player(p[from_x][from_y]) && !p[from_x+2*dx][from_y-2*dy])
                     success = 1;
             }
             else{
-                if(p[from_x-dx][from_y+dy]->id_player != p[from_x][from_y] && !p[from_x-2*dx][from_y+2*dy])
+                if(get_id_player(p[from_x-dx][from_y+dy]) != get_id_player(p[from_x][from_y]) && !p[from_x-2*dx][from_y+2*dy])
                     success = 1;
             }
         }
@@ -363,4 +409,26 @@ int existMandatory(pedina ***p, int from_x, int from_y, int to_x, int to_y){
     }
 
     return success;
+}
+
+/*---------------------------------SEZIONE FUNZIONI LOGICHE DI GIOCO---------------------------------*/
+
+/* Verifica che il giocatore idPlayer abbia vinto
+ * Restituisce 1 se idPlayer ha vinto, altrimenti 0
+*/
+int is_winner(pedina ***p, id_p idPlayer) {
+
+    int c = 0;
+
+    for (i = 0; i < ROW; i++) {
+        for (j = 0; j < COL; j++) {
+            if (!c) {
+                if (get_id_player(p[i][j]) == idPlayer)
+                    c++;
+            } else
+                return 0;
+        }
+    }
+
+    return 1;
 }
