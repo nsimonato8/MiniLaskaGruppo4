@@ -6,6 +6,7 @@ int main(){
 	pedina ***board, ***players;
 	int coordinate[4]; /*Contiene le coordinate di partenza e arrivo di ogni mossa*/
 	int success_move = 1, success_input = 1, turn = 0; /*Verifica che la mossa sia possibile*/
+	id_p first = User;
 
 	/*Inizializzazione campo di gioco*/
 	board = createMatrix();
@@ -31,7 +32,7 @@ int main(){
                 /*TODO: Schermata di errore di input*/
             }
             success_input = catchInput(coordinate);
-            success_move = move(board,coordinate[0],coordinate[1],coordinate[2],coordinate[3]);
+            success_move = move(board,coordinate[0],coordinate[1],coordinate[2],coordinate[3],first,turn);
         }while(!(success_input && success_move));/*Inserimento dati e mossa*/
         turn++;
 	}while(!(isWinner(board,0)||isWinner(board,1))); /*Controllo esistenza vincitore*/

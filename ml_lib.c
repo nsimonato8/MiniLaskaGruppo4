@@ -59,7 +59,7 @@ pedina ***createPedine(){
                 p[i][j] = (pedina*) malloc(sizeof(pedina));
                 p[i][j]->id_pedina = j;
                 set_id_player(p[i][j], i);
-                set_grade(p[i][j],0);
+                set_grade(p[i][j],Soldier);
             }
         }
         return p;
@@ -275,9 +275,9 @@ int catchInput(int *cord){
  * Le coordinate inserite sono corrette in fase di input (sono all'interno della scacchiera e non sono caselle proibite)
  * Verifica che la distanza ed il grado siano compatibili con la mossa
 */
-int move(pedina ***p, int from_x, int from_y, int to_x, int to_y){
-    int success = 1, d = distance(from_x,from_y,to_x,to_y), grade_control = gradeCheck(p,from_x,from_y,to_y), existM = existMandatory(p,from_x,from_y,to_x,to_y);
-    if(get_board_value(p,to_x,to_y) || d == -1 || !grade_control || existM)
+int move(pedina ***p, int from_x, int from_y, int to_x, int to_y, id_p first, int turn){
+    int success = 1, d = distance(from_x,from_y,to_x,to_y), grade_control = gradeCheck(p,from_x,from_y,to_y), existM = existMandatory(p,from_x,from_y,to_x,to_y), legal_player = first == (turn %2);
+    if(!legal_player || get_board_value(p,to_x,to_y) || d == -1 || !grade_control || existM)
         success = 0;
     else{
         if(d == 1){
