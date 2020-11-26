@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+
 #include "ml_lib.h"
 
 /*---------------------------------SEZIONE FUNZIONI AUSILIARIE---------------------------------*/
@@ -456,9 +457,10 @@ int existMandatory(pedina ***p, int from_x, int from_y, int to_x, int to_y){
 /* Verifica che il giocatore idPlayer abbia vinto
  * Restituisce 1 se idPlayer ha vinto, altrimenti 0
 */
-int is_winner(pedina ***p, id_p idPlayer) {
+int isWinner(pedina ***p, int idPlayer) {
 
-    int c = 0;
+    int i,j,c=0;
+
 
     for (i = 0; i < ROW; i++) {
         for (j = 0; j < COL; j++) {
@@ -472,3 +474,4 @@ int is_winner(pedina ***p, id_p idPlayer) {
 
     return 1;
 }
+

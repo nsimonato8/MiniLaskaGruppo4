@@ -1,4 +1,4 @@
-#include<stdio.h>
+#include <stdio.h>
 #include "ml_lib.h"
 
 int main(){
@@ -14,7 +14,7 @@ int main(){
 	players = createPedine();
 	
 	setValuesMatrix(board,players);
-
+  
     printRules();
 
 	/*TODO: Menu
