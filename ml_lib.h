@@ -5,7 +5,7 @@
 #define ROW 7
 #define COL 7
 
-typedef enum {User, Pc} id_p;
+typedef enum {UserOne, UserTwo} id_p;
 typedef enum {Soldier, Officer} gr;
 
 typedef struct cella pedina;
@@ -18,6 +18,12 @@ typedef struct cella pedina;
     pedina *middle;
     pedina *down;
 };
+ 
+ /*
+  * ASSUNZIONI LOGICHE FONDAMENTALI:
+  *     L'utente muove sempre per primo
+  *     Se il giocatore ha la possibilità di catturare una pedina, è obbligato a farlo
+  * */
 
 int isForbiddenCell(int x,int y);
 
@@ -49,7 +55,13 @@ int isWinner(pedina ***board,int player);
 
 int existMandatory(pedina ***p, int from_x, int from_y, int to_x, int to_y); /*Verifica se esiste una mossa (obbligatoria) diversa che da quella tentata */
 
-/*TODO: DA IMPLEMENTARE*/
+void printStatus(unsigned turn);
 
-int printStatus(int turn);
+void printRules();
+
+void victory(id_p winner);
+
+void inputError();
+
+/*TODO: DA IMPLEMENTARE*/
 

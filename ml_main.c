@@ -5,8 +5,9 @@ int main(){
 	
 	pedina ***board, ***players;
 	int coordinate[4]; /*Contiene le coordinate di partenza e arrivo di ogni mossa*/
-	int success_move = 1, success_input = 1, turn = 0; /*Verifica che la mossa sia possibile*/
-	id_p first = User;
+	int success_move = 1, success_input = 1; /*Verifica che la mossa sia possibile*/
+	unsigned turn = 0;
+	id_p first = UserOne;
 
 	/*Inizializzazione campo di gioco*/
 	board = createMatrix();
@@ -14,7 +15,7 @@ int main(){
 	
 	setValuesMatrix(board,players);
 
-
+    printRules();
 
 	/*TODO: Menu
 	 * 1) istruzioni --> printf
@@ -29,15 +30,18 @@ int main(){
         printStatus(turn); /*Status giocatore + n°turno */
         do{
             if(!success_move || !success_input){
-                /*TODO: Schermata di errore di input*/
+                inputError();
             }
             success_input = catchInput(coordinate);
             success_move = move(board,coordinate[0],coordinate[1],coordinate[2],coordinate[3],first,turn);
         }while(!(success_input && success_move));/*Inserimento dati e mossa*/
         turn++;
-	}while(!(isWinner(board,0)||isWinner(board,1))); /*Controllo esistenza vincitore*/
+	}while(!(isWinner(board,UserOne)||isWinner(board,UserTwo))); /*Controllo esistenza vincitore*/
 
-        /*TODO: Schermata vittoria*/
+    if(isWinner(board,UserOne))
+        victory(UserOne);
+    else
+        victory(UserTwo);
 
 	/*Liberazione memoria*/
 	destroyMatrix(board);
