@@ -1,5 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include<stdio.h>
+#include<stdlib.h>
+
 #include "ml_lib.h"
 
 /*---------------------------------SEZIONE FUNZIONI AUSILIARIE---------------------------------*/
@@ -72,7 +73,7 @@ void destroyPedine(pedina ***p){
 
     for(i = 0; i < 2; i++){
         for(j = 0; j < 11; j++)
-            set_board_value(p,i,j,0);
+            free(get_board_value(p,i,j));
     }
     free(p);
 }
@@ -208,9 +209,9 @@ void printMatrix(pedina ***m){
                 printf("  ");                
             }
             else{
-                printPedina(get_board_value(m,i,j));
-                printPedina(get_board_value_middle(m,i,j));
-                printPedina(get_board_value_down(m,i,j));
+                printPedina(get_board_value(p,i,j));
+                printPedina(get_board_value_middle(p,i,j));
+                printPedina(get_board_value_down(p,i,j));
             }
         }
         printf("\n");
@@ -236,8 +237,44 @@ void printMatrix(pedina ***m){
 	}*/
 }
 
-void printStatus(int turn){
+void printStatus(unsigned turn){
+    printf("\t\t\tTurn number: %u\n\t\t\tMove: %u",turn,(id_p) (turn%2));
+}
 
+void printRules(){
+    printf("                        MiniLaska\n\n\n");
+    printf("    MiniLaska è una variante del gioco originale Lasca le cui uniche differenze sono due:\n");
+    printf("    1)si può avere una colonna di massimo tre pedine,\n");
+    printf("    se si supera tale numero si perde l'ultima pedina a partire dal basso\n");
+    printf("    2)si può conquistare/mangiare una pedina per volta.\n");
+    printf("    E' composta da una scacchiera 7x7, delle 49 caselle solo 25 sono giocabili\n");
+    printf("    essendo che ci si può spostare solo in diagonale.\n ");
+    printf("    I due giocatori partono con 11 pedine ciascuno.\n\n\n");
+
+    printf("    Struttura: soldato,ufficiale,colonna,comandante:\n\n");
+    printf("    Tutti partono come soldati semplici. Una volta raggiunta l'ultima riga\n");
+    printf("    del lato opposto si diventa ufficiali (la pedina viene capovolta),\n");
+    printf("    ora ci si può muovere sia in avanti che indietro,sempre diagonalmente.\n");
+    printf("    Quando si catturano le pedine dell'avversario si forma una\n");
+    printf("    colonna dove in cima abbiamo il giocatore che ha mangiato la/e pedina/e,\n");
+    printf("    la colonna può essere fomata da due/tre pedine, quella più in alto è detta comandante,\n");
+    printf("    se il comandante è un colonello permette alla colonna di spostarsi anche all'indietro.\n\n\n");
+
+    printf("    Come si vince?\n\n");
+    printf("    quando uno dei due giocatori non ha piu mosse disponibili: \n");
+    printf("    o tutte le sue pedine vengono catturate oppure viene bloccato,\n");
+    printf("    quindi qualsiasi mossa faccia finirebbe col perdere.");
+}
+
+void victory(id_p winner){
+    if(winner == UserOneOne)
+        printf("\tComplimenti umano, grande vittoria!!!");
+    else
+        printf("\tComplimenti UserTwo, grande vittoria!!!");
+}
+
+void inputError(){
+    printf("\tNon puoi spostarti in quella casella!");
 }
 
 /*---------------------------------SEZIONE FUNZIONI MOVE---------------------------------*/
@@ -424,6 +461,7 @@ int isWinner(pedina ***p, int idPlayer) {
 
     int i,j,c=0;
 
+
     for (i = 0; i < ROW; i++) {
         for (j = 0; j < COL; j++) {
             if (!c) {
@@ -436,3 +474,4 @@ int isWinner(pedina ***p, int idPlayer) {
 
     return 1;
 }
+
