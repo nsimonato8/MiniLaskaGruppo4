@@ -1,19 +1,23 @@
 #include <stdio.h>
+#include<stdlib.h>
 #include "ml_lib.h"
 
 int main(){
 	
-	pedina ***board, ***players;
+	pedina ***board;
 	int coordinate[4]; /*Contiene le coordinate di partenza e arrivo di ogni mossa*/
 	int success_move = 1, success_input = 1; /*Verifica che la mossa sia possibile*/
 	unsigned turn = 0;
 	id_p first = UserOne;
 
 	/*Inizializzazione campo di gioco*/
-	board = createMatrix();
-	players = createPedine();
+	printf("Creazione campo di gioco...\n");
 	
-	setValuesMatrix(board,players);
+	board = createMatrix();
+	
+	printf("Riempimento campo di gioco...\n");
+	
+	fillBoard(board);
   
     printRules();
 
@@ -40,12 +44,12 @@ int main(){
 
     if(isWinner(board,UserOne))
         victory(UserOne);
-    else
-        victory(UserTwo);
+    else{
+		victory(UserTwo);
+	}       
 
 	/*Liberazione memoria*/
 	destroyMatrix(board);
-	destroyPedine(players);
 	
 	return 0;
 }
