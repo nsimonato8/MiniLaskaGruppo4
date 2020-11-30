@@ -134,50 +134,6 @@ void setValuesMatrix(pedina ***board, pedina ***players){
 	    }
 	}
 	
-	/*
-	 * * Numero 1 usato per identificare il player 1,
-	 * Numero 2 usato per identificare il player 2,
-     * Numero 0 usato per identificare le celle su cui non sono ammessi posizionamenti delle pedine,
-     * Simbolo # usato per identificare la linea di gioco tra i due player.
-	 * int r1,c1;
-	 * for(r1=0;r1<r;r1++){
-		for(c1=0;c1<c;c1++){
-			if(r1<3){
-				if(r1%2==0){
-					if(c1%2==0)
-						m[r1][c1]=1;
-					else 
-						m[r1][c1]=0;
-				} else {
-					if(c1%2==0)
-						m[r1][c1]=0;
-					else 
-						m[r1][c1]=1;
-				}
-			} else {
-				if(r1==3){
-					if(c1%2==0)
-						m[r1][c1]=0;
-					else 
-						m[r1][c1]=5;
-				} else {
-					if(r1%2==0){
-						if(c1%2==0)
-							m[r1][c1]=2;
-						else 
-							m[r1][c1]=0;
-					} else {
-						if(c1%2==0)
-							m[r1][c1]=0;
-						else 
-							m[r1][c1]=2;
-					}
-				}
-			}
-			
-			
-		}
-	}*/
 }
 
 /*---------------------------------SEZIONE FUNZIONI OUTPUT---------------------------------*/
