@@ -26,7 +26,7 @@ typedef struct cella pedina;
 
 int isForbiddenCell(unsigned x,unsigned y);
 
-pedina *[ROW][COL]createMatrix();
+(pedina*)(*)[COL] createMatrix();
 
 void destroyMatrix(pedina* p[ROW][COL]);
 

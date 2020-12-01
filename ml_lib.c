@@ -57,7 +57,7 @@ gr get_grade(pedina *p){
 /*
  * Funzione che crea la matrice della scacchiera
 */
-pedina *[ROW][COL]createMatrix(){
+(pedina*)(*)[COL] createMatrix(){
 
     pedina* p[ROW][COL] = (typeof(p)) malloc(ROW*COL*sizeof(pedina*));
  
@@ -104,7 +104,7 @@ void fillBoard(pedina* p[ROW][COL]){
 				else{
 					pedina *a = NULL;
 					a = (pedina*) malloc(sizeof(pedina));
-					set_grade(p,Soldier);
+					set_grade(a,Soldier);
 					if(i < 3)
 						set_id_player(a, UserTwo);
 					else
