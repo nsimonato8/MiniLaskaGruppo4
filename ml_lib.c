@@ -73,7 +73,7 @@ pedina *createMatrix(){
  * Funzione che distrugge la matrice della scacchiera
 */
 void destroyMatrix(pedina* p[ROW][COL]){
-    free(board);
+    free(p);
 }
 
 
@@ -99,18 +99,18 @@ void fillBoard(pedina* p[ROW][COL]){
             for(j = 0; j < COL; j++){
 				printf("\t\ti: %d, j:%d\n",i,j);
 				if(isForbiddenCell(i,j) || i == 3){
-					set_board_value(board,i,j,0);
+					set_board_value(p,i,j,0);
 				}
 				else{
-					pedina *p;
-					p = (pedina*) malloc(sizeof(pedina));
+					pedina *a = NULL;
+					a = (pedina*) malloc(sizeof(pedina));
 					set_grade(p,Soldier);
 					if(i < 3)
-						set_id_player(p, UserTwo);
+						set_id_player(a, UserTwo);
 					else
-						set_id_player(p, UserOne);
+						set_id_player(a, UserOne);
 
-					set_board_value(board,i,j,p);
+					set_board_value(p,i,j,a);
 				}
             }
         }
