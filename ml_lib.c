@@ -292,7 +292,7 @@ void capture(pedina* p[ROW][COL], unsigned from_x, unsigned from_y, unsigned to_
     if(prisoner->middle || prisoner->down){ /*In questo ramo la pedina catturata ha pedine sottostanti*/
         if(get_id_player(prisoner->middle) == get_id_player(soldier) && get_id_player(prisoner->down) == get_id_player(soldier)) {/*Se entrambe le pedine catturate dal prigioniero sono alleate*/
             prisoner->middle->middle = prisoner->down;
-            p[middle_x][middle_y] = prisoner->middle;
+            set_board_value(p,middle_x,middle_y,prisoner->middle);
         }
         else if(get_id_player(prisoner->middle) == get_id_player(soldier) && !(prisoner->down)){/*Se la pedina prigioniera è ha solo un prigioniero, alleato, l'altra è vuota*/
             set_board_value(p,middle_x,middle_y,prisoner->middle);
