@@ -26,29 +26,29 @@ typedef struct cella pedina;
 
 int isForbiddenCell(unsigned x,unsigned y);
 
-pedina ***createMatrix();
+pedina **createMatrix();
 
-void destroyMatrix(pedina ***board);
+void destroyMatrix(pedina* p[ROW][COL]);
 
-void fillBoard(pedina ***board);
+void fillBoard(pedina* p[ROW][COL]);
 
 void printPedina(pedina *p);
 
-void printMatrix(pedina ***p);
+void printMatrix(pedina* p[ROW][COL]);
 
 int catchInput(int *cord);
 
-int move(pedina ***p, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y, id_p first, unsigned turn); /*TODO: Aggiungere controllo giocatore legittimo*/
+int move(pedina* p[ROW][COL], unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y, id_p first, unsigned turn); /*TODO: Aggiungere controllo giocatore legittimo*/
 
 int distance(unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y);
 
-void capture(pedina ***p, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y);
+void capture(pedina* p[ROW][COL], unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y);
 
-int gradeCheck(pedina ***p, unsigned from_x, unsigned from_y, unsigned to_y);
+int gradeCheck(pedina* p[ROW][COL], unsigned from_x, unsigned from_y, unsigned to_y);
 
-int isWinner(pedina ***board, id_p player);
+int isWinner(pedina* p[ROW][COL], id_p player);
 
-int existMandatory(pedina ***p, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y); /*Verifica se esiste una mossa (obbligatoria) diversa che da quella tentata */
+int existMandatory(pedina* p[ROW][COL], unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y); /*Verifica se esiste una mossa (obbligatoria) diversa che da quella tentata */
 
 void printStatus(unsigned turn);
 

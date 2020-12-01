@@ -91,7 +91,7 @@ int isForbiddenCell(unsigned x, unsigned y){
  * Riempie la scacchiera
 */
 
-void fillBoard(pedina **board){
+void fillBoard(pedina* p[ROW][COL]){
 	
 	unsigned i,j;
 	
@@ -133,7 +133,7 @@ void printPedina(pedina *p){
 }
 
 /* Funzione che stampa la scacchiera in base al posizionamento delle pedine. */
-void printMatrix(pedina **p){
+void printMatrix(pedina* p[ROW][COL]){
 
     unsigned i,j;
 
@@ -237,7 +237,7 @@ int catchInput(int *cord){
  * Le coordinate inserite sono corrette in fase di input (sono all'interno della scacchiera e non sono caselle proibite)
  * Verifica che la distanza ed il grado siano compatibili con la mossa
 */
-int move(pedina **p, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y, id_p first, unsigned turn){
+int move(pedina* p[ROW][COL], unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y, id_p first, unsigned turn){
     int success = 1, d = distance(from_x,from_y,to_x,to_y), grade_control = gradeCheck(p,from_x,from_y,to_y), existM = existMandatory(p,from_x,from_y,to_x,to_y), legal_player = first == (turn %2);
     if(!legal_player || get_board_value(p,to_x,to_y) || d == -1 || !grade_control || existM)
         success = 0;
@@ -284,7 +284,7 @@ int distance(unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y){
  * Questa funzione si occupa di catturare le pedine indicate.
  * Si assume la correttezza delle coordinate inserite, la legalità della mossa è verificata nella funzione move(...).
 */
-void capture(pedina **p, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y){
+void capture(pedina* p[ROW][COL], unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y){
 
     unsigned middle_x = (from_x+to_x)/2, middle_y = (to_y+from_y)/2;
     pedina *prisoner = p[middle_x][middle_y];
@@ -333,7 +333,7 @@ void capture(pedina **p, unsigned from_x, unsigned from_y, unsigned to_x, unsign
 /* Verifica il grado della pedina mossa:
  * restituisce 1 se la mossa è consentita, 0 se non è consentita
 */
-int gradeCheck(pedina **p, unsigned from_x, unsigned from_y, unsigned to_y){
+int gradeCheck(pedina* p[ROW][COL], unsigned from_x, unsigned from_y, unsigned to_y){
     int success = 1;
 
     if(!get_grade(p[from_x][from_y]) && (to_y - from_y) > 0) /*get_board_value al posto di p[from_x][from_y]*/
@@ -345,7 +345,7 @@ int gradeCheck(pedina **p, unsigned from_x, unsigned from_y, unsigned to_y){
 /* Verifica se, nel caso di non cattura, esiste una cattur obbligatoria da fare
  * Restituisce 1 se esiste una mossa obbligatoria non tentata, altrimenti 0
  */
-int existMandatory(pedina **p, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y){
+int existMandatory(pedina* p[ROW][COL], unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y){
 
     int success = 0, dx = to_x - from_x, dy = to_y - from_y;
 
@@ -379,7 +379,7 @@ int existMandatory(pedina **p, unsigned from_x, unsigned from_y, unsigned to_x, 
 /* Verifica che il giocatore idPlayer abbia vinto
  * Restituisce 1 se idPlayer ha vinto, altrimenti 0
 */
-int isWinner(pedina **p, id_p idPlayer) {
+int isWinner(pedina* p[ROW][COL], id_p idPlayer) {
 
     int i,j,c=0;
 
