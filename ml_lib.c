@@ -57,7 +57,7 @@ gr get_grade(pedina *p){
 /*
  * Funzione che crea la matrice della scacchiera
 */
-(pedina*)(*)[COL] createMatrix(){
+pedina*(*)[COL] createMatrix(){
 
     pedina* p[ROW][COL] = (typeof(p)) malloc(ROW*COL*sizeof(pedina*));
  
