@@ -131,8 +131,10 @@ void printPedina(pedina *p){
 void printMatrix(pedina **p){
 
     unsigned i,j;
-
+	
+	printf("\n");
     for(i = 0; i < ROW; i++) {
+		printf("\t");
         for (j = 0; j < COL; j++) {
             if ((i % 2 && !(j % 2)) || (!(i % 2) && (j % 2))) /*Caselle oscurate*/
                 printf("# ");
@@ -150,7 +152,15 @@ void printMatrix(pedina **p){
 }
 
 void printStatus(unsigned turn){
-    printf("\t\t\tTurn number: %u\n\t\t\tMove: %u",turn,(id_p) (turn%2));
+	
+	char *s;
+	
+	if(turn%2)
+		s = "User 2";
+	else
+		s = "User 1";
+	
+    printf("\t\t\tTurn number: %u\n\t\t\tMove: %s\n",turn,s);
 }
 
 void printRules(){
@@ -175,7 +185,7 @@ void printRules(){
     printf("    Come si vince?\n\n");
     printf("    quando uno dei due giocatori non ha piu mosse disponibili: \n");
     printf("    o tutte le sue pedine vengono catturate oppure viene bloccato,\n");
-    printf("    quindi qualsiasi mossa faccia finirebbe col perdere.");
+    printf("    quindi qualsiasi mossa faccia finirebbe col perdere.\n");
 }
 
 void victory(id_p winner){
@@ -205,7 +215,7 @@ int catchInput(int *cord){
 
     /*acquisizione stringa dall'input*/
     if(getline(&a,&bufsize,stdin) != 1){
-		perror("Getline erroe");
+		perror("Getline error");
 		exit(1);
 	}
 		

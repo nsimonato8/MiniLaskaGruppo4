@@ -30,8 +30,8 @@ int main(){
 
     /*Gioco 1v1*/
 	do{
+		printStatus(turn); /*Status giocatore + n°turno */
         printMatrix(board); /*Status scacchiera */
-        printStatus(turn); /*Status giocatore + n°turno */
         do{
             if(!success_move || !success_input){
                 inputError();
