@@ -3,8 +3,8 @@
 #include "ml_lib.h"
 
 int main(){
-	
-	pedina* board[ROW][COL];
+
+    pedina **board = NULL;
 	int coordinate[4]; /*Contiene le coordinate di partenza e arrivo di ogni mossa*/
 	int success_move = 1, success_input = 1; /*Verifica che la mossa sia possibile*/
 	unsigned turn = 0;

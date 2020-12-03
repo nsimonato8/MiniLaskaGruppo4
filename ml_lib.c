@@ -4,81 +4,65 @@
 
 /*---------------------------------SEZIONE FUNZIONI AUSILIARIE---------------------------------*/
 
-/* Imposta l'id_player della pedina indicata dal puntatore*/
 void set_id_player(pedina *p, id_p value){
 	if(p)
 		p->id_player = value;
 }
 
-/* Ritorna il p->id_player della pedina specificata */
 id_p get_id_player(pedina *p){
 	return p->id_player;
 }
 
-/* Imposta il valore value nella posizione indicata nella scacchiera*/
-void set_board_value(pedina* p[ROW][COL], unsigned x, unsigned y, pedina *value){
-	p[x][y] = value;
+void set_board_value(pedina **board, unsigned x, unsigned y, pedina *value){
+    board[x * COL + y] = value;
 }
 
-/* Ritorna il valore nella posizione indicata nella scacchiera*/
-pedina* get_board_value(pedina* p[ROW][COL], unsigned x, unsigned y){
-    return p[x][y];
+pedina* get_board_value(pedina **board, unsigned x, unsigned y){
+    return board[x * COL + y];
 }
 
-/* Ritorna il valore della pedina middle nella posizione indicata nella scacchiera*/
-pedina* get_board_value_middle(pedina* p[ROW][COL], unsigned x, unsigned y){
-	if(!p[x][y])
-		return 0;
-	else 
-		return p[x][y]->middle;
+pedina* get_board_value_middle(pedina **board, unsigned x, unsigned y){
+    if(!get_board_value(board,x,y))
+        return 0;
+    else
+        return board[x * COL + y]->middle;
 }
 
-/* Ritorna il valore della pedina down nella posizione indicata nella scacchiera*/
-pedina* get_board_value_down(pedina* p[ROW][COL], unsigned x, unsigned y){
-    if(!p[x][y])
-		return 0;
-	else
-		return p[x][y]->down;
+pedina* get_board_value_down(pedina **board, unsigned x, unsigned y){
+    if(!get_board_value(board,x,y))
+        return 0;
+    else
+        return board[x * COL + y]->down;
 }
 
-/* Imposta il grado di una pedina*/
 void set_grade(pedina *p,gr value){
 	if(p)
 		p->grado = value;
 }
 
-/* Ritorna il grado di una pedina*/
 gr get_grade(pedina *p){
     return p->grado;
 }
 
-/*---------------------------------SEZIONE FUNZIONI GESTIONE MEMORIA---------------------------------*/
+/*---------------------------------SEZIONE FUNZIONI LOGICHE DI GIOCO---------------------------------*/
 
-/*
- * Funzione che crea la matrice della scacchiera
-*/
-pedina*(*)[COL] createMatrix(){
+int isWinner(pedina **p, id_p idPlayer) {
 
-    pedina* p[ROW][COL] = (typeof(p)) malloc(ROW*COL*sizeof(pedina*));
- 
-	if(!p){
-		printf("createMatrix failed malloc");
-		return 0;
-	}
-	else
-	    return p;
+    int i,j,c=0;
+
+    for (i = 0; i < ROW; i++) {
+        for (j = 0; j < COL; j++) {
+            if (!c) {
+                if (get_id_player(get_board_value(p,i,j)) == idPlayer)
+                    c++;
+            } else
+                return 0;
+        }
+    }
+
+    return 1;
 }
 
-/*
- * Funzione che distrugge la matrice della scacchiera
-*/
-void destroyMatrix(pedina* p[ROW][COL]){
-    free(p);
-}
-
-/*
- * Restituisce 1 se la cella non è accessibile (si possono usare solo le celle bianche della scacchiera), altirmenti 0
-*/
 int isForbiddenCell(unsigned x, unsigned y){
     if((x % 2 && !(y % 2)) || (!(x % 2) && (y % 2)))
         return 1;
@@ -86,11 +70,25 @@ int isForbiddenCell(unsigned x, unsigned y){
         return 0;
 }
 
-/*
- * Riempie la scacchiera
-*/
+/*---------------------------------SEZIONE FUNZIONI GESTIONE MEMORIA---------------------------------*/
 
-void fillBoard(pedina* p[ROW][COL]){
+pedina **createMatrix(){
+
+    pedina** board = (pedina **) malloc(ROW*COL*sizeof(pedina *));
+
+    if(!board){
+        printf("createMatrix failed malloc");
+        return 0;
+    }
+    else
+        return board;
+}
+
+void destroyMatrix(pedina **p){
+    free(p);
+}
+
+void fillBoard(pedina **p){
 	
 	unsigned i,j;
 	
@@ -117,7 +115,6 @@ void fillBoard(pedina* p[ROW][COL]){
 
 /*---------------------------------SEZIONE FUNZIONI OUTPUT---------------------------------*/
 
-/* Stampa un carattere ASCII identificativo del contenuto della casella p*/
 void printPedina(pedina *p){
     if(!p)
         printf(" ");
@@ -131,8 +128,7 @@ void printPedina(pedina *p){
         printf("b");
 }
 
-/* Funzione che stampa la scacchiera in base al posizionamento delle pedine. */
-void printMatrix(pedina* p[ROW][COL]){
+void printMatrix(pedina **p){
 
     unsigned i,j;
 
@@ -195,9 +191,6 @@ void inputError(){
 
 /*---------------------------------SEZIONE FUNZIONI MOVE---------------------------------*/
 
-/*
- * Legge l'input dall'utente e traduce le coordinate in int, che vengono inseriti in un array apposito
-*/
 int catchInput(int *cord){
     char *a;
     size_t bufsize = 10;
@@ -230,13 +223,7 @@ int catchInput(int *cord){
     return success;
 }
 
-/*
- * Restituisce 1 se la mossa è stata fatta, 0 se non è stato possibile
- *
- * Le coordinate inserite sono corrette in fase di input (sono all'interno della scacchiera e non sono caselle proibite)
- * Verifica che la distanza ed il grado siano compatibili con la mossa
-*/
-int move(pedina* p[ROW][COL], unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y, id_p first, unsigned turn){
+int move(pedina **p, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y, id_p first, unsigned turn){
     int success = 1, d = distance(from_x,from_y,to_x,to_y), grade_control = gradeCheck(p,from_x,from_y,to_y), existM = existMandatory(p,from_x,from_y,to_x,to_y), legal_player = first == (turn %2);
     if(!legal_player || get_board_value(p,to_x,to_y) || d == -1 || !grade_control || existM)
         success = 0;
@@ -262,13 +249,7 @@ int move(pedina* p[ROW][COL], unsigned from_x, unsigned from_y, unsigned to_x, u
     return success;
 }
 
-/*
- * Restituisce la distanza in modulo tra due punti nella matrice:
- * Se è maggiore di 2, uguale a 0, o la destinazione è in una casella non accessibile restituisce il codice errore -1
- *
- * Le coordinate inserite sono corrette (la destinazione non è una casella proibita)
-*/
-int distance(unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y){
+int distance(int from_x, int from_y, int to_x, int to_y){
     int result, dx = abs(to_x - from_x), dy = abs(to_y - from_y);
 
     if(dx == dy && dx && dx < 3)
@@ -279,11 +260,7 @@ int distance(unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y){
     return result;
 }
 
-/*
- * Questa funzione si occupa di catturare le pedine indicate.
- * Si assume la correttezza delle coordinate inserite, la legalità della mossa è verificata nella funzione move(...).
-*/
-void capture(pedina* p[ROW][COL], unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y){ /*Correggi con funzioni ausiliarie*/
+void capture(pedina **p, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y){ /*Correggi con funzioni ausiliarie*/
 
     unsigned middle_x = (from_x+to_x)/2, middle_y = (to_y+from_y)/2;
     pedina *prisoner = get_board_value(p,middle_x,middle_y);
@@ -329,10 +306,7 @@ void capture(pedina* p[ROW][COL], unsigned from_x, unsigned from_y, unsigned to_
     set_board_value(p,middle_x,middle_y,soldier);
 }
 
-/* Verifica il grado della pedina mossa:
- * restituisce 1 se la mossa è consentita, 0 se non è consentita
-*/
-int gradeCheck(pedina* p[ROW][COL], unsigned from_x, unsigned from_y, unsigned to_y){
+int gradeCheck(pedina **p, unsigned from_x, unsigned from_y, unsigned to_y){
     int success = 1;
 
     if(!get_grade(get_board_value(p,from_x,from_y)) && (to_y - from_y) > 0) /*get_board_value al posto di p[from_x][from_y]*/
@@ -341,10 +315,7 @@ int gradeCheck(pedina* p[ROW][COL], unsigned from_x, unsigned from_y, unsigned t
     return success;
 }
 
-/* Verifica se, nel caso di non cattura, esiste una cattur obbligatoria da fare
- * Restituisce 1 se esiste una mossa obbligatoria non tentata, altrimenti 0
- */
-int existMandatory(pedina* p[ROW][COL], unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y){
+int existMandatory(pedina **p, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y){
 
     int success = 0, dx = to_x - from_x, dy = to_y - from_y;
 
@@ -371,26 +342,4 @@ int existMandatory(pedina* p[ROW][COL], unsigned from_x, unsigned from_y, unsign
     }
 
     return success;
-}
-
-/*---------------------------------SEZIONE FUNZIONI LOGICHE DI GIOCO---------------------------------*/
-
-/* Verifica che il giocatore idPlayer abbia vinto
- * Restituisce 1 se idPlayer ha vinto, altrimenti 0
-*/
-int isWinner(pedina* p[ROW][COL], id_p idPlayer) {
-
-    int i,j,c=0;
-
-    for (i = 0; i < ROW; i++) {
-        for (j = 0; j < COL; j++) {
-            if (!c) {
-                if (get_id_player(p[i][j]) == idPlayer)
-                    c++;
-            } else
-                return 0;
-        }
-    }
-
-    return 1;
 }
