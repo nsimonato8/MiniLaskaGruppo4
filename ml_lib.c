@@ -229,7 +229,7 @@ void inputError(){
  * per la destinazione non posso mettere questo controllod
 */
 
-int catchInput(int *cord, pedina **board){
+int catchInput(int *cord){
     char *v = (char *)malloc(sizeof(char)*4);
 
     do {
@@ -298,17 +298,14 @@ int catchInput(int *cord, pedina **board){
 int move(pedina** board, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y, unsigned turn){
 
     int success = 1, d = distance(from_x,from_y,to_x,to_y), grade_control = gradeCheck(board,from_x,from_y,to_y), existM = existMandatory(board,from_x,from_y,to_x,to_y), legal_player = (get_id_player(get_board_value(board,from_x,from_y)) == (turn %2));
-    printf("\ndist: %d, grade: %d, legal: %d\n",d,grade_control,legal_player);
     if(!legal_player || get_board_value(board,to_x,to_y) || d == -1 || !grade_control || existM){
         success = 0;
     } else{
         if(d == 1){
-            printf("\nprova \n");
             set_board_value(board,to_x,to_y,get_board_value(board,from_x,from_y));
             set_board_value(board,from_x,from_y,0);
         }
         else if(d == 2){
-            printf("\n d == 2\n");
             unsigned middle_x;
             unsigned middle_y;
 
@@ -336,9 +333,9 @@ int move(pedina** board, unsigned from_x, unsigned from_y, unsigned to_x, unsign
  *
  * Le coordinate inserite sono corrette (la destinazione non è una casella proibita)
 */
-int distance(unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y){
+int distance(int from_x, int from_y, int to_x, int to_y){
     int result;
-    unsigned dx = abs(to_x - from_x), dy = abs(to_y - from_y);
+    int dx = abs(to_x - from_x), dy = abs(to_y - from_y);
 
     if(dx == dy && dx && dx < 3)
         result = dx;
@@ -406,25 +403,17 @@ int gradeCheck(pedina **board, unsigned from_x, unsigned from_y, unsigned to_y){
 
     int success = 1;
 
-
     if(get_board_value(board,from_x,from_y)) { /* controlla se la casella è piena o vuota*/
-        printf("\n GetBval: %d\n",get_board_value(board,from_x,from_y));
         if (!get_grade(get_board_value(board, from_x, from_y))) { /*controlla il grado della pedina*/
-
-            printf("\n GetGrade: %d\n",(!get_grade(get_board_value(board, from_x, from_y))));
-            printf("\n player : %d\n",get_id_player(get_board_value(board, from_x, from_y)));
-            printf("\n ris toy fromy : %d \n", (to_y - from_y));
 
             if (get_id_player(get_board_value(board, from_x, from_y)) == 0) {
 
                 if (to_y < from_y){
-                    printf("\n ramo minore player 0\n");
                     success = 0;
                 }
 
             } else { /*controlla se la pedina appartiene al giocatore 1*/
                 if (to_y > from_y) {
-                    printf("\n ramo maxxx player 1\n");
                     success = 0;
                 }
             }
@@ -433,7 +422,6 @@ int gradeCheck(pedina **board, unsigned from_x, unsigned from_y, unsigned to_y){
         success = 0;
     }
 
-    printf("\n ris success function : %d\n",success);
     return success;
 
 }
