@@ -36,9 +36,9 @@ void printPedina(pedina *p);
 
 void printMatrix(pedina **board);
 
-int catchInput(int *cord);
+int catchInput(int *cord, pedina **board);
 
-int move(pedina **board, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y, id_p first, unsigned turn); /*TODO: Aggiungere controllo giocatore legittimo*/
+int move(pedina **board, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y, unsigned turn); /*TODO: Aggiungere controllo giocatore legittimo*/
 
 int distance(unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y);
 

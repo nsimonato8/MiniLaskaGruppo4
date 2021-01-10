@@ -6,8 +6,7 @@
 
 /* Imposta l'id_player della pedina indicata dal puntatore*/
 void set_id_player(pedina *p, id_p value){
-    if(p)
-        p->id_player = value;
+    p->id_player = value;
 }
 
 /* Ritorna il p->id_player della pedina specificata */
@@ -36,20 +35,18 @@ pedina* get_board_value_middle(pedina **board, unsigned x, unsigned y){
 /* Ritorna il valore della pedina down nella posizione indicata nella scacchiera*/
 pedina* get_board_value_down(pedina **board, unsigned x, unsigned y){
     if(!board[x * COL + y])
-        return 0;
+        return NULL;
     else
         return board[x * COL + y]->down;
 }
 
 /* Imposta il grado di una pedina*/
 void set_grade(pedina *p,gr value){
-    if(p)
-        p->grado = value;
+    p->grado = value;
 }
 
 /* Ritorna il grado di una pedina*/
 gr get_grade(pedina *p){
-
     return p->grado;
 }
 
@@ -103,7 +100,7 @@ void fillBoard(pedina** board){
     for(i = 0; i < ROW; i++){
         for(j = 0; j < COL; j++){
             if(isForbiddenCell(i,j) || i == 3){
-                set_board_value(board,i,j,NULL);
+                set_board_value(board,i,j,0);
             }
             else{
                 pedina *a = NULL;
@@ -114,9 +111,9 @@ void fillBoard(pedina** board){
 
                 if(i < 3)
                     set_id_player(a, UserTwo);
-                else
+                else{
                     set_id_player(a, UserOne);
-
+                }
                 set_board_value(board,i,j,a);
             }
         }
@@ -132,15 +129,17 @@ void fillBoard(pedina** board){
  * */
 void printPedina(pedina *p){
 
-    if(!p){}
+    if(!p){
+        printf(" ");
+    }
     else if(get_id_player(p) && get_grade(p))
-        printf("N ");
+        printf("N");
     else if(get_id_player(p) && !get_grade(p))
-        printf("n ");
+        printf("n");
     else if(!get_id_player(p) && get_grade(p))
-        printf("B ");
+        printf("B");
     else
-        printf("b ");
+        printf("b");
 }
 
 /* Funzione che stampa la scacchiera in base al posizionamento delle pedine. */
@@ -151,40 +150,40 @@ void printMatrix(pedina** board){
     for(i=0; i<ROW; i++){
 
 
-    	printf("%c > ",('A'+ i));
+        printf("%c > ",('A'+ i));
 
-    	for(j=0;j<COL;j++){
+        for(j=0;j<COL;j++){
 
             if ((i % 2 && !(j % 2)) || (!(i % 2) && (j % 2)))
-                printf("# ");
+                printf("###");
             else if(!get_board_value(board,i,j)){
-                printf("  ");
+                printf("   ");
             }
             else{
                 printPedina(get_board_value(board,i,j));
                 printPedina(get_board_value_middle(board,i,j));
                 printPedina(get_board_value_down(board,i,j));
             }
-
-    	}
-     printf("\n");
+            printf("|");
+        }
+        printf("\n");
     }
 
     printf("    ");
 
     for(i=0;i<COL;i++)
-    	printf("^ ");
+        printf("^   ");
 
     printf("\n");
 
     printf("    ");
 
     for(i=0;i<COL;i++)
-    	printf("%d ", (i+1));
+        printf("%d   ", (i+1));
 }
 
 void printStatus(unsigned turn){
-    printf("\n\n\nTurn number: %u\nMove player: %u\n",(turn+1),((id_p)(turn%2)));
+    printf("\n\n\nTurn number: %u\nMove player: %c\n",(turn+1),(turn%2)?'n':'b');
 }
 
 void printRules(){
@@ -214,7 +213,7 @@ void printRules(){
 
 void victory(id_p winner){
     if(winner == UserOne)
-        printf("\tComplimenti umano, grande vittoria!!!");
+        printf("\tComplimenti giocatore, grande vittoria!!!");
     else
         printf("\tComplimenti UserTwo, grande vittoria!!!");
 }
@@ -227,33 +226,40 @@ void inputError(){
 
 /*
  * FUNZIONE CHE PRENDE IN INPUT CORDINATE PER LO SPOSTAMENTO DELLA PEDINA
+ * controllo aggiuntivo per non inserire coordinate di start su cella a null.
+ * per la destinazione non posso mettere questo controllod
 */
 
-int catchInput(int *cord){
+int catchInput(int *cord, pedina **board){
     char *v = (char *)malloc(sizeof(char)*4);
-    int i;
 
-    printf("\n\nInserisci le coordinate della pedina da muovere: \n\n");
+    do {
+        printf("\n\nInserisci le coordinate della pedina da muovere: \n\n");
 
-    printf("Coordinata Alfabetica: \n");
+        printf("Coordinata Alfabetica: \n");
 
-    do{
-        if(scanf(" %c",&v[0])!=1)
-            perror("Errore acquisizione coordinata");
+        do {
+            if (scanf(" %c", &v[0]) != 1)
+                perror("Errore acquisizione coordinata");
 
-    }while(!(v[0]>='a' && v[0]<='g'));
+        } while (!(v[0] >= 'a' && v[0] <= 'g'));
 
-    cord[0]=((v[0]-96)-1);
+        cord[0] = ((v[0] - 96) - 1);
 
-    printf("Coordinata Numerica: \n");
+        printf("Coordinata Numerica: \n");
 
-    do{
-        if(scanf(" %c",&v[1])!=1)
-            perror("Errore acquisizione coordinata");
+        do {
+            if (scanf(" %c", &v[1]) != 1)
+                perror("Errore acquisizione coordinata");
 
-    }while(!(v[1]>='1' && v[1]<='7'));
+        } while (!(v[1] >= '1' && v[1] <= '7'));
 
-    cord[1]=((v[1]-'0')-1);
+        cord[1] = ((v[1] - '0') - 1);
+
+        if(get_board_value(board, cord[0], cord[1]) == 0)
+            printf("\nCella non selezionabile, reinserisci le coordinate\n");
+
+    }while(get_board_value(board, cord[0], cord[1]) == 0);
 
     printf("\n\nInserisci le coordinate di destinazione: \n\n");
 
@@ -277,12 +283,6 @@ int catchInput(int *cord){
 
     cord[3]=((v[3]-'0')-1);
 
-
-    for(i=0;i<4;i++){
-        printf("\n-- cord[%d] -> %d\n",i,cord[i]);
-    }
-
-
     return 1;
 }
 
@@ -296,17 +296,26 @@ int catchInput(int *cord){
  * existM -> se esiste mossa obb.
  *legal ply-> ctrl player che muove
 */
-int move(pedina** board, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y, id_p first, unsigned turn){
-    int success = 1, d = distance(from_x,from_y,to_x,to_y), grade_control = gradeCheck(board,from_x,from_y,to_y), existM = existMandatory(board,from_x,from_y,to_x,to_y), legal_player = (first == (turn %2));
-    if(!legal_player || get_board_value(board,to_x,to_y) || d == -1 || !grade_control || existM)
+int move(pedina** board, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y, unsigned turn){
+
+    int success = 1, d = distance(from_x,from_y,to_x,to_y), grade_control = gradeCheck(board,from_x,from_y,to_y), existM = existMandatory(board,from_x,from_y,to_x,to_y), legal_player = (get_id_player(get_board_value(board,from_x,from_y)) == (turn %2));
+    printf("\ndist: %d, grade: %d, legal: %d\n",d,grade_control,legal_player);
+    if(!legal_player || get_board_value(board,to_x,to_y) || d == -1 || !grade_control || existM){
         success = 0;
-    else{
+    } else{
         if(d == 1){
+            printf("\nprova \n");
             set_board_value(board,to_x,to_y,get_board_value(board,from_x,from_y));
             set_board_value(board,from_x,from_y,0);
         }
         else if(d == 2){
-            unsigned middle_x = (from_x + to_x)/2, middle_y = (from_y+to_y)/2;
+            printf("\n d == 2\n");
+            unsigned middle_x;
+            unsigned middle_y;
+
+            middle_x = (from_x + to_x)/2;
+            middle_y = (from_y+to_y)/2;
+
             if(get_board_value(board,middle_x,middle_y)){ /*verifica esistenza pedina in mezzo*/
                 if(get_id_player(get_board_value(board,middle_x,middle_y)) == get_id_player(get_board_value(board,from_x,from_y)))
                     success = 0; /*se amica, annulla mossa*/
@@ -329,7 +338,8 @@ int move(pedina** board, unsigned from_x, unsigned from_y, unsigned to_x, unsign
  * Le coordinate inserite sono corrette (la destinazione non è una casella proibita)
 */
 int distance(unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y){
-    int result, dx = abs(to_x - from_x), dy = abs(to_y - from_y);
+    int result;
+    unsigned dx = abs(to_x - from_x), dy = abs(to_y - from_y);
 
     if(dx == dy && dx && dx < 3)
         result = dx;
@@ -386,23 +396,47 @@ void capture(pedina **board, unsigned from_x, unsigned from_y, unsigned to_x, un
         }
     }
 
-    set_board_value(board,middle_x,middle_y,soldier);
+    set_board_value(board,from_x,from_y,0);
+    set_board_value(board,to_x,to_y,soldier);
 }
 
 /* Verifica il grado della pedina mossa:
  * restituisce 1 se la mossa è consentita, 0 se non è consentita
 */
 int gradeCheck(pedina **board, unsigned from_x, unsigned from_y, unsigned to_y){
+
     int success = 1;
 
-    if(get_board_value(board,from_x,from_y)){
-        if(!get_grade(get_board_value(board,from_x,from_y)) && (to_y - from_y) > 0) /*get_board_value al posto di p[from_x][from_y]*/
-            success = 0;
+
+    if(get_board_value(board,from_x,from_y)) { /* controlla se la casella è piena o vuota*/
+        printf("\n GetBval: %d\n",get_board_value(board,from_x,from_y));
+        if (!get_grade(get_board_value(board, from_x, from_y))) { /*controlla il grado della pedina*/
+
+            printf("\n GetGrade: %d\n",(!get_grade(get_board_value(board, from_x, from_y))));
+            printf("\n player : %d\n",get_id_player(get_board_value(board, from_x, from_y)));
+            printf("\n ris toy fromy : %d \n", (to_y - from_y));
+
+            if (get_id_player(get_board_value(board, from_x, from_y)) == 0) {
+
+                if (to_y < from_y){
+                    printf("\n ramo minore player 0\n");
+                    success = 0;
+                }
+
+            } else { /*controlla se la pedina appartiene al giocatore 1*/
+                if (to_y > from_y) {
+                    printf("\n ramo maxxx player 1\n");
+                    success = 0;
+                }
+            }
+        }
     } else {
         success = 0;
     }
 
+    printf("\n ris success function : %d\n",success);
     return success;
+
 }
 
 /* Verifica se, nel caso di non cattura, esiste una cattur obbligatoria da fare
@@ -441,6 +475,7 @@ int existMandatory(pedina **board, unsigned from_x, unsigned from_y, unsigned to
 
 /* Verifica che il giocatore idPlayer abbia vinto
  * Restituisce 1 se idPlayer ha vinto, altrimenti 0
+ * TODO: DA RIVEDERE QUANDO TI BLOCCANO
 */
 int isWinner(pedina **board, id_p idPlayer) {
 
@@ -448,13 +483,16 @@ int isWinner(pedina **board, id_p idPlayer) {
 
     for (i = 0; i < ROW; i++) {
         for (j = 0; j < COL; j++) {
-            if (!c) {
-                if (get_id_player(board[i * COL + j]) == idPlayer)
+            if(board[i * COL + j]){
+                if(get_id_player(board[i * COL + j]) == idPlayer)
                     c++;
-            } else
-                return 0;
+            }
         }
     }
 
-    return 1;
+    if(c>0){
+        return 1;
+    } else {
+        return 0;
+    }
 }
