@@ -141,13 +141,13 @@ void fillBoard(pedina **p);
 
 /*---------------------------------SEZIONE FUNZIONI INPUT---------------------------------*/
 
-/*! \fn catchInput(int *cord)
+/*! \fn catchInput(int *cord, pedina **board)
 *   \brief Legge l'input da tastiera
 *	\param cord array contenente le coordinate di partenza e destinazione della pedina
 * 
 * 	Legge l'input dall'utente e traduce le coordinate in int, che vengono inseriti in un array apposito.
 */
-int catchInput(int *cord);
+int catchInput(int *cord, pedina **board);
 
 /*---------------------------------SEZIONE FUNZIONI OUTPUT---------------------------------*/
 

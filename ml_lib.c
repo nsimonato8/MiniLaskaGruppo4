@@ -231,7 +231,7 @@ void inputError(){
  * per la destinazione non posso mettere questo controllod
 */
 
-int catchInput(int *cord){
+int catchInput(int *cord, pedina **board){
     char *v = (char *)malloc(sizeof(char)*4);
 
     do {
