@@ -179,6 +179,8 @@ void printMatrix(pedina** board){
 
     for(i=0;i<COL;i++)
         printf("%d   ", (i+1));
+	
+	printf("\n");
 }
 
 void printStatus(unsigned turn){
@@ -230,35 +232,59 @@ void inputError(){
 */
 
 int catchInput(int *cord){
-    char *a;
-    size_t bufsize = 10;
-    int success = 1;
+    char *v = (char *)malloc(sizeof(char)*4);
 
-    a=(char *)malloc(bufsize*sizeof(char));
+    do {
+        printf("\n\nInserisci le coordinate della pedina da muovere: \n\n");
 
-    if(!a){
-        perror("Malloc error");
-        exit(1);
-    }
+        printf("Coordinata Alfabetica: \n");
 
-    /*acquisizione stringa dall'input*/
-    if(getline(&a,&bufsize,stdin) != 1){
-		perror("Getline error");
-		exit(1);
-	}
-		
+        do {
+            if (scanf(" %c", &v[0]) != 1)
+                perror("Errore acquisizione coordinata");
 
-    /*conversione in coordinate*/
-    cord[0]=((a[0]-96)-1);
-    cord[1]=(int)((a[1]-'0')-1);
+        } while (!(v[0] >= 'a' && v[0] <= 'g'));
 
-    cord[2]=((a[6]-96)-1);
-    cord[3]=(int)((a[7]-'0')-1);
-    free(a);
-    if((cord[0] >= 0 && cord[0] <= 6) && (cord[1] >= 0 && cord[1] <= 6) && (cord[2] >= 0 && cord[2] <= 6) && (cord[3] >= 0 && cord[3] <= 6))
-        success = 0;
+        cord[0] = ((v[0] - 96) - 1);
 
-    return success;
+        printf("Coordinata Numerica: \n");
+
+        do {
+            if (scanf(" %c", &v[1]) != 1)
+                perror("Errore acquisizione coordinata");
+
+        } while (!(v[1] >= '1' && v[1] <= '7'));
+
+        cord[1] = ((v[1] - '0') - 1);
+
+        if(get_board_value(board, cord[0], cord[1]) == 0)
+            printf("\nCella non selezionabile, reinserisci le coordinate\n");
+
+    }while(get_board_value(board, cord[0], cord[1]) == 0);
+
+    printf("\n\nInserisci le coordinate di destinazione: \n\n");
+
+    printf("Coordinata Alfabetica: \n");
+
+    do{
+        if(scanf(" %c",&v[2])!=1)
+            perror("Errore acquisizione coordinata");
+
+    }while(!(v[2]>='a' && v[2]<='g'));
+
+    cord[2]=((v[2]-96)-1);
+
+    printf("Coordinata Numerica: \n");
+
+    do{
+        if(scanf(" %c",&v[3])!=1)
+            perror("Errore acquisizione coordinata");
+
+    }while(!(v[3]>='1' && v[3]<='7'));
+
+    cord[3]=((v[3]-'0')-1);
+
+    return 1;
 }
 
 /*
