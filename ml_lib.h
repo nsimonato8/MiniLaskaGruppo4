@@ -236,10 +236,11 @@ int isForbiddenCell(unsigned x,unsigned y);
 * 	Le coordinate inserite sono corrette in fase di input (sono all'interno della scacchiera e non sono caselle proibite).
 * 	Verifica che la distanza ed il grado siano compatibili con la mossa.
 */
-int move(pedina **p, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y, id_p first, unsigned turn); /*TODO: Aggiungere controllo giocatore legittimo*/
+int move(pedina **board, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y, unsigned turn); /*TODO: Aggiungere controllo giocatore legittimo*/
 
 /*! \fn distance(int from_x, int from_y, int to_x, int to_y)
-*   \brief Restituisce un codice che descrive la lunghezza della mossa 
+*   \brief Restituisce un codice che descrive la lunghezza della mossa
+*   \param board matrice linearizzata della scacchiera 
 *   \param from_x coordinata x della cella di partenza
 *   \param from_y coordinata y della cella di partenza
 *   \param to_x coordinata x della cella di destinazione
@@ -253,8 +254,7 @@ int move(pedina **p, unsigned from_x, unsigned from_y, unsigned to_x, unsigned t
 int distance(int from_x, int from_y, int to_x, int to_y);
 
 /*! \fn capture(pedina **p, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y)
-*   \brief Esegue la cattura delle pedine
-*   \param p matrice linearizzata della scacchiera 
+*   \brief Esegue la cattura delle pedine 
 *   \param from_x coordinata x della cella di partenza
 *   \param from_y coordinata y della cella di partenza
 *   \param to_x coordinata x della cella di destinazione
@@ -263,11 +263,11 @@ int distance(int from_x, int from_y, int to_x, int to_y);
 * 	Questa funzione si occupa di catturare le pedine indicate.
 * 	Si assume la correttezza delle coordinate inserite, la legalità della mossa è verificata nella funzione move().
 */
-void capture(pedina **p, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y);
+void capture(pedina **board, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y);
 
-/*! \fn gradeCheck(pedina **p, unsigned from_x, unsigned from_y, unsigned to_y)
+/*! \fn gradeCheck(pedina **board, unsigned from_x, unsigned from_y, unsigned to_y)
 *   \brief Verifica che la mossa selezionata sia compatibile con il grado della pedina
-*   \param p matrice linearizzata della scacchiera 
+*   \param board matrice linearizzata della scacchiera 
 *   \param from_x coordinata x della cella di partenza
 *   \param from_y coordinata y della cella di partenza
 *   \param to_y coordinata y della cella di destinazione
@@ -275,11 +275,11 @@ void capture(pedina **p, unsigned from_x, unsigned from_y, unsigned to_x, unsign
 *	Verifica il grado della pedina mossa:
 *	restituisce 1 se la mossa è consentita, 0 se non è consentita.
 */
-int gradeCheck(pedina **p, unsigned from_x, unsigned from_y, unsigned to_y);
+int gradeCheck(pedina **board, unsigned from_x, unsigned from_y, unsigned to_y);
 
 /*! \fn existMandatory(pedina **p, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y)
 *   \brief Controlla la presenza di mosse obbligatorie
-*   \param p matrice linearizzata della scacchiera 
+*   \param board matrice linearizzata della scacchiera 
 *   \param from_x coordinata x della cella di partenza
 *   \param from_y coordinata y della cella di partenza
 *   \param to_x coordinata x della cella di destinazione
@@ -288,5 +288,5 @@ int gradeCheck(pedina **p, unsigned from_x, unsigned from_y, unsigned to_y);
 *	Verifica se, nel caso di non cattura, esiste una cattura obbligatoria da fare.
 *	Restituisce 1 se esiste una mossa obbligatoria non tentata, altrimenti 0.
 */
-int existMandatory(pedina **p, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y); /*Verifica se esiste una mossa (obbligatoria) diversa che da quella tentata */
+int existMandatory(pedina **board, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y); /*Verifica se esiste una mossa (obbligatoria) diversa che da quella tentata */
 

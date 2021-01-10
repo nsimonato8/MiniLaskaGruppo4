@@ -23,9 +23,6 @@ int success_input = 1; /*!< Flag che verifica la correttezza dell'input */
 	
 
 unsigned turn = 0; /*!< Contatore del turno corrente */
-	
-
-id_p first = UserOne; /*!< Giocatore che muove per primo */
 
 
 /*! \fn main()
@@ -61,7 +58,7 @@ int main(){
                 inputError();
             }
             success_input = catchInput(coordinate);
-            success_move = move(board,coordinate[0],coordinate[1],coordinate[2],coordinate[3],first,turn);
+            success_move = move(board,coordinate[0],coordinate[1],coordinate[2],coordinate[3],turn);
         }while(!(success_input && success_move));/*Inserimento dati e mossa*/
         turn++;
 	}while(!(isWinner(board,UserOne)||isWinner(board,UserTwo))); /*Controllo esistenza vincitore*/
