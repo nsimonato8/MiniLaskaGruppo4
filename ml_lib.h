@@ -289,4 +289,3 @@ int gradeCheck(pedina **board, unsigned from_x, unsigned from_y, unsigned to_y);
 *	Restituisce 1 se esiste una mossa obbligatoria non tentata, altrimenti 0.
 */
 int existMandatory(pedina **board, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y); /*Verifica se esiste una mossa (obbligatoria) diversa che da quella tentata */
-
