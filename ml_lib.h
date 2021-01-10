@@ -125,7 +125,6 @@ pedina **createMatrix();
 
 /*! \fn destroyMatrix(pedina **p)
 *   \brief Distrugge la matrice della scacchiera
-*	\param p matrice linearizzata della scacchiera
 * 
 *	Funzione che dealloca la memoria della matrice della scacchiera.
 */
@@ -133,17 +132,18 @@ void destroyMatrix(pedina **p);
 
 /*! \fn fillBoard(pedina **p)
 *   \brief Riempie la scacchiera con le pedine
-*	\param p matrice linearizzata della scacchiera
+*	\param board matrice linearizzata della scacchiera
 * 
 *	Riempie la scacchiera con le pedine. Il giocatore 1 ( \a UserOne) sarà posizionato nella parte bassa della scacchiera.
 */
-void fillBoard(pedina **p);
+void fillBoard(pedina **board);
 
 /*---------------------------------SEZIONE FUNZIONI INPUT---------------------------------*/
 
 /*! \fn catchInput(int *cord, pedina **board)
 *   \brief Legge l'input da tastiera
 *	\param cord array contenente le coordinate di partenza e destinazione della pedina
+*	\param board matrice linearizzata della scacchiera
 * 
 * 	Legge l'input dall'utente e traduce le coordinate in int, che vengono inseriti in un array apposito.
 */
@@ -165,11 +165,11 @@ void printPedina(pedina *p);
 
 /*! \fn printMatrix(pedina **p)
 *   \brief Stampa la scacchiera
-*	\param p matrice linearizzata della scacchiera
+*	\param board matrice linearizzata della scacchiera
 * 
 *	Funzione che stampa la scacchiera con una cornice che definisce le coordinate.
 */
-void printMatrix(pedina **p);
+void printMatrix(pedina **board);
 
 /*! \fn printStatus(unsigned turn)
 *   \brief Stampa lo stato del gioco
@@ -204,13 +204,13 @@ void inputError();
 
 /*! \fn isWinner(pedina **p, id_p player)
 *   \brief Verifica che il giocatore \a player abbia vinto
-*   \param p matrice linearizzata della scacchiera
+*   \param board matrice linearizzata della scacchiera
 *   \param idPlayer giocatore selezionato 
 * 
 *	Verifica che il giocatore \a idPlayer abbia vinto.
 *	Restituisce 1 se idPlayer ha vinto, altrimenti 0.
 */
-int isWinner(pedina **p, id_p player);
+int isWinner(pedina **board, id_p player);
 
 /*! \fn isForbiddenCell(unsigned x,unsigned y)
 *   \brief Verifica che la cella sia accessibile
@@ -221,14 +221,13 @@ int isWinner(pedina **p, id_p player);
 */
 int isForbiddenCell(unsigned x,unsigned y);
 
-/*! \fn move(pedina **p, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y, id_p first, unsigned turn)
+/*! \fn move(pedina **board, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y, unsigned turn)
 *   \brief Verifica che la mossa selezionata sia legale e la esegue
-*   \param p matrice linearizzata della scacchiera 
+*   \param board matrice linearizzata della scacchiera 
 *   \param from_x coordinata x della cella di partenza
 *   \param from_y coordinata y della cella di partenza
 *   \param to_x coordinata x della cella di destinazione
 *   \param to_y coordinata y della cella di destinazione
-* 	\param first giocatore di partenza
 *   \param turn numero del turno corrente
 * 
 * 	Restituisce 1 se la mossa è stata fatta, 0 se non è stato possibile.
@@ -240,7 +239,6 @@ int move(pedina **board, unsigned from_x, unsigned from_y, unsigned to_x, unsign
 
 /*! \fn distance(int from_x, int from_y, int to_x, int to_y)
 *   \brief Restituisce un codice che descrive la lunghezza della mossa
-*   \param board matrice linearizzata della scacchiera 
 *   \param from_x coordinata x della cella di partenza
 *   \param from_y coordinata y della cella di partenza
 *   \param to_x coordinata x della cella di destinazione
@@ -255,6 +253,7 @@ int distance(int from_x, int from_y, int to_x, int to_y);
 
 /*! \fn capture(pedina **p, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y)
 *   \brief Esegue la cattura delle pedine 
+*   \param board matrice linearizzata della scacchiera 
 *   \param from_x coordinata x della cella di partenza
 *   \param from_y coordinata y della cella di partenza
 *   \param to_x coordinata x della cella di destinazione

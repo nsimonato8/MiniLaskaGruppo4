@@ -89,8 +89,6 @@ int isForbiddenCell(unsigned x, unsigned y){
 
 /*
  * Riempie la scacchiera
- * Modifica giovanni: set_board_value nell'if se forbiddenCell e j==3, IL VALUE MESSO È 0, ma la
- * funzione vuole il tipo pedina;
 */
 void fillBoard(pedina** board){
 
@@ -185,16 +183,13 @@ int catchInput(int *cord, pedina **board){
 
 /*---------------------------------SEZIONE FUNZIONI OUTPUT---------------------------------*/
 
-/* Stampa un carattere ASCII identificativo del contenuto della casella p
- *
- * PROVO A TOGLIERE IL CONTROLLO DEL NULL
- *
- * */
+/* 
+* Stampa un carattere ASCII identificativo del contenuto della casella p
+*/
 void printPedina(pedina *p){
 
-    if(!p){
+    if(!p)
         printf(" ");
-    }
     else if(get_id_player(p) && get_grade(p))
         printf("N");
     else if(get_id_player(p) && !get_grade(p))
