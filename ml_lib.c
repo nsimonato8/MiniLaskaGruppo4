@@ -177,8 +177,9 @@ void printMatrix(pedina** board){
 
     printf("    ");
 
-    for(i=0;i<COL;i++)
-        printf("%d   ", (i+1));
+    for(i=0;i<COL;i++){
+		printf("%d   ", (i+1));
+	}
 	
 	printf("\n");
 }

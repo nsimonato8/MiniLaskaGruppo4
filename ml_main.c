@@ -57,7 +57,7 @@ int main(){
             if(!success_move || !success_input){
                 inputError();
             }
-            success_input = catchInput(coordinate);
+            success_input = catchInput(coordinate,board);
             success_move = move(board,coordinate[0],coordinate[1],coordinate[2],coordinate[3],turn);
         }while(!(success_input && success_move));/*Inserimento dati e mossa*/
         turn++;
