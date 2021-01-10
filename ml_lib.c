@@ -92,7 +92,6 @@ int isForbiddenCell(unsigned x, unsigned y){
  * Modifica giovanni: set_board_value nell'if se forbiddenCell e j==3, IL VALUE MESSO È 0, ma la
  * funzione vuole il tipo pedina;
 */
-
 void fillBoard(pedina** board){
 
     unsigned i,j;
@@ -118,6 +117,70 @@ void fillBoard(pedina** board){
             }
         }
     }
+}
+
+/*---------------------------------SEZIONE FUNZIONI INPUT---------------------------------*/
+
+/*
+ * FUNZIONE CHE PRENDE IN INPUT CORDINATE PER LO SPOSTAMENTO DELLA PEDINA
+ * controllo aggiuntivo per non inserire coordinate di start su cella a null.
+ * per la destinazione non posso mettere questo controllod
+*/
+
+int catchInput(int *cord, pedina **board){
+    char *v = (char *)malloc(sizeof(char)*4);
+
+    do {
+        printf("\n\nInserisci le coordinate della pedina da muovere: \n\n");
+
+        printf("Coordinata Alfabetica: \n");
+
+        do {
+            if (scanf(" %c", &v[0]) != 1)
+                perror("Errore acquisizione coordinata");
+
+        } while (!(v[0] >= 'a' && v[0] <= 'g'));
+
+        cord[0] = ((v[0] - 96) - 1);
+
+        printf("Coordinata Numerica: \n");
+
+        do {
+            if (scanf(" %c", &v[1]) != 1)
+                perror("Errore acquisizione coordinata");
+
+        } while (!(v[1] >= '1' && v[1] <= '7'));
+
+        cord[1] = ((v[1] - '0') - 1);
+
+        if(get_board_value(board, cord[0], cord[1]) == 0)
+            printf("\nCella non selezionabile, reinserisci le coordinate\n");
+
+    }while(get_board_value(board, cord[0], cord[1]) == 0);
+
+    printf("\n\nInserisci le coordinate di destinazione: \n\n");
+
+    printf("Coordinata Alfabetica: \n");
+
+    do{
+        if(scanf(" %c",&v[2])!=1)
+            perror("Errore acquisizione coordinata");
+
+    }while(!(v[2]>='a' && v[2]<='g'));
+
+    cord[2]=((v[2]-96)-1);
+
+    printf("Coordinata Numerica: \n");
+
+    do{
+        if(scanf(" %c",&v[3])!=1)
+            perror("Errore acquisizione coordinata");
+
+    }while(!(v[3]>='1' && v[3]<='7'));
+
+    cord[3]=((v[3]-'0')-1);
+
+    return 1;
 }
 
 /*---------------------------------SEZIONE FUNZIONI OUTPUT---------------------------------*/
@@ -215,78 +278,16 @@ void printRules(){
 
 void victory(id_p winner){
     if(winner == UserOne)
-        printf("\tComplimenti giocatore, grande vittoria!!!");
+        printf("\tComplimenti giocatore, grande vittoria!!!\n");
     else
-        printf("\tComplimenti UserTwo, grande vittoria!!!");
+        printf("\tComplimenti UserTwo, grande vittoria!!!\n");
 }
 
 void inputError(){
-    printf("\tNon puoi spostarti in quella casella!");
+    printf("\tInputError: Non puoi spostarti in quella casella!\n");
 }
 
 /*---------------------------------SEZIONE FUNZIONI MOVE---------------------------------*/
-
-/*
- * FUNZIONE CHE PRENDE IN INPUT CORDINATE PER LO SPOSTAMENTO DELLA PEDINA
- * controllo aggiuntivo per non inserire coordinate di start su cella a null.
- * per la destinazione non posso mettere questo controllod
-*/
-
-int catchInput(int *cord, pedina **board){
-    char *v = (char *)malloc(sizeof(char)*4);
-
-    do {
-        printf("\n\nInserisci le coordinate della pedina da muovere: \n\n");
-
-        printf("Coordinata Alfabetica: \n");
-
-        do {
-            if (scanf(" %c", &v[0]) != 1)
-                perror("Errore acquisizione coordinata");
-
-        } while (!(v[0] >= 'a' && v[0] <= 'g'));
-
-        cord[0] = ((v[0] - 96) - 1);
-
-        printf("Coordinata Numerica: \n");
-
-        do {
-            if (scanf(" %c", &v[1]) != 1)
-                perror("Errore acquisizione coordinata");
-
-        } while (!(v[1] >= '1' && v[1] <= '7'));
-
-        cord[1] = ((v[1] - '0') - 1);
-
-        if(get_board_value(board, cord[0], cord[1]) == 0)
-            printf("\nCella non selezionabile, reinserisci le coordinate\n");
-
-    }while(get_board_value(board, cord[0], cord[1]) == 0);
-
-    printf("\n\nInserisci le coordinate di destinazione: \n\n");
-
-    printf("Coordinata Alfabetica: \n");
-
-    do{
-        if(scanf(" %c",&v[2])!=1)
-            perror("Errore acquisizione coordinata");
-
-    }while(!(v[2]>='a' && v[2]<='g'));
-
-    cord[2]=((v[2]-96)-1);
-
-    printf("Coordinata Numerica: \n");
-
-    do{
-        if(scanf(" %c",&v[3])!=1)
-            perror("Errore acquisizione coordinata");
-
-    }while(!(v[3]>='1' && v[3]<='7'));
-
-    cord[3]=((v[3]-'0')-1);
-
-    return 1;
-}
 
 /*
  * Restituisce 1 se la mossa è stata fatta, 0 se non è stato possibile
@@ -313,7 +314,7 @@ int move(pedina** board, unsigned from_x, unsigned from_y, unsigned to_x, unsign
             unsigned middle_y;
 
             middle_x = (from_x + to_x)/2;
-            middle_y = (from_y+to_y)/2;
+            middle_y = (from_y + to_y)/2;
 
             if(get_board_value(board,middle_x,middle_y)){ /*verifica esistenza pedina in mezzo*/
                 if(get_id_player(get_board_value(board,middle_x,middle_y)) == get_id_player(get_board_value(board,from_x,from_y)))
@@ -432,7 +433,7 @@ int gradeCheck(pedina **board, unsigned from_x, unsigned from_y, unsigned to_y){
 /* Verifica se, nel caso di non cattura, esiste una cattur obbligatoria da fare
  * Restituisce 1 se esiste una mossa obbligatoria non tentata, altrimenti 0
  */
-int existMandatory(pedina **board, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y){
+int existMandatory(pedina **board, int from_x, int from_y, int to_x, int to_y){
 
     int success = 0, dx = to_x - from_x, dy = to_y - from_y;
 
@@ -469,7 +470,7 @@ int existMandatory(pedina **board, unsigned from_x, unsigned from_y, unsigned to
 */
 int isWinner(pedina **board, id_p idPlayer) {
 
-    int i,j,c=0;
+    int i,j, c=0;
 
     for (i = 0; i < ROW; i++) {
         for (j = 0; j < COL; j++) {
