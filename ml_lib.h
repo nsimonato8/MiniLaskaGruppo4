@@ -1,28 +1,40 @@
+/*! \file ml_lib.h
+    \brief Header della libreria ml_lib
+	 *
+    Questo file contiene le definizioni di tutte le strutture e delle funzioni che compongono la libreria ml_lib
+*/
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
 
+/*---------------------------------SEZIONE DEFINIZIONI---------------------------------*/
+
 #define ROW 7
 #define COL 7
 
+/*! Definizione dei due giocatori esistenti */
 typedef enum {UserOne, UserTwo} id_p;
+
+/*! Definizione dei due possibili gradi della pedina */
 typedef enum {Soldier, Officer} gr;
 
+/*! Rinominazione del tipo struct cella in pedina, per praticità di scrittura */
 typedef struct cella pedina;
 
-/*Definizione del tipo pedina*/
+/*!Definizione del tipo pedina*/
 struct cella{
-    id_p id_player; /*BIANCHI = 0, NERI = 1*/
-    gr grado; /*SOLDATO = 0, UFFICIALE = 1*/
-    pedina *middle;
-    pedina *down;
+    id_p id_player; /*!< ID del giocatore proprietario della pedina */  /*BIANCHI = 0, NERI = 1*/
+    gr grado; /*!< Grado della pedina *//*SOLDATO = 0, UFFICIALE = 1*/
+    pedina *middle; /*!< Puntatore alla pedina di mezzo della colonna */
+    pedina *down; /*!< Puntatore alla pedina in fondo alla colonna */
 };
 
 /*
- * ASSUNZIONI LOGICHE FONDAMENTALI:
- *     L'utente muove sempre per primo
- *     Se il giocatore ha la possibilità di catturare una pedina, è obbligato a farlo
- * */
+* ASSUNZIONI LOGICHE FONDAMENTALI:
+*     L'utente muove sempre per primo
+*     Se il giocatore ha la possibilità di catturare una pedina, è obbligato a farlo
+*/
 
 int isForbiddenCell(unsigned x,unsigned y);
 

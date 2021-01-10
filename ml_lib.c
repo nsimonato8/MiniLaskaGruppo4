@@ -149,7 +149,6 @@ void printMatrix(pedina** board){
 
     for(i=0; i<ROW; i++){
 
-
         printf("%c > ",('A'+ i));
 
         for(j=0;j<COL;j++){
@@ -183,7 +182,7 @@ void printMatrix(pedina** board){
 }
 
 void printStatus(unsigned turn){
-    printf("\n\n\nTurn number: %u\nMove player: %c\n",(turn+1),(turn%2)?'n':'b');
+    printf("\n\n\nTurn number: %u\nMove player: %s\n",(turn+1),(turn%2)?"User 2":"User 1");
 }
 
 void printRules(){
