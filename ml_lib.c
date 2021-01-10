@@ -44,32 +44,6 @@ gr get_grade(pedina *p){
     return p->grado;
 }
 
-/*---------------------------------SEZIONE FUNZIONI LOGICHE DI GIOCO---------------------------------*/
-
-int isWinner(pedina **p, id_p idPlayer) {
-
-    int i,j,c=0;
-
-    for (i = 0; i < ROW; i++) {
-        for (j = 0; j < COL; j++) {
-            if (!c) {
-                if (get_id_player(get_board_value(p,i,j)) == idPlayer)
-                    c++;
-            } else
-                return 0;
-        }
-    }
-
-    return 1;
-}
-
-int isForbiddenCell(unsigned x, unsigned y){
-    if((x % 2 && !(y % 2)) || (!(x % 2) && (y % 2)))
-        return 1;
-    else
-        return 0;
-}
-
 /*---------------------------------SEZIONE FUNZIONI GESTIONE MEMORIA---------------------------------*/
 
 pedina **createMatrix(){
@@ -111,6 +85,40 @@ void fillBoard(pedina **p){
 				}
             }
         }
+}
+
+/*---------------------------------SEZIONE FUNZIONI INPUT---------------------------------*/
+
+int catchInput(int *cord){
+    char *a;
+    size_t bufsize = 10;
+    int success = 1;
+
+    a=(char *)malloc(bufsize*sizeof(char));
+
+    if(!a){
+        perror("Malloc error");
+        exit(1);
+    }
+
+    /*acquisizione stringa dall'input*/
+    if(getline(&a,&bufsize,stdin) != 1){
+		perror("Getline error");
+		exit(1);
+	}
+		
+
+    /*conversione in coordinate*/
+    cord[0]=((a[0]-96)-1);
+    cord[1]=(int)((a[1]-'0')-1);
+
+    cord[2]=((a[6]-96)-1);
+    cord[3]=(int)((a[7]-'0')-1);
+    free(a);
+    if((cord[0] >= 0 && cord[0] <= 6) && (cord[1] >= 0 && cord[1] <= 6) && (cord[2] >= 0 && cord[2] <= 6) && (cord[3] >= 0 && cord[3] <= 6))
+        success = 0;
+
+    return success;
 }
 
 /*---------------------------------SEZIONE FUNZIONI OUTPUT---------------------------------*/
@@ -199,38 +207,30 @@ void inputError(){
     printf("\tNon puoi spostarti in quella casella!");
 }
 
-/*---------------------------------SEZIONE FUNZIONI MOVE---------------------------------*/
+/*---------------------------------SEZIONE FUNZIONI LOGICHE DI GIOCO---------------------------------*/
 
-int catchInput(int *cord){
-    char *a;
-    size_t bufsize = 10;
-    int success = 1;
+int isWinner(pedina **p, id_p idPlayer) {
 
-    a=(char *)malloc(bufsize*sizeof(char));
+    int i,j,c=0;
 
-    if(!a){
-        perror("Malloc error");
-        exit(1);
+    for (i = 0; i < ROW; i++) {
+        for (j = 0; j < COL; j++) {
+            if (!c) {
+                if (get_id_player(get_board_value(p,i,j)) == idPlayer)
+                    c++;
+            } else
+                return 0;
+        }
     }
 
-    /*acquisizione stringa dall'input*/
-    if(getline(&a,&bufsize,stdin) != 1){
-		perror("Getline error");
-		exit(1);
-	}
-		
+    return 1;
+}
 
-    /*conversione in coordinate*/
-    cord[0]=((a[0]-96)-1);
-    cord[1]=(int)((a[1]-'0')-1);
-
-    cord[2]=((a[6]-96)-1);
-    cord[3]=(int)((a[7]-'0')-1);
-    free(a);
-    if((cord[0] >= 0 && cord[0] <= 6) && (cord[1] >= 0 && cord[1] <= 6) && (cord[2] >= 0 && cord[2] <= 6) && (cord[3] >= 0 && cord[3] <= 6))
-        success = 0;
-
-    return success;
+int isForbiddenCell(unsigned x, unsigned y){
+    if((x % 2 && !(y % 2)) || (!(x % 2) && (y % 2)))
+        return 1;
+    else
+        return 0;
 }
 
 int move(pedina **p, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y, id_p first, unsigned turn){

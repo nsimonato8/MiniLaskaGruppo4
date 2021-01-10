@@ -1,14 +1,38 @@
+/*! \file ml_main.c
+*   \brief Il main di MiniLaska
+*	
+*	Questo file contiene il programma del gioco MiniLaska, che utilizza la libreria ml_lib
+*/
+
 #include <stdio.h>
-#include<stdlib.h>
+#include <stdlib.h>
 #include "ml_lib.h"
 
-int main(){
 
-    pedina **board = NULL;
-	int coordinate[4]; /*Contiene le coordinate di partenza e arrivo di ogni mossa*/
-	int success_move = 1, success_input = 1; /*Verifica che la mossa sia possibile*/
-	unsigned turn = 0;
-	id_p first = UserOne;
+
+pedina **board = NULL; /*!< La scacchiera */
+	
+
+int coordinate[4]; /*!< Array contenente le coordinate di partenza e di arrivo di ogni mossa */
+	
+
+int success_move = 1; /*!< Flag che verifica la legalità di una mossa */
+	
+
+int success_input = 1; /*!< Flag che verifica la correttezza dell'input */
+	
+
+unsigned turn = 0; /*!< Contatore del turno corrente */
+	
+
+id_p first = UserOne; /*!< Giocatore che muove per primo */
+
+
+/*! \fn main()
+* 
+*	Funzione principale del gioco 
+*/
+int main(){
 
 	/*Inizializzazione campo di gioco*/
 	printf("Creazione campo di gioco...\n");
