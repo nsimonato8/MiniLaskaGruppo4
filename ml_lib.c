@@ -120,6 +120,69 @@ void fillBoard(pedina** board){
     }
 }
 
+/*---------------------------------SEZIONE FUNZIONI INPUT---------------------------------*/
+
+/*
+ * FUNZIONE CHE PRENDE IN INPUT CORDINATE PER LO SPOSTAMENTO DELLA PEDINA
+ * controllo aggiuntivo per non inserire coordinate di start su cella a null.
+ * per la destinazione non posso mettere questo controllod
+*/
+int catchInput(int *cord, pedina **board){
+    char *v = (char *)malloc(sizeof(char)*4);
+
+    do {
+        printf("\n\nInserisci le coordinate della pedina da muovere: \n\n");
+
+        printf("Coordinata Alfabetica: \n");
+
+        do {
+            if (scanf(" %c", &v[0]) != 1)
+                perror("Errore acquisizione coordinata");
+
+        } while (!(v[0] >= 'a' && v[0] <= 'g'));
+
+        cord[0] = ((v[0] - 96) - 1);
+
+        printf("Coordinata Numerica: \n");
+
+        do {
+            if (scanf(" %c", &v[1]) != 1)
+                perror("Errore acquisizione coordinata");
+
+        } while (!(v[1] >= '1' && v[1] <= '7'));
+
+        cord[1] = ((v[1] - '0') - 1);
+
+        if(get_board_value(board, cord[1], cord[0]) == 0)
+            printf("\nCella non selezionabile, reinserisci le coordinate\n");
+
+    }while(get_board_value(board, cord[1], cord[0]) == 0);
+
+    printf("\nInserisci le coordinate di destinazione: \n\n");
+
+    printf("Coordinata Alfabetica: \n");
+
+    do{
+        if(scanf(" %c",&v[2])!=1)
+            perror("Errore acquisizione coordinata");
+
+    }while(!(v[2]>='a' && v[2]<='g'));
+
+    cord[2]=((v[2]-96)-1);
+
+    printf("Coordinata Numerica: \n");
+
+    do{
+        if(scanf(" %c",&v[3])!=1)
+            perror("Errore acquisizione coordinata");
+
+    }while(!(v[3]>='1' && v[3]<='7'));
+
+    cord[3]=((v[3]-'0')-1);
+
+    return 1;
+}
+
 /*---------------------------------SEZIONE FUNZIONI OUTPUT---------------------------------*/
 
 /* Stampa un carattere ASCII identificativo del contenuto della casella p
@@ -224,68 +287,64 @@ void inputError(){
     printf("\n\n|----- Non puoi spostarti in quella casella -----|\n");
 }
 
-/*---------------------------------SEZIONE FUNZIONI MOVE---------------------------------*/
+/*---------------------------------SEZIONE FUNZIONI LOGICHE DI GIOCO---------------------------------*/
 
 /*
- * FUNZIONE CHE PRENDE IN INPUT CORDINATE PER LO SPOSTAMENTO DELLA PEDINA
- * controllo aggiuntivo per non inserire coordinate di start su cella a null.
- * per la destinazione non posso mettere questo controllod
+* Verifica che la pedina in x,y possa mangiare almeno una pedina avversaria
+* Viene verificata prima l'esistenza della casella a distanza due, poi che questa sia libera e che la casella adiacente sia occupata.
+* Poi viene verificata la possibilità di mangiare la pedina nella casella adiacente.    
 */
+int can_move(pedina **board, int x, int y){
+	int success;
+	id_p current_player;
+	
+	current_player = get_id_player(get_board_value(board,x,y));
+	success = 0;
+	
+	if(!success && (x + 1 >= 0) && (y + 1 <= 6) && !get_board_value(board,x+1,y+1)){ /*Controllo (x+2,y+2)*/
+		success = 1;
+	}
+	else if(!success && (x + 1 >= 0) && (y - 1 <= 6) && !get_board_value(board,x+1,y-1)){
+		success = 1;	
+	}
+	else if(!success && (x - 1 >= 0) && (y - 1 <= 6) && !get_board_value(board,x-1,y-1)){
+		success = 1;
+	}
+	else if(!success && (x - 1 >= 0) && (y + 1 <= 6) && !get_board_value(board,x-1,y+1)){
+		success = 1;
+	}
+	
+	return success;
+		
+}
 
-int catchInput(int *cord, pedina **board){
-    char *v = (char *)malloc(sizeof(char)*4);
+/* Verifica che il giocatore idPlayer abbia vinto
+ * Restituisce 1 se idPlayer ha vinto, altrimenti 0
+ * TODO: DA RIVEDERE QUANDO TI BLOCCANO
+*/
+int isWinner(pedina **board, id_p idPlayer) {
 
-    do {
-        printf("\n\nInserisci le coordinate della pedina da muovere: \n\n");
+    int i,j,c;
+	pedina *current;
+	
+	current = 0;
+	c = 0;
 
-        printf("Coordinata Alfabetica: \n");
+    for (i = 0; i < ROW; i++) {
+        for (j = 0; j < COL; j++) {
+			current = get_board_value(board,j,i);
+            if(current){
+                if(get_id_player(current) == !idPlayer && (!can_move(board,j,i) || !can_eat(board,j,i)))
+                    c++;
+            }
+        }
+    }
 
-        do {
-            if (scanf(" %c", &v[0]) != 1)
-                perror("Errore acquisizione coordinata");
-
-        } while (!(v[0] >= 'a' && v[0] <= 'g'));
-
-        cord[0] = ((v[0] - 96) - 1);
-
-        printf("Coordinata Numerica: \n");
-
-        do {
-            if (scanf(" %c", &v[1]) != 1)
-                perror("Errore acquisizione coordinata");
-
-        } while (!(v[1] >= '1' && v[1] <= '7'));
-
-        cord[1] = ((v[1] - '0') - 1);
-
-        if(get_board_value(board, cord[1], cord[0]) == 0)
-            printf("\nCella non selezionabile, reinserisci le coordinate\n");
-
-    }while(get_board_value(board, cord[1], cord[0]) == 0);
-
-    printf("\nInserisci le coordinate di destinazione: \n\n");
-
-    printf("Coordinata Alfabetica: \n");
-
-    do{
-        if(scanf(" %c",&v[2])!=1)
-            perror("Errore acquisizione coordinata");
-
-    }while(!(v[2]>='a' && v[2]<='g'));
-
-    cord[2]=((v[2]-96)-1);
-
-    printf("Coordinata Numerica: \n");
-
-    do{
-        if(scanf(" %c",&v[3])!=1)
-            perror("Errore acquisizione coordinata");
-
-    }while(!(v[3]>='1' && v[3]<='7'));
-
-    cord[3]=((v[3]-'0')-1);
-
-    return 1;
+    if(c>0){
+        return 0;
+    } else {
+        return 1;
+    }
 }
 
 /*
@@ -307,7 +366,8 @@ int move(pedina** board, unsigned from_x, unsigned from_y, unsigned to_x, unsign
 
     int success = 1, d = distance(from_x,from_y,to_x,to_y), grade_control = gradeCheck(board,from_x,from_y,to_y), existM = existMandatory(board,from_x,from_y,to_x,to_y), legal_player = (get_id_player(get_board_value(board,from_x,from_y)) == (turn %2));
     printf("\n PROVA \n");
-    if(!legal_player || get_board_value(board,to_x,to_y) || d == -1 || !grade_control || existM){
+    
+	if(!legal_player || get_board_value(board,to_x,to_y) || d == -1 || !grade_control || existM){
         success = 0;
         printf("\n-- legal p: %d, bVal %d, d %d, grade ctrl %d, exisM %d , id Play %d ,turn %d\n\n", !legal_player,get_board_value(board,to_x,to_y),d,!grade_control,existM,get_id_player(get_board_value(board,from_x,from_y)),turn);
     } else{
@@ -334,9 +394,22 @@ int move(pedina** board, unsigned from_x, unsigned from_y, unsigned to_x, unsign
                 success = 0;
             printf("\n-- secondo if success 0\n\n");
         }
-        else
+        else{
             success = 0;
+		}
         printf("\n-- terzo if success 0\n\n");
+		
+		if(success && (to_y == 6 || to_y == 0)){
+			int tb;
+			if(to_y == 6)
+				tb = 1;
+			if(to_y == 0)
+				tb = 0;
+				
+			if(!(tb ^ get_id_player(get_board_value(board,to_x,to_y))))
+				set_grade(get_board_value(board,to_x,to_y), Officer);
+		} 
+		
     }
     return success;
 }
@@ -450,60 +523,83 @@ int gradeCheck(pedina **board, unsigned from_x, unsigned from_y, unsigned to_y){
 
 }
 
+/*
+* Verifica che la pedina in x,y possa mangiare almeno una pedina avversaria
+* Viene verificata prima l'esistenza della casella a distanza due, poi che questa sia libera e che la casella adiacente sia occupata.
+* Poi viene verificata la possibilità di mangiare la pedina nella casella adiacente.    
+*/
+int can_eat(pedina **board, int x, int y){
+	int success;
+	id_p current_player;
+	
+	current_player = get_id_player(get_board_value(board,x,y));
+	success = 0;
+	
+	if(!success && (x + 2 >= 0) && (y + 2 <= 6) && !get_board_value(board,x+2,y+2) && get_board_value(board,x+1,y+1)){ /*Controllo (x+2,y+2)*/
+		success = get_id_player(get_board_value(board,x + 1,y + 1)) != current_player;
+	}
+	else if(!success && (x + 2 >= 0) && (y - 2 <= 6) && !get_board_value(board,x+2,y-2) && get_board_value(board,x+1,y-1)){
+		success = get_id_player(get_board_value(board,x + 1,y - 1)) != current_player;	
+	}
+	else if(!success && (x - 2 >= 0) && (y - 2 <= 6) && !get_board_value(board,x-2,y-2) && get_board_value(board,x-1,y-1)){
+		success = get_id_player(get_board_value(board,x - 1,y - 1)) != current_player;
+	}
+	else if(!success && (x - 2 >= 0) && (y + 2 <= 6) && !get_board_value(board,x-2,y+2) && get_board_value(board,x-1,y+1)){
+		success = get_id_player(get_board_value(board,x - 1,y + 1)) != current_player;
+	}
+	
+	return success;
+		
+}
+
 /* Verifica se, nel caso di non cattura, esiste una cattur obbligatoria da fare
  * Restituisce 1 se esiste una mossa obbligatoria non tentata, altrimenti 0
  */
 int existMandatory(pedina **board, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y){
 
-    int success = 0, dx = to_x - from_x, dy = to_y - from_y;
+    int success;
+	unsigned i, j;
+	id_p current_player;
+	
+	success = 0;
+	current_player = get_id_player(get_board_value(board,from_x,from_y));
+	
+	for(i = 0; i < COL; i++){
+		for(j = 0; j < ROW; j++){
+			if(get_id_player(get_board_value(board,i,j)) == current_player && can_eat(board,i,j)){
+				success = 1;
+				break;
+			}
+				
+		}
+	}
 
-    if(distance(from_x,from_y,to_x,to_y) == 2){
+    /*if(distance(from_x,from_y,to_x,to_y) == 2){
         success = 0;
     }
     else{
-        if(get_board_value(board,from_x-dx,from_y-dy) || get_board_value(board,from_x+dx,from_y-dy) || get_board_value(board,from_x-dx,from_y+dy)) { /*Verifico l'esitenza di pedine intorno alla posizione di partenza*/
-            if(get_board_value(board,from_x-dx,from_y-dy)){
-                if(get_id_player(get_board_value(board,from_x-dx,from_y-dy)) != get_id_player(get_board_value(board,from_x,from_y)) && !get_board_value(board,from_x-2*dx,from_y-2*dy)) /*Verifico che siano nemiche e che la casella successiva sia libera*/
-                    success = 1;
-            }
-            else if(get_board_value(board,from_x+dx,from_y-dy)){
-                if(get_id_player(get_board_value(board,from_x+dx,from_y-dy)) != get_id_player(get_board_value(board,from_x,from_y)) && !get_board_value(board,from_x+2*dx,from_y-2*dy))
-                    success = 1;
-            }
+        if(from_x + dx){
+			
+		}
+		else{
+			if(get_board_value(board,from_x-dx,from_y-dy) || get_board_value(board,from_x+dx,from_y-dy) || get_board_value(board,from_x-dx,from_y+dy)) { Verifico l'esitenza di pedine intorno alla posizione di partenza
+				if(get_board_value(board,from_x-dx,from_y-dy)){
+					if(get_id_player(get_board_value(board,from_x-dx,from_y-dy)) != get_id_player(get_board_value(board,from_x,from_y)) && !get_board_value(board,from_x-2*dx,from_y-2*dy)) /*Verifico che siano nemiche e che la casella successiva sia libera
+						success = 1;
+				}
+				else if(get_board_value(board,from_x+dx,from_y-dy)){
+					if(get_id_player(get_board_value(board,from_x+dx,from_y-dy)) != get_id_player(get_board_value(board,from_x,from_y)) && !get_board_value(board,from_x+2*dx,from_y-2*dy))
+						success = 1;
+				}
             else{
                 if(get_id_player(get_board_value(board,from_x-dx,from_y+dy)) != get_id_player(get_board_value(board,from_x,from_y)) && !get_board_value(board,from_x-2*dx,from_y+2*dy))
                     success = 1;
             }
-        }
-        else
-            success = 0;
-    }
+			}
+			else
+				success = 0;
+		}
+    }*/
 
     return success;
-}
-
-/*---------------------------------SEZIONE FUNZIONI LOGICHE DI GIOCO---------------------------------*/
-
-/* Verifica che il giocatore idPlayer abbia vinto
- * Restituisce 1 se idPlayer ha vinto, altrimenti 0
- * TODO: DA RIVEDERE QUANDO TI BLOCCANO
-*/
-int isWinner(pedina **board, id_p idPlayer) {
-
-    int i,j,c=0;
-
-    for (i = 0; i < ROW; i++) {
-        for (j = 0; j < COL; j++) {
-            if(board[i * COL + j]){
-                if(get_id_player(board[i * COL + j]) == idPlayer)
-                    c++;
-            }
-        }
-    }
-
-    if(c>0){
-        return 0;
-    } else {
-        return 1;
-    }
 }
