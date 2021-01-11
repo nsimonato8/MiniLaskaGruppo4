@@ -296,13 +296,13 @@ int gradeCheck(pedina **board, unsigned from_x, unsigned from_y, unsigned to_y);
 */
 int can_eat(pedina **board, int x, int y);
 
-/*! \fn existMandatory(pedina **p, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y)
+/*! \fn int existMandatory(pedina **board, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y)
 *   \brief Controlla la presenza di mosse obbligatorie
 *   \param board matrice linearizzata della scacchiera
 *   \param from_x coordinata x della cella di partenza
 *   \param from_y coordinata y della cella di partenza
-*   \param to_x coordinata x della cella di destinazione
-*   \param to_y coordinata y della cella di destinazione
+*   \param to_x coordinata x della cella di partenza
+*   \param to_y coordinata y della cella di partenza
 *
 *	Verifica se, nel caso di non cattura, esiste una cattura obbligatoria da fare.
 *	Restituisce 1 se esiste una mossa obbligatoria non tentata, altrimenti 0.

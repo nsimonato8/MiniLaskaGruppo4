@@ -295,10 +295,9 @@ void inputError(){
 * Poi viene verificata la possibilità di mangiare la pedina nella casella adiacente.    
 */
 int can_move(pedina **board, int x, int y){
+
 	int success;
-	id_p current_player;
-	
-	current_player = get_id_player(get_board_value(board,x,y));
+
 	success = 0;
 	
 	if(!success && (x + 1 >= 0) && (y + 1 <= 6) && !get_board_value(board,x+1,y+1)){ /*Controllo (x+2,y+2)*/
@@ -359,25 +358,38 @@ int isWinner(pedina **board, id_p idPlayer) {
 */
 int move(pedina** board, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y, unsigned turn){
 
-    printf("\n\nMOVE Fx %d, Fy %d, Tx %d, Ty %d  \n", from_x, from_y,to_x , to_y);
-    printf("\ndist: %d", distance(from_x,from_y,to_x,to_y));
-    printf("\ngrade: %d", gradeCheck(board,from_x,from_y,to_y));
-    printf("\nexist m : %d", existMandatory(board,from_x,from_y,to_x,to_y));
+    printf("\nMOVE From: %d,%d --> To: %d,%d", from_x,from_y,to_x ,to_y);
 
-    int success = 1, d = distance(from_x,from_y,to_x,to_y), grade_control = gradeCheck(board,from_x,from_y,to_y), existM = existMandatory(board,from_x,from_y,to_x,to_y), legal_player = (get_id_player(get_board_value(board,from_x,from_y)) == (turn %2));
-    printf("\n PROVA \n");
+    int success, d, grade_control, existM, legal_player;
+    
+	success = 1;
+	
+	printf("\n\t dist: ");
+	d = distance(from_x,from_y,to_x,to_y);
+	printf("%d", d);
+	
+	printf("\n\t grade: ");
+	grade_control = gradeCheck(board,from_x,from_y,to_y);
+	printf("%d", grade_control);
+	
+	printf("\n\t exist m: ");
+	existM = existMandatory(board,from_x,from_y,to_x,to_y);
+	printf("%d", existM);
+	
+	printf("\n\t legal_player: ");
+	legal_player = (get_id_player(get_board_value(board,from_x,from_y)) == (turn %2));
+	printf("%d", legal_player);
     
 	if(!legal_player || get_board_value(board,to_x,to_y) || d == -1 || !grade_control || existM){
         success = 0;
-        printf("\n-- legal p: %d, bVal %d, d %d, grade ctrl %d, exisM %d , id Play %d ,turn %d\n\n", !legal_player,get_board_value(board,to_x,to_y),d,!grade_control,existM,get_id_player(get_board_value(board,from_x,from_y)),turn);
     } else{
         if(d == 1){
-            printf("\n-- if d == 1\n\n");
+            printf("\n\t--> if d == 1\n");
             set_board_value(board,to_x,to_y,get_board_value(board,from_x,from_y));
             set_board_value(board,from_x,from_y,0);
         }
         else if(d == 2){
-            printf("\n-- if d == 2\n\n");
+            printf("\n\t--> if d == 2\n");
             unsigned middle_x;
             unsigned middle_y;
 
@@ -392,12 +404,10 @@ int move(pedina** board, unsigned from_x, unsigned from_y, unsigned to_x, unsign
             }
             else
                 success = 0;
-            printf("\n-- secondo if success 0\n\n");
         }
         else{
             success = 0;
 		}
-        printf("\n-- terzo if success 0\n\n");
 		
 		if(success && (to_y == 6 || to_y == 0)){
 			int tb;
@@ -495,27 +505,27 @@ void capture(pedina **board, unsigned from_x, unsigned from_y, unsigned to_x, un
 int gradeCheck(pedina **board, unsigned from_x, unsigned from_y, unsigned to_y){
 
     int success = 1;
-
+	printf("\n\t\t GRADE CHECK");
     if(get_board_value(board,from_x,from_y)) { /* controlla se la casella è piena o vuota*/
-        printf("\n\n from x %d, from y %d, to y %d\n\n", from_x, from_y, to_y);
+        printf("\n\n\t\t\t FROM: %d,%d --> to X,%d\n\n", from_x, from_y, to_y);
         if (!get_grade(get_board_value(board, from_x, from_y))) { /*controlla il grado della pedina*/
 
-            if (get_id_player(get_board_value(board, from_x, from_y)) == 0) {
+            if (!get_id_player(get_board_value(board, from_x, from_y))) {
 
                 if (to_y > from_y){
-                    printf("\n\n if toY %d > fromy %d\n\n", to_y,from_y);
+                    printf("\n\n\t\t\t\t if toY %d > fromy %d\n\n", to_y,from_y);
                     success = 0;
                 }
 
             } else { /*controlla se la pedina appartiene al giocatore 1*/
                 if (to_y < from_y) {
-                    printf("\n\n if toY %d < fromy %d\n\n", to_y,from_y);
+                    printf("\n\n\t\t\t\t if toY %d < fromy %d\n\n", to_y,from_y);
                     success = 0;
                 }
             }
         }
     } else {
-        printf("\n\n default \n\n");
+        printf("\n\n\t\t\t default \n\n");
         success = 0;
     }
 
@@ -561,45 +571,25 @@ int existMandatory(pedina **board, unsigned from_x, unsigned from_y, unsigned to
 	unsigned i, j;
 	id_p current_player;
 	
-	success = 0;
-	current_player = get_id_player(get_board_value(board,from_x,from_y));
+	printf("\n\t\t EXIST MANDATORY:\n");
 	
-	for(i = 0; i < COL; i++){
-		for(j = 0; j < ROW; j++){
-			if(get_id_player(get_board_value(board,i,j)) == current_player && can_eat(board,i,j)){
-				success = 1;
-				break;
-			}
-				
-		}
-	}
-
-    /*if(distance(from_x,from_y,to_x,to_y) == 2){
-        success = 0;
-    }
-    else{
-        if(from_x + dx){
-			
-		}
-		else{
-			if(get_board_value(board,from_x-dx,from_y-dy) || get_board_value(board,from_x+dx,from_y-dy) || get_board_value(board,from_x-dx,from_y+dy)) { Verifico l'esitenza di pedine intorno alla posizione di partenza
-				if(get_board_value(board,from_x-dx,from_y-dy)){
-					if(get_id_player(get_board_value(board,from_x-dx,from_y-dy)) != get_id_player(get_board_value(board,from_x,from_y)) && !get_board_value(board,from_x-2*dx,from_y-2*dy)) /*Verifico che siano nemiche e che la casella successiva sia libera
+	success = 0;
+	
+	if(get_board_value(board,from_x,from_y)){
+		
+		current_player = get_id_player(get_board_value(board,from_x,from_y));
+	
+		if(!can_eat(board,from_x,from_y) || distance(from_x,from_y,to_x,to_y) != 2){
+			for(i = 0; i < COL; i++){
+				for(j = 0; j < ROW; j++){
+					if(get_board_value(board,i,j) && get_id_player(get_board_value(board,i,j)) == current_player && can_eat(board,i,j)){
 						success = 1;
-				}
-				else if(get_board_value(board,from_x+dx,from_y-dy)){
-					if(get_id_player(get_board_value(board,from_x+dx,from_y-dy)) != get_id_player(get_board_value(board,from_x,from_y)) && !get_board_value(board,from_x+2*dx,from_y-2*dy))
-						success = 1;
-				}
-            else{
-                if(get_id_player(get_board_value(board,from_x-dx,from_y+dy)) != get_id_player(get_board_value(board,from_x,from_y)) && !get_board_value(board,from_x-2*dx,from_y+2*dy))
-                    success = 1;
-            }
+						break;
+					}
+				}	
 			}
-			else
-				success = 0;
 		}
-    }*/
+	}	
 
     return success;
 }
