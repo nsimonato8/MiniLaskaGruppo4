@@ -1,5 +1,6 @@
 var menudata={children:[
 {text:"Pagina Principale",url:"index.html"},
+{text:"Moduli",url:"modules.html"},
 {text:"Classi",url:"annotated.html",children:[
 {text:"Elenco dei tipi composti",url:"annotated.html"},
 {text:"Indice dei tipi composti",url:"classes.html"},

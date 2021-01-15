@@ -6,7 +6,8 @@ var indexSectionsWithContent =
   3: "cdefgimpsv",
   4: "bcdgimst",
   5: "p",
-  6: "gi"
+  6: "gi",
+  7: "f"
 };
 
 var indexSectionNames =
@@ -17,7 +18,8 @@ var indexSectionNames =
   3: "functions",
   4: "variables",
   5: "typedefs",
-  6: "enums"
+  6: "enums",
+  7: "groups"
 };
 
 var indexSectionLabels =
@@ -28,6 +30,7 @@ var indexSectionLabels =
   3: "Funzioni",
   4: "Variabili",
   5: "Ridefinizioni di tipo (typedef)",
-  6: "Tipi enumerati (enum)"
+  6: "Tipi enumerati (enum)",
+  7: "Gruppi"
 };
 

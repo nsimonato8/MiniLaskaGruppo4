@@ -36,7 +36,13 @@ struct cella{
 *     Se il giocatore ha la possibilità di catturare una pedina, è obbligato a farlo
 */
 
+
 /*---------------------------------SEZIONE FUNZIONI AUSILIARIE---------------------------------*/
+
+/**
+ * \defgroup Ausiliarie Funzioni ausiliarie
+ * @{
+ */
 
 /*! \fn set_id_player(pedina *p, id_p value)
 *   \brief Imposta l'id_player \a value della pedina indicata dal puntatore \a *p
@@ -113,8 +119,14 @@ void set_grade(pedina *p,gr value);
 */
 gr get_grade(pedina *p);
 
+/**@}*/
 
 /*---------------------------------SEZIONE FUNZIONI GESTIONE MEMORIA---------------------------------*/
+
+/**
+ * \defgroup Memoria Funzioni di gestione della memoria
+ * @{
+ */
 
 /*! \fn **createMatrix()
 *   \brief Funzione che crea la matrice della scacchiera
@@ -139,7 +151,14 @@ void destroyMatrix(pedina **board);
 */
 void fillBoard(pedina **board);
 
+/**@}*/
+
 /*---------------------------------SEZIONE FUNZIONI INPUT---------------------------------*/
+
+/**
+ * \defgroup Input Funzioni di input
+ * @{
+ */
 
 /*! \fn catchInput(int *cord, pedina **board)
 *   \brief Legge l'input da tastiera
@@ -150,7 +169,14 @@ void fillBoard(pedina **board);
 */
 int catchInput(int *cord, pedina **board);
 
+/**@}*/
+
 /*---------------------------------SEZIONE FUNZIONI OUTPUT---------------------------------*/
+
+/**
+ * \defgroup Output Funzioni di output
+ * @{
+ */
 
 /*! \fn printPedina(pedina *p)
 *   \brief Stampa una lettera rappresentante la pedina
@@ -201,17 +227,14 @@ void victory(id_p winner);
 */
 void inputError();
 
+/**@}*/
+
 /*---------------------------------SEZIONE FUNZIONI LOGICHE DI GIOCO---------------------------------*/
 
-/*! \fn can_move(pedina **board, int x, int y)
-*   \brief Verifica la possibilità di muoversi
-*   \param board matrice linearizzata della scacchiera
-*   \param x coordinata x della cella
-*   \param y coordinata y della cella
-*
-*	Verifica la possibilità della pedina in \a x , \a y di muoversi nelle caselle adiacenti
-*/
-int can_move(pedina **board, int x, int y);
+/**
+ * \defgroup Logiche Funzioni delle logiche di gioco
+ * @{
+ */
 
 /*! \fn isWinner(pedina **p, id_p player)
 *   \brief Verifica che il giocatore \a player abbia vinto
@@ -307,4 +330,17 @@ int can_eat(pedina **board, int x, int y);
 *	Verifica se, nel caso di non cattura, esiste una cattura obbligatoria da fare.
 *	Restituisce 1 se esiste una mossa obbligatoria non tentata, altrimenti 0.
 */
+
+/*! \fn can_move(pedina **board, int x, int y)
+*   \brief Verifica la possibilità di muoversi
+*   \param board matrice linearizzata della scacchiera
+*   \param x coordinata x della cella
+*   \param y coordinata y della cella
+*
+*	Verifica la possibilità della pedina in \a x , \a y di muoversi nelle caselle adiacenti
+*/
+int can_move(pedina **board, int x, int y);
+
 int existMandatory(pedina **board, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y); /*Verifica se esiste una mossa (obbligatoria) diversa che da quella tentata */
+
+/**@}*/

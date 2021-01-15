@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['victory',['victory',['../ml__lib_8h.html#a126ef35a3cacdc550c03a737bf1311bf',1,'ml_lib.c']]]
+  ['victory',['victory',['../group__Output.html#ga126ef35a3cacdc550c03a737bf1311bf',1,'victory(id_p winner):&#160;ml_lib.c'],['../group__Output.html#ga126ef35a3cacdc550c03a737bf1311bf',1,'victory(id_p winner):&#160;ml_lib.c']]]
 ];

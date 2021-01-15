@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['destroymatrix',['destroyMatrix',['../ml__lib_8h.html#a898a4ffd57725b4666aa768ca71f1e1f',1,'ml_lib.c']]],
-  ['distance',['distance',['../ml__lib_8h.html#add69249d37e4dbcc03785bacd32d073b',1,'ml_lib.c']]]
+  ['destroymatrix',['destroyMatrix',['../group__Memoria.html#ga898a4ffd57725b4666aa768ca71f1e1f',1,'destroyMatrix(pedina **board):&#160;ml_lib.c'],['../group__Memoria.html#ga898a4ffd57725b4666aa768ca71f1e1f',1,'destroyMatrix(pedina **board):&#160;ml_lib.c']]],
+  ['distance',['distance',['../group__Logiche.html#gadd69249d37e4dbcc03785bacd32d073b',1,'distance(int from_x, int from_y, int to_x, int to_y):&#160;ml_lib.c'],['../group__Logiche.html#gadd69249d37e4dbcc03785bacd32d073b',1,'distance(int from_x, int from_y, int to_x, int to_y):&#160;ml_lib.c']]]
 ];

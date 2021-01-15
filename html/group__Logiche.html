@@ -1,0 +1,564 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>MiniLaska Gruppo 4: Funzioni delle logiche di gioco</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">MiniLaska Gruppo 4
+   &#160;<span id="projectnumber">1.0.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generato da Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Cerca');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Funzioni</a>  </div>
+  <div class="headertitle">
+<div class="title">Funzioni delle logiche di gioco</div>  </div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funzioni</h2></td></tr>
+<tr class="memitem:ga517bd042d8b769fbc621834a7ef350a7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Logiche.html#ga517bd042d8b769fbc621834a7ef350a7">can_move</a> (<a class="el" href="ml__lib_8h.html#a71fee95122b31f5cb0b07d9c16ffa3a5">pedina</a> **<a class="el" href="ml__main_8c.html#a62a3fe3d1df9ff58883b669f7f24e516">board</a>, int x, int y)</td></tr>
+<tr class="memdesc:ga517bd042d8b769fbc621834a7ef350a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica la possibilità di muoversi.  <a href="#ga517bd042d8b769fbc621834a7ef350a7">Continua...</a><br /></td></tr>
+<tr class="separator:ga517bd042d8b769fbc621834a7ef350a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0b5b57b74dd64318663e80224db22a29"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Logiche.html#ga0b5b57b74dd64318663e80224db22a29">isWinner</a> (<a class="el" href="ml__lib_8h.html#a71fee95122b31f5cb0b07d9c16ffa3a5">pedina</a> **<a class="el" href="ml__main_8c.html#a62a3fe3d1df9ff58883b669f7f24e516">board</a>, <a class="el" href="ml__lib_8h.html#a0330ff92cbc796e96c3ce3e4401bf1e1">id_p</a> player)</td></tr>
+<tr class="memdesc:ga0b5b57b74dd64318663e80224db22a29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica che il giocatore <em>player</em> abbia vinto.  <a href="#ga0b5b57b74dd64318663e80224db22a29">Continua...</a><br /></td></tr>
+<tr class="separator:ga0b5b57b74dd64318663e80224db22a29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5ffbe07c58992cdfe2f68ad35709829f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Logiche.html#ga5ffbe07c58992cdfe2f68ad35709829f">isForbiddenCell</a> (unsigned x, unsigned y)</td></tr>
+<tr class="memdesc:ga5ffbe07c58992cdfe2f68ad35709829f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica che la cella sia accessibile.  <a href="#ga5ffbe07c58992cdfe2f68ad35709829f">Continua...</a><br /></td></tr>
+<tr class="separator:ga5ffbe07c58992cdfe2f68ad35709829f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga52af2f129ce1f4939cc325823601f413"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Logiche.html#ga52af2f129ce1f4939cc325823601f413">move</a> (<a class="el" href="ml__lib_8h.html#a71fee95122b31f5cb0b07d9c16ffa3a5">pedina</a> **<a class="el" href="ml__main_8c.html#a62a3fe3d1df9ff58883b669f7f24e516">board</a>, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y, unsigned <a class="el" href="ml__main_8c.html#a6a9348d5147fb8e94c6d9a0dbeaf0d16">turn</a>)</td></tr>
+<tr class="memdesc:ga52af2f129ce1f4939cc325823601f413"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica che la mossa selezionata sia legale e la esegue.  <a href="#ga52af2f129ce1f4939cc325823601f413">Continua...</a><br /></td></tr>
+<tr class="separator:ga52af2f129ce1f4939cc325823601f413"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadd69249d37e4dbcc03785bacd32d073b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Logiche.html#gadd69249d37e4dbcc03785bacd32d073b">distance</a> (int from_x, int from_y, int to_x, int to_y)</td></tr>
+<tr class="memdesc:gadd69249d37e4dbcc03785bacd32d073b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restituisce un codice che descrive la lunghezza della mossa.  <a href="#gadd69249d37e4dbcc03785bacd32d073b">Continua...</a><br /></td></tr>
+<tr class="separator:gadd69249d37e4dbcc03785bacd32d073b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf4867d370bacba9dfe7ad040d398fad7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Logiche.html#gaf4867d370bacba9dfe7ad040d398fad7">capture</a> (<a class="el" href="ml__lib_8h.html#a71fee95122b31f5cb0b07d9c16ffa3a5">pedina</a> **<a class="el" href="ml__main_8c.html#a62a3fe3d1df9ff58883b669f7f24e516">board</a>, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y)</td></tr>
+<tr class="memdesc:gaf4867d370bacba9dfe7ad040d398fad7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Esegue la cattura delle pedine.  <a href="#gaf4867d370bacba9dfe7ad040d398fad7">Continua...</a><br /></td></tr>
+<tr class="separator:gaf4867d370bacba9dfe7ad040d398fad7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa4910806fbd0410ca1f3dd2138e5a5c0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Logiche.html#gaa4910806fbd0410ca1f3dd2138e5a5c0">gradeCheck</a> (<a class="el" href="ml__lib_8h.html#a71fee95122b31f5cb0b07d9c16ffa3a5">pedina</a> **<a class="el" href="ml__main_8c.html#a62a3fe3d1df9ff58883b669f7f24e516">board</a>, unsigned from_x, unsigned from_y, unsigned to_y)</td></tr>
+<tr class="memdesc:gaa4910806fbd0410ca1f3dd2138e5a5c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica che la mossa selezionata sia compatibile con il grado della pedina.  <a href="#gaa4910806fbd0410ca1f3dd2138e5a5c0">Continua...</a><br /></td></tr>
+<tr class="separator:gaa4910806fbd0410ca1f3dd2138e5a5c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0d2b0f301f106303b4693ffa24dc4824"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Logiche.html#ga0d2b0f301f106303b4693ffa24dc4824">can_eat</a> (<a class="el" href="ml__lib_8h.html#a71fee95122b31f5cb0b07d9c16ffa3a5">pedina</a> **<a class="el" href="ml__main_8c.html#a62a3fe3d1df9ff58883b669f7f24e516">board</a>, int x, int y)</td></tr>
+<tr class="memdesc:ga0d2b0f301f106303b4693ffa24dc4824"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica la possibilità di mangiare.  <a href="#ga0d2b0f301f106303b4693ffa24dc4824">Continua...</a><br /></td></tr>
+<tr class="separator:ga0d2b0f301f106303b4693ffa24dc4824"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf22c9987e665a9bed0de3abea459ed16"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Logiche.html#gaf22c9987e665a9bed0de3abea459ed16">existMandatory</a> (<a class="el" href="ml__lib_8h.html#a71fee95122b31f5cb0b07d9c16ffa3a5">pedina</a> **<a class="el" href="ml__main_8c.html#a62a3fe3d1df9ff58883b669f7f24e516">board</a>, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y)</td></tr>
+<tr class="memdesc:gaf22c9987e665a9bed0de3abea459ed16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Controlla la presenza di mosse obbligatorie.  <a href="#gaf22c9987e665a9bed0de3abea459ed16">Continua...</a><br /></td></tr>
+<tr class="separator:gaf22c9987e665a9bed0de3abea459ed16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrizione dettagliata</h2>
+<h2 class="groupheader">Documentazione delle funzioni</h2>
+<a id="ga0d2b0f301f106303b4693ffa24dc4824"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0d2b0f301f106303b4693ffa24dc4824">&#9670;&nbsp;</a></span>can_eat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int can_eat </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ml__lib_8h.html#a71fee95122b31f5cb0b07d9c16ffa3a5">pedina</a> **&#160;</td>
+          <td class="paramname"><em>board</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Verifica la possibilità di mangiare. </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">board</td><td>matrice linearizzata della scacchiera </td></tr>
+    <tr><td class="paramname">x</td><td>coordinata x della cella </td></tr>
+    <tr><td class="paramname">y</td><td>coordinata y della cella</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Verifica la possibilità della pedina in <em>x</em> , <em>y</em> di mangiare le pedine avversarie intorno a sé </p>
+
+</div>
+</div>
+<a id="ga517bd042d8b769fbc621834a7ef350a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga517bd042d8b769fbc621834a7ef350a7">&#9670;&nbsp;</a></span>can_move()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int can_move </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ml__lib_8h.html#a71fee95122b31f5cb0b07d9c16ffa3a5">pedina</a> **&#160;</td>
+          <td class="paramname"><em>board</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Verifica la possibilità di muoversi. </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">board</td><td>matrice linearizzata della scacchiera </td></tr>
+    <tr><td class="paramname">x</td><td>coordinata x della cella </td></tr>
+    <tr><td class="paramname">y</td><td>coordinata y della cella</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Verifica la possibilità della pedina in <em>x</em> , <em>y</em> di muoversi nelle caselle adiacenti </p>
+
+</div>
+</div>
+<a id="gaf4867d370bacba9dfe7ad040d398fad7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf4867d370bacba9dfe7ad040d398fad7">&#9670;&nbsp;</a></span>capture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void capture </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ml__lib_8h.html#a71fee95122b31f5cb0b07d9c16ffa3a5">pedina</a> **&#160;</td>
+          <td class="paramname"><em>board</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>from_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>from_y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>to_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>to_y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Esegue la cattura delle pedine. </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">board</td><td>matrice linearizzata della scacchiera </td></tr>
+    <tr><td class="paramname">from_x</td><td>coordinata x della cella di partenza </td></tr>
+    <tr><td class="paramname">from_y</td><td>coordinata y della cella di partenza </td></tr>
+    <tr><td class="paramname">to_x</td><td>coordinata x della cella di destinazione </td></tr>
+    <tr><td class="paramname">to_y</td><td>coordinata y della cella di destinazione</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Questa funzione si occupa di catturare le pedine indicate. Si assume la correttezza delle coordinate inserite, la legalità della mossa è verificata nella funzione <a class="el" href="group__Logiche.html#ga52af2f129ce1f4939cc325823601f413" title="Verifica che la mossa selezionata sia legale e la esegue. ">move()</a>. </p>
+
+</div>
+</div>
+<a id="gadd69249d37e4dbcc03785bacd32d073b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadd69249d37e4dbcc03785bacd32d073b">&#9670;&nbsp;</a></span>distance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int distance </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>from_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>from_y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>to_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>to_y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Restituisce un codice che descrive la lunghezza della mossa. </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">from_x</td><td>coordinata x della cella di partenza </td></tr>
+    <tr><td class="paramname">from_y</td><td>coordinata y della cella di partenza </td></tr>
+    <tr><td class="paramname">to_x</td><td>coordinata x della cella di destinazione </td></tr>
+    <tr><td class="paramname">to_y</td><td>coordinata y della cella di destinazione</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Restituisce la distanza in modulo tra due punti nella matrice: Se è maggiore di 2, uguale a 0, o la destinazione è in una casella non accessibile restituisce il codice errore -1.</p>
+<p>Le coordinate inserite sono corrette (la destinazione non è una casella proibita). </p>
+
+</div>
+</div>
+<a id="gaf22c9987e665a9bed0de3abea459ed16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf22c9987e665a9bed0de3abea459ed16">&#9670;&nbsp;</a></span>existMandatory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int existMandatory </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ml__lib_8h.html#a71fee95122b31f5cb0b07d9c16ffa3a5">pedina</a> **&#160;</td>
+          <td class="paramname"><em>board</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>from_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>from_y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>to_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>to_y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Controlla la presenza di mosse obbligatorie. </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">board</td><td>matrice linearizzata della scacchiera </td></tr>
+    <tr><td class="paramname">from_x</td><td>coordinata x della cella di partenza </td></tr>
+    <tr><td class="paramname">from_y</td><td>coordinata y della cella di partenza </td></tr>
+    <tr><td class="paramname">to_x</td><td>coordinata x della cella di partenza </td></tr>
+    <tr><td class="paramname">to_y</td><td>coordinata y della cella di partenza</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Verifica se, nel caso di non cattura, esiste una cattura obbligatoria da fare. Restituisce 1 se esiste una mossa obbligatoria non tentata, altrimenti 0. </p>
+
+</div>
+</div>
+<a id="gaa4910806fbd0410ca1f3dd2138e5a5c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa4910806fbd0410ca1f3dd2138e5a5c0">&#9670;&nbsp;</a></span>gradeCheck()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int gradeCheck </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ml__lib_8h.html#a71fee95122b31f5cb0b07d9c16ffa3a5">pedina</a> **&#160;</td>
+          <td class="paramname"><em>board</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>from_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>from_y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>to_y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Verifica che la mossa selezionata sia compatibile con il grado della pedina. </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">board</td><td>matrice linearizzata della scacchiera </td></tr>
+    <tr><td class="paramname">from_x</td><td>coordinata x della cella di partenza </td></tr>
+    <tr><td class="paramname">from_y</td><td>coordinata y della cella di partenza </td></tr>
+    <tr><td class="paramname">to_y</td><td>coordinata y della cella di destinazione</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Verifica il grado della pedina mossa: restituisce 1 se la mossa è consentita, 0 se non è consentita. </p>
+
+</div>
+</div>
+<a id="ga5ffbe07c58992cdfe2f68ad35709829f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5ffbe07c58992cdfe2f68ad35709829f">&#9670;&nbsp;</a></span>isForbiddenCell()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int isForbiddenCell </td>
+          <td>(</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Verifica che la cella sia accessibile. </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>coordinata x della cella </td></tr>
+    <tr><td class="paramname">y</td><td>coordinata y della cella</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Restituisce 1 se la cella non è accessibile (si possono usare solo le celle bianche della scacchiera), altrimenti 0. </p>
+
+</div>
+</div>
+<a id="ga0b5b57b74dd64318663e80224db22a29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0b5b57b74dd64318663e80224db22a29">&#9670;&nbsp;</a></span>isWinner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int isWinner </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ml__lib_8h.html#a71fee95122b31f5cb0b07d9c16ffa3a5">pedina</a> **&#160;</td>
+          <td class="paramname"><em>board</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ml__lib_8h.html#a0330ff92cbc796e96c3ce3e4401bf1e1">id_p</a>&#160;</td>
+          <td class="paramname"><em>idPlayer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Verifica che il giocatore <em>player</em> abbia vinto. </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">board</td><td>matrice linearizzata della scacchiera </td></tr>
+    <tr><td class="paramname">idPlayer</td><td>giocatore selezionato</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Verifica che il giocatore <em>idPlayer</em> abbia vinto. Restituisce 1 se idPlayer ha vinto, altrimenti 0. </p>
+
+</div>
+</div>
+<a id="ga52af2f129ce1f4939cc325823601f413"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga52af2f129ce1f4939cc325823601f413">&#9670;&nbsp;</a></span>move()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int move </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ml__lib_8h.html#a71fee95122b31f5cb0b07d9c16ffa3a5">pedina</a> **&#160;</td>
+          <td class="paramname"><em>board</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>from_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>from_y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>to_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>to_y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>turn</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Verifica che la mossa selezionata sia legale e la esegue. </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">board</td><td>matrice linearizzata della scacchiera </td></tr>
+    <tr><td class="paramname">from_x</td><td>coordinata x della cella di partenza </td></tr>
+    <tr><td class="paramname">from_y</td><td>coordinata y della cella di partenza </td></tr>
+    <tr><td class="paramname">to_x</td><td>coordinata x della cella di destinazione </td></tr>
+    <tr><td class="paramname">to_y</td><td>coordinata y della cella di destinazione </td></tr>
+    <tr><td class="paramname">turn</td><td>numero del turno corrente</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Restituisce 1 se la mossa è stata fatta, 0 se non è stato possibile. Le coordinate inserite sono corrette in fase di input (sono all'interno della scacchiera e non sono caselle proibite). Verifica che la distanza ed il grado siano compatibili con la mossa. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generato da &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

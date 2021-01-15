@@ -1,83 +1,88 @@
-\indexentry{cella@{cella}|hyperpage}{5}
-\indexentry{cella@{cella}!down@{down}|hyperpage}{5}
-\indexentry{down@{down}!cella@{cella}|hyperpage}{5}
-\indexentry{cella@{cella}!grado@{grado}|hyperpage}{5}
-\indexentry{grado@{grado}!cella@{cella}|hyperpage}{5}
-\indexentry{cella@{cella}!id\+\_\+player@{id\+\_\+player}|hyperpage}{5}
-\indexentry{id\+\_\+player@{id\+\_\+player}!cella@{cella}|hyperpage}{5}
-\indexentry{cella@{cella}!middle@{middle}|hyperpage}{6}
-\indexentry{middle@{middle}!cella@{cella}|hyperpage}{6}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{7}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!pedina@{pedina}|hyperpage}{9}
-\indexentry{pedina@{pedina}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{9}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!gr@{gr}|hyperpage}{9}
-\indexentry{gr@{gr}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{9}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!id\+\_\+p@{id\+\_\+p}|hyperpage}{9}
-\indexentry{id\+\_\+p@{id\+\_\+p}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{9}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!can\+\_\+eat@{can\+\_\+eat}|hyperpage}{9}
-\indexentry{can\+\_\+eat@{can\+\_\+eat}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{9}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!can\+\_\+move@{can\+\_\+move}|hyperpage}{10}
-\indexentry{can\+\_\+move@{can\+\_\+move}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{10}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!capture@{capture}|hyperpage}{10}
-\indexentry{capture@{capture}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{10}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!catch\+Input@{catch\+Input}|hyperpage}{10}
-\indexentry{catch\+Input@{catch\+Input}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{10}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!create\+Matrix@{create\+Matrix}|hyperpage}{11}
-\indexentry{create\+Matrix@{create\+Matrix}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{11}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!destroy\+Matrix@{destroy\+Matrix}|hyperpage}{11}
-\indexentry{destroy\+Matrix@{destroy\+Matrix}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{11}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!distance@{distance}|hyperpage}{11}
-\indexentry{distance@{distance}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{11}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!exist\+Mandatory@{exist\+Mandatory}|hyperpage}{12}
-\indexentry{exist\+Mandatory@{exist\+Mandatory}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{12}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!fill\+Board@{fill\+Board}|hyperpage}{12}
-\indexentry{fill\+Board@{fill\+Board}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{12}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!get\+\_\+board\+\_\+value@{get\+\_\+board\+\_\+value}|hyperpage}{12}
-\indexentry{get\+\_\+board\+\_\+value@{get\+\_\+board\+\_\+value}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{12}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!get\+\_\+board\+\_\+value\+\_\+down@{get\+\_\+board\+\_\+value\+\_\+down}|hyperpage}{13}
-\indexentry{get\+\_\+board\+\_\+value\+\_\+down@{get\+\_\+board\+\_\+value\+\_\+down}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{13}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!get\+\_\+board\+\_\+value\+\_\+middle@{get\+\_\+board\+\_\+value\+\_\+middle}|hyperpage}{13}
-\indexentry{get\+\_\+board\+\_\+value\+\_\+middle@{get\+\_\+board\+\_\+value\+\_\+middle}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{13}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!get\+\_\+grade@{get\+\_\+grade}|hyperpage}{13}
-\indexentry{get\+\_\+grade@{get\+\_\+grade}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{13}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!get\+\_\+id\+\_\+player@{get\+\_\+id\+\_\+player}|hyperpage}{14}
-\indexentry{get\+\_\+id\+\_\+player@{get\+\_\+id\+\_\+player}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{14}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!grade\+Check@{grade\+Check}|hyperpage}{14}
-\indexentry{grade\+Check@{grade\+Check}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{14}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!input\+Error@{input\+Error}|hyperpage}{14}
-\indexentry{input\+Error@{input\+Error}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{14}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!is\+Forbidden\+Cell@{is\+Forbidden\+Cell}|hyperpage}{14}
-\indexentry{is\+Forbidden\+Cell@{is\+Forbidden\+Cell}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{14}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!is\+Winner@{is\+Winner}|hyperpage}{15}
-\indexentry{is\+Winner@{is\+Winner}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{15}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!move@{move}|hyperpage}{15}
-\indexentry{move@{move}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{15}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!print\+Matrix@{print\+Matrix}|hyperpage}{16}
-\indexentry{print\+Matrix@{print\+Matrix}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{16}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!print\+Pedina@{print\+Pedina}|hyperpage}{16}
-\indexentry{print\+Pedina@{print\+Pedina}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{16}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!print\+Rules@{print\+Rules}|hyperpage}{16}
-\indexentry{print\+Rules@{print\+Rules}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{16}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!print\+Status@{print\+Status}|hyperpage}{16}
-\indexentry{print\+Status@{print\+Status}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{16}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!set\+\_\+board\+\_\+value@{set\+\_\+board\+\_\+value}|hyperpage}{17}
-\indexentry{set\+\_\+board\+\_\+value@{set\+\_\+board\+\_\+value}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{17}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!set\+\_\+grade@{set\+\_\+grade}|hyperpage}{17}
-\indexentry{set\+\_\+grade@{set\+\_\+grade}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{17}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!set\+\_\+id\+\_\+player@{set\+\_\+id\+\_\+player}|hyperpage}{17}
-\indexentry{set\+\_\+id\+\_\+player@{set\+\_\+id\+\_\+player}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{17}
-\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!victory@{victory}|hyperpage}{18}
-\indexentry{victory@{victory}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{18}
-\indexentry{ml\+\_\+main.\+c@{ml\+\_\+main.\+c}|hyperpage}{18}
-\indexentry{ml\+\_\+main.\+c@{ml\+\_\+main.\+c}!main@{main}|hyperpage}{18}
-\indexentry{main@{main}!ml\+\_\+main.\+c@{ml\+\_\+main.\+c}|hyperpage}{18}
-\indexentry{ml\+\_\+main.\+c@{ml\+\_\+main.\+c}!board@{board}|hyperpage}{19}
-\indexentry{board@{board}!ml\+\_\+main.\+c@{ml\+\_\+main.\+c}|hyperpage}{19}
-\indexentry{ml\+\_\+main.\+c@{ml\+\_\+main.\+c}!coordinate@{coordinate}|hyperpage}{19}
-\indexentry{coordinate@{coordinate}!ml\+\_\+main.\+c@{ml\+\_\+main.\+c}|hyperpage}{19}
-\indexentry{ml\+\_\+main.\+c@{ml\+\_\+main.\+c}!success\+\_\+input@{success\+\_\+input}|hyperpage}{19}
-\indexentry{success\+\_\+input@{success\+\_\+input}!ml\+\_\+main.\+c@{ml\+\_\+main.\+c}|hyperpage}{19}
-\indexentry{ml\+\_\+main.\+c@{ml\+\_\+main.\+c}!success\+\_\+move@{success\+\_\+move}|hyperpage}{19}
-\indexentry{success\+\_\+move@{success\+\_\+move}!ml\+\_\+main.\+c@{ml\+\_\+main.\+c}|hyperpage}{19}
-\indexentry{ml\+\_\+main.\+c@{ml\+\_\+main.\+c}!turn@{turn}|hyperpage}{19}
-\indexentry{turn@{turn}!ml\+\_\+main.\+c@{ml\+\_\+main.\+c}|hyperpage}{19}
+\indexentry{Funzioni ausiliarie@{Funzioni ausiliarie}|hyperpage}{7}
+\indexentry{Funzioni ausiliarie@{Funzioni ausiliarie}!get\+\_\+board\+\_\+value@{get\+\_\+board\+\_\+value}|hyperpage}{7}
+\indexentry{get\+\_\+board\+\_\+value@{get\+\_\+board\+\_\+value}!Funzioni ausiliarie@{Funzioni ausiliarie}|hyperpage}{7}
+\indexentry{Funzioni ausiliarie@{Funzioni ausiliarie}!get\+\_\+board\+\_\+value\+\_\+down@{get\+\_\+board\+\_\+value\+\_\+down}|hyperpage}{8}
+\indexentry{get\+\_\+board\+\_\+value\+\_\+down@{get\+\_\+board\+\_\+value\+\_\+down}!Funzioni ausiliarie@{Funzioni ausiliarie}|hyperpage}{8}
+\indexentry{Funzioni ausiliarie@{Funzioni ausiliarie}!get\+\_\+board\+\_\+value\+\_\+middle@{get\+\_\+board\+\_\+value\+\_\+middle}|hyperpage}{8}
+\indexentry{get\+\_\+board\+\_\+value\+\_\+middle@{get\+\_\+board\+\_\+value\+\_\+middle}!Funzioni ausiliarie@{Funzioni ausiliarie}|hyperpage}{8}
+\indexentry{Funzioni ausiliarie@{Funzioni ausiliarie}!get\+\_\+grade@{get\+\_\+grade}|hyperpage}{8}
+\indexentry{get\+\_\+grade@{get\+\_\+grade}!Funzioni ausiliarie@{Funzioni ausiliarie}|hyperpage}{8}
+\indexentry{Funzioni ausiliarie@{Funzioni ausiliarie}!get\+\_\+id\+\_\+player@{get\+\_\+id\+\_\+player}|hyperpage}{9}
+\indexentry{get\+\_\+id\+\_\+player@{get\+\_\+id\+\_\+player}!Funzioni ausiliarie@{Funzioni ausiliarie}|hyperpage}{9}
+\indexentry{Funzioni ausiliarie@{Funzioni ausiliarie}!set\+\_\+board\+\_\+value@{set\+\_\+board\+\_\+value}|hyperpage}{9}
+\indexentry{set\+\_\+board\+\_\+value@{set\+\_\+board\+\_\+value}!Funzioni ausiliarie@{Funzioni ausiliarie}|hyperpage}{9}
+\indexentry{Funzioni ausiliarie@{Funzioni ausiliarie}!set\+\_\+grade@{set\+\_\+grade}|hyperpage}{9}
+\indexentry{set\+\_\+grade@{set\+\_\+grade}!Funzioni ausiliarie@{Funzioni ausiliarie}|hyperpage}{9}
+\indexentry{Funzioni ausiliarie@{Funzioni ausiliarie}!set\+\_\+id\+\_\+player@{set\+\_\+id\+\_\+player}|hyperpage}{10}
+\indexentry{set\+\_\+id\+\_\+player@{set\+\_\+id\+\_\+player}!Funzioni ausiliarie@{Funzioni ausiliarie}|hyperpage}{10}
+\indexentry{Funzioni di gestione della memoria@{Funzioni di gestione della memoria}|hyperpage}{11}
+\indexentry{Funzioni di gestione della memoria@{Funzioni di gestione della memoria}!create\+Matrix@{create\+Matrix}|hyperpage}{11}
+\indexentry{create\+Matrix@{create\+Matrix}!Funzioni di gestione della memoria@{Funzioni di gestione della memoria}|hyperpage}{11}
+\indexentry{Funzioni di gestione della memoria@{Funzioni di gestione della memoria}!destroy\+Matrix@{destroy\+Matrix}|hyperpage}{11}
+\indexentry{destroy\+Matrix@{destroy\+Matrix}!Funzioni di gestione della memoria@{Funzioni di gestione della memoria}|hyperpage}{11}
+\indexentry{Funzioni di gestione della memoria@{Funzioni di gestione della memoria}!fill\+Board@{fill\+Board}|hyperpage}{11}
+\indexentry{fill\+Board@{fill\+Board}!Funzioni di gestione della memoria@{Funzioni di gestione della memoria}|hyperpage}{11}
+\indexentry{Funzioni di input@{Funzioni di input}|hyperpage}{13}
+\indexentry{Funzioni di input@{Funzioni di input}!catch\+Input@{catch\+Input}|hyperpage}{13}
+\indexentry{catch\+Input@{catch\+Input}!Funzioni di input@{Funzioni di input}|hyperpage}{13}
+\indexentry{Funzioni di output@{Funzioni di output}|hyperpage}{14}
+\indexentry{Funzioni di output@{Funzioni di output}!input\+Error@{input\+Error}|hyperpage}{14}
+\indexentry{input\+Error@{input\+Error}!Funzioni di output@{Funzioni di output}|hyperpage}{14}
+\indexentry{Funzioni di output@{Funzioni di output}!print\+Matrix@{print\+Matrix}|hyperpage}{14}
+\indexentry{print\+Matrix@{print\+Matrix}!Funzioni di output@{Funzioni di output}|hyperpage}{14}
+\indexentry{Funzioni di output@{Funzioni di output}!print\+Pedina@{print\+Pedina}|hyperpage}{14}
+\indexentry{print\+Pedina@{print\+Pedina}!Funzioni di output@{Funzioni di output}|hyperpage}{14}
+\indexentry{Funzioni di output@{Funzioni di output}!print\+Rules@{print\+Rules}|hyperpage}{15}
+\indexentry{print\+Rules@{print\+Rules}!Funzioni di output@{Funzioni di output}|hyperpage}{15}
+\indexentry{Funzioni di output@{Funzioni di output}!print\+Status@{print\+Status}|hyperpage}{15}
+\indexentry{print\+Status@{print\+Status}!Funzioni di output@{Funzioni di output}|hyperpage}{15}
+\indexentry{Funzioni di output@{Funzioni di output}!victory@{victory}|hyperpage}{15}
+\indexentry{victory@{victory}!Funzioni di output@{Funzioni di output}|hyperpage}{15}
+\indexentry{Funzioni delle logiche di gioco@{Funzioni delle logiche di gioco}|hyperpage}{16}
+\indexentry{Funzioni delle logiche di gioco@{Funzioni delle logiche di gioco}!can\+\_\+eat@{can\+\_\+eat}|hyperpage}{16}
+\indexentry{can\+\_\+eat@{can\+\_\+eat}!Funzioni delle logiche di gioco@{Funzioni delle logiche di gioco}|hyperpage}{16}
+\indexentry{Funzioni delle logiche di gioco@{Funzioni delle logiche di gioco}!can\+\_\+move@{can\+\_\+move}|hyperpage}{16}
+\indexentry{can\+\_\+move@{can\+\_\+move}!Funzioni delle logiche di gioco@{Funzioni delle logiche di gioco}|hyperpage}{16}
+\indexentry{Funzioni delle logiche di gioco@{Funzioni delle logiche di gioco}!capture@{capture}|hyperpage}{17}
+\indexentry{capture@{capture}!Funzioni delle logiche di gioco@{Funzioni delle logiche di gioco}|hyperpage}{17}
+\indexentry{Funzioni delle logiche di gioco@{Funzioni delle logiche di gioco}!distance@{distance}|hyperpage}{17}
+\indexentry{distance@{distance}!Funzioni delle logiche di gioco@{Funzioni delle logiche di gioco}|hyperpage}{17}
+\indexentry{Funzioni delle logiche di gioco@{Funzioni delle logiche di gioco}!exist\+Mandatory@{exist\+Mandatory}|hyperpage}{18}
+\indexentry{exist\+Mandatory@{exist\+Mandatory}!Funzioni delle logiche di gioco@{Funzioni delle logiche di gioco}|hyperpage}{18}
+\indexentry{Funzioni delle logiche di gioco@{Funzioni delle logiche di gioco}!grade\+Check@{grade\+Check}|hyperpage}{18}
+\indexentry{grade\+Check@{grade\+Check}!Funzioni delle logiche di gioco@{Funzioni delle logiche di gioco}|hyperpage}{18}
+\indexentry{Funzioni delle logiche di gioco@{Funzioni delle logiche di gioco}!is\+Forbidden\+Cell@{is\+Forbidden\+Cell}|hyperpage}{19}
+\indexentry{is\+Forbidden\+Cell@{is\+Forbidden\+Cell}!Funzioni delle logiche di gioco@{Funzioni delle logiche di gioco}|hyperpage}{19}
+\indexentry{Funzioni delle logiche di gioco@{Funzioni delle logiche di gioco}!is\+Winner@{is\+Winner}|hyperpage}{19}
+\indexentry{is\+Winner@{is\+Winner}!Funzioni delle logiche di gioco@{Funzioni delle logiche di gioco}|hyperpage}{19}
+\indexentry{Funzioni delle logiche di gioco@{Funzioni delle logiche di gioco}!move@{move}|hyperpage}{19}
+\indexentry{move@{move}!Funzioni delle logiche di gioco@{Funzioni delle logiche di gioco}|hyperpage}{19}
+\indexentry{cella@{cella}|hyperpage}{21}
+\indexentry{cella@{cella}!down@{down}|hyperpage}{21}
+\indexentry{down@{down}!cella@{cella}|hyperpage}{21}
+\indexentry{cella@{cella}!grado@{grado}|hyperpage}{21}
+\indexentry{grado@{grado}!cella@{cella}|hyperpage}{21}
+\indexentry{cella@{cella}!id\+\_\+player@{id\+\_\+player}|hyperpage}{21}
+\indexentry{id\+\_\+player@{id\+\_\+player}!cella@{cella}|hyperpage}{21}
+\indexentry{cella@{cella}!middle@{middle}|hyperpage}{22}
+\indexentry{middle@{middle}!cella@{cella}|hyperpage}{22}
+\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{23}
+\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!pedina@{pedina}|hyperpage}{25}
+\indexentry{pedina@{pedina}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{25}
+\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!gr@{gr}|hyperpage}{25}
+\indexentry{gr@{gr}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{25}
+\indexentry{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!id\+\_\+p@{id\+\_\+p}|hyperpage}{25}
+\indexentry{id\+\_\+p@{id\+\_\+p}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}|hyperpage}{25}
+\indexentry{ml\+\_\+main.\+c@{ml\+\_\+main.\+c}|hyperpage}{25}
+\indexentry{ml\+\_\+main.\+c@{ml\+\_\+main.\+c}!main@{main}|hyperpage}{26}
+\indexentry{main@{main}!ml\+\_\+main.\+c@{ml\+\_\+main.\+c}|hyperpage}{26}
+\indexentry{ml\+\_\+main.\+c@{ml\+\_\+main.\+c}!board@{board}|hyperpage}{26}
+\indexentry{board@{board}!ml\+\_\+main.\+c@{ml\+\_\+main.\+c}|hyperpage}{26}
+\indexentry{ml\+\_\+main.\+c@{ml\+\_\+main.\+c}!coordinate@{coordinate}|hyperpage}{26}
+\indexentry{coordinate@{coordinate}!ml\+\_\+main.\+c@{ml\+\_\+main.\+c}|hyperpage}{26}
+\indexentry{ml\+\_\+main.\+c@{ml\+\_\+main.\+c}!success\+\_\+input@{success\+\_\+input}|hyperpage}{26}
+\indexentry{success\+\_\+input@{success\+\_\+input}!ml\+\_\+main.\+c@{ml\+\_\+main.\+c}|hyperpage}{26}
+\indexentry{ml\+\_\+main.\+c@{ml\+\_\+main.\+c}!success\+\_\+move@{success\+\_\+move}|hyperpage}{26}
+\indexentry{success\+\_\+move@{success\+\_\+move}!ml\+\_\+main.\+c@{ml\+\_\+main.\+c}|hyperpage}{26}
+\indexentry{ml\+\_\+main.\+c@{ml\+\_\+main.\+c}!turn@{turn}|hyperpage}{26}
+\indexentry{turn@{turn}!ml\+\_\+main.\+c@{ml\+\_\+main.\+c}|hyperpage}{26}

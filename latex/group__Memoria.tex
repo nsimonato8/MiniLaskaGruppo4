@@ -1,0 +1,58 @@
+\hypertarget{group__Memoria}{}\section{Funzioni di gestione della memoria}
+\label{group__Memoria}\index{Funzioni di gestione della memoria@{Funzioni di gestione della memoria}}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$ \hyperlink{group__Memoria_ga4a5eb161590279b5189a68bb27f0882e}{create\+Matrix} ()
+\begin{DoxyCompactList}\small\item\em Funzione che crea la matrice della scacchiera. \end{DoxyCompactList}\item 
+void \hyperlink{group__Memoria_ga898a4ffd57725b4666aa768ca71f1e1f}{destroy\+Matrix} (\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$\hyperlink{ml__main_8c_a62a3fe3d1df9ff58883b669f7f24e516}{board})
+\begin{DoxyCompactList}\small\item\em Distrugge la matrice della scacchiera. \end{DoxyCompactList}\item 
+void \hyperlink{group__Memoria_ga421a28d47106a4070c6eea92c1401821}{fill\+Board} (\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$\hyperlink{ml__main_8c_a62a3fe3d1df9ff58883b669f7f24e516}{board})
+\begin{DoxyCompactList}\small\item\em Riempie la scacchiera con le pedine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+
+
+\subsection{Documentazione delle funzioni}
+\mbox{\Hypertarget{group__Memoria_ga4a5eb161590279b5189a68bb27f0882e}\label{group__Memoria_ga4a5eb161590279b5189a68bb27f0882e}} 
+\index{Funzioni di gestione della memoria@{Funzioni di gestione della memoria}!create\+Matrix@{create\+Matrix}}
+\index{create\+Matrix@{create\+Matrix}!Funzioni di gestione della memoria@{Funzioni di gestione della memoria}}
+\subsubsection{\texorpdfstring{create\+Matrix()}{createMatrix()}}
+{\footnotesize\ttfamily \hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina}$\ast$$\ast$ create\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Funzione che crea la matrice della scacchiera. 
+
+Ritorna un puntatore di tipo {\itshape pedina$\ast$$\ast$} ad una matrice bidimensionale di puntatori a pedina linearizzata. \mbox{\Hypertarget{group__Memoria_ga898a4ffd57725b4666aa768ca71f1e1f}\label{group__Memoria_ga898a4ffd57725b4666aa768ca71f1e1f}} 
+\index{Funzioni di gestione della memoria@{Funzioni di gestione della memoria}!destroy\+Matrix@{destroy\+Matrix}}
+\index{destroy\+Matrix@{destroy\+Matrix}!Funzioni di gestione della memoria@{Funzioni di gestione della memoria}}
+\subsubsection{\texorpdfstring{destroy\+Matrix()}{destroyMatrix()}}
+{\footnotesize\ttfamily void destroy\+Matrix (\begin{DoxyParamCaption}\item[{\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$}]{board }\end{DoxyParamCaption})}
+
+
+
+Distrugge la matrice della scacchiera. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em board} & matrice linearizzata della scacchiera\\
+\hline
+\end{DoxyParams}
+Funzione che dealloca la memoria della matrice della scacchiera. \mbox{\Hypertarget{group__Memoria_ga421a28d47106a4070c6eea92c1401821}\label{group__Memoria_ga421a28d47106a4070c6eea92c1401821}} 
+\index{Funzioni di gestione della memoria@{Funzioni di gestione della memoria}!fill\+Board@{fill\+Board}}
+\index{fill\+Board@{fill\+Board}!Funzioni di gestione della memoria@{Funzioni di gestione della memoria}}
+\subsubsection{\texorpdfstring{fill\+Board()}{fillBoard()}}
+{\footnotesize\ttfamily void fill\+Board (\begin{DoxyParamCaption}\item[{\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$}]{board }\end{DoxyParamCaption})}
+
+
+
+Riempie la scacchiera con le pedine. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em board} & matrice linearizzata della scacchiera\\
+\hline
+\end{DoxyParams}
+Riempie la scacchiera con le pedine. Il giocatore 1 ( {\itshape User\+One}) sarà posizionato nella parte bassa della scacchiera. 
