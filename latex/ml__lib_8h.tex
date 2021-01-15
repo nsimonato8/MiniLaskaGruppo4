@@ -1,0 +1,583 @@
+\hypertarget{ml__lib_8h}{}\section{Riferimenti per il file ml\+\_\+lib.\+h}
+\label{ml__lib_8h}\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+
+
+Header della libreria ml\+\_\+lib.  
+
+
+\subsection*{Composti}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structcella}{cella}
+\end{DoxyCompactItemize}
+\subsection*{Ridefinizioni di tipo (typedef)}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structcella}{cella} \hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina}
+\end{DoxyCompactItemize}
+\subsection*{Tipi enumerati (enum)}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{ml__lib_8h_a0330ff92cbc796e96c3ce3e4401bf1e1}{id\+\_\+p} \{ {\bfseries User\+One}, 
+{\bfseries User\+Two}
+ \}
+\item 
+enum \hyperlink{ml__lib_8h_a25f6e8adc446355e3f42092ecf9d598c}{gr} \{ {\bfseries Soldier}, 
+{\bfseries Officer}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{ml__lib_8h_abbdcb7fca0fe313ecc63bc2ba1a73d8e}{set\+\_\+id\+\_\+player} (\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$p, \hyperlink{ml__lib_8h_a0330ff92cbc796e96c3ce3e4401bf1e1}{id\+\_\+p} value)
+\begin{DoxyCompactList}\small\item\em Imposta l\textquotesingle{}id\+\_\+player {\itshape value} della pedina indicata dal puntatore {\itshape $\ast$p}. \end{DoxyCompactList}\item 
+\hyperlink{ml__lib_8h_a0330ff92cbc796e96c3ce3e4401bf1e1}{id\+\_\+p} \hyperlink{ml__lib_8h_aeebe06189e2bd221a0e65b7d15f6b1b5}{get\+\_\+id\+\_\+player} (\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Ritorna {\itshape id\+\_\+player} dalla pedina {\itshape $\ast$p} specificata. \end{DoxyCompactList}\item 
+void \hyperlink{ml__lib_8h_af41d60dd64b7eb3f58f9d47100461310}{set\+\_\+board\+\_\+value} (\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$\hyperlink{ml__main_8c_a62a3fe3d1df9ff58883b669f7f24e516}{board}, unsigned x, unsigned y, \hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$value)
+\begin{DoxyCompactList}\small\item\em Imposta la pedina {\itshape value} nella posizione {\itshape x} , {\itshape y} nella scacchiera {\itshape board}. \end{DoxyCompactList}\item 
+\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$ \hyperlink{ml__lib_8h_a98af825db34dd320535062aa23675a71}{get\+\_\+board\+\_\+value} (\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$\hyperlink{ml__main_8c_a62a3fe3d1df9ff58883b669f7f24e516}{board}, unsigned x, unsigned y)
+\begin{DoxyCompactList}\small\item\em Ritorna la {\itshape pedina} contenuta nella posizione {\itshape x} , {\itshape y} di {\itshape board}. \end{DoxyCompactList}\item 
+\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$ \hyperlink{ml__lib_8h_a59156018c085ef9af6563790b63c28d5}{get\+\_\+board\+\_\+value\+\_\+middle} (\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$\hyperlink{ml__main_8c_a62a3fe3d1df9ff58883b669f7f24e516}{board}, unsigned x, unsigned y)
+\begin{DoxyCompactList}\small\item\em Ritorna la {\itshape pedina} \char`\"{}middle\char`\"{} contenuta nella posizione {\itshape x} , {\itshape y} di {\itshape board}. \end{DoxyCompactList}\item 
+\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$ \hyperlink{ml__lib_8h_ae874c64d588c5865633fc342fbbbafaa}{get\+\_\+board\+\_\+value\+\_\+down} (\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$\hyperlink{ml__main_8c_a62a3fe3d1df9ff58883b669f7f24e516}{board}, unsigned x, unsigned y)
+\begin{DoxyCompactList}\small\item\em Ritorna la {\itshape pedina} \char`\"{}down\char`\"{} contenuta nella posizione {\itshape x}, {\itshape y} di {\itshape board}. \end{DoxyCompactList}\item 
+void \hyperlink{ml__lib_8h_a663d3a2fcf86042d03eb834766b7adea}{set\+\_\+grade} (\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$p, \hyperlink{ml__lib_8h_a25f6e8adc446355e3f42092ecf9d598c}{gr} value)
+\begin{DoxyCompactList}\small\item\em Imposta il grado {\itshape value} della pedina indicata dal puntatore {\itshape p}. \end{DoxyCompactList}\item 
+\hyperlink{ml__lib_8h_a25f6e8adc446355e3f42092ecf9d598c}{gr} \hyperlink{ml__lib_8h_a6ceb2e2fb4d39456d2b64b64f4841c67}{get\+\_\+grade} (\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Ritorna il grado {\itshape value} della pedina indicata dal puntatore {\itshape p}. \end{DoxyCompactList}\item 
+\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$ \hyperlink{ml__lib_8h_a4a5eb161590279b5189a68bb27f0882e}{create\+Matrix} ()
+\begin{DoxyCompactList}\small\item\em Funzione che crea la matrice della scacchiera. \end{DoxyCompactList}\item 
+void \hyperlink{ml__lib_8h_a898a4ffd57725b4666aa768ca71f1e1f}{destroy\+Matrix} (\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$\hyperlink{ml__main_8c_a62a3fe3d1df9ff58883b669f7f24e516}{board})
+\begin{DoxyCompactList}\small\item\em Distrugge la matrice della scacchiera. \end{DoxyCompactList}\item 
+void \hyperlink{ml__lib_8h_a421a28d47106a4070c6eea92c1401821}{fill\+Board} (\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$\hyperlink{ml__main_8c_a62a3fe3d1df9ff58883b669f7f24e516}{board})
+\begin{DoxyCompactList}\small\item\em Riempie la scacchiera con le pedine. \end{DoxyCompactList}\item 
+int \hyperlink{ml__lib_8h_af824dd8c8d8c26d7596de5b635b554e7}{catch\+Input} (int $\ast$cord, \hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$\hyperlink{ml__main_8c_a62a3fe3d1df9ff58883b669f7f24e516}{board})
+\begin{DoxyCompactList}\small\item\em Legge l\textquotesingle{}input da tastiera. \end{DoxyCompactList}\item 
+void \hyperlink{ml__lib_8h_a724261d45664de95115edbec3fec7aef}{print\+Pedina} (\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Stampa una lettera rappresentante la pedina. \end{DoxyCompactList}\item 
+void \hyperlink{ml__lib_8h_ac5423849c2701b9adbd33225a8a20288}{print\+Matrix} (\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$\hyperlink{ml__main_8c_a62a3fe3d1df9ff58883b669f7f24e516}{board})
+\begin{DoxyCompactList}\small\item\em Stampa la scacchiera. \end{DoxyCompactList}\item 
+void \hyperlink{ml__lib_8h_a0e671ab1d1412c0843d69c03ab2cfbac}{print\+Status} (unsigned \hyperlink{ml__main_8c_a6a9348d5147fb8e94c6d9a0dbeaf0d16}{turn})
+\begin{DoxyCompactList}\small\item\em Stampa lo stato del gioco. \end{DoxyCompactList}\item 
+void \hyperlink{ml__lib_8h_afa3767d5c549d555cf1817fe57c614fc}{print\+Rules} ()
+\begin{DoxyCompactList}\small\item\em Stampa le regole del gioco. \end{DoxyCompactList}\item 
+void \hyperlink{ml__lib_8h_a126ef35a3cacdc550c03a737bf1311bf}{victory} (\hyperlink{ml__lib_8h_a0330ff92cbc796e96c3ce3e4401bf1e1}{id\+\_\+p} winner)
+\begin{DoxyCompactList}\small\item\em Schermata di vittoria. \end{DoxyCompactList}\item 
+void \hyperlink{ml__lib_8h_ac50c67875562e21c46610e2c97525c40}{input\+Error} ()
+\begin{DoxyCompactList}\small\item\em Schermata di errore di input. \end{DoxyCompactList}\item 
+int \hyperlink{ml__lib_8h_a517bd042d8b769fbc621834a7ef350a7}{can\+\_\+move} (\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$\hyperlink{ml__main_8c_a62a3fe3d1df9ff58883b669f7f24e516}{board}, int x, int y)
+\begin{DoxyCompactList}\small\item\em Verifica la possibilità di muoversi. \end{DoxyCompactList}\item 
+int \hyperlink{ml__lib_8h_a0b5b57b74dd64318663e80224db22a29}{is\+Winner} (\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$\hyperlink{ml__main_8c_a62a3fe3d1df9ff58883b669f7f24e516}{board}, \hyperlink{ml__lib_8h_a0330ff92cbc796e96c3ce3e4401bf1e1}{id\+\_\+p} player)
+\begin{DoxyCompactList}\small\item\em Verifica che il giocatore {\itshape player} abbia vinto. \end{DoxyCompactList}\item 
+int \hyperlink{ml__lib_8h_a5ffbe07c58992cdfe2f68ad35709829f}{is\+Forbidden\+Cell} (unsigned x, unsigned y)
+\begin{DoxyCompactList}\small\item\em Verifica che la cella sia accessibile. \end{DoxyCompactList}\item 
+int \hyperlink{ml__lib_8h_a52af2f129ce1f4939cc325823601f413}{move} (\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$\hyperlink{ml__main_8c_a62a3fe3d1df9ff58883b669f7f24e516}{board}, unsigned from\+\_\+x, unsigned from\+\_\+y, unsigned to\+\_\+x, unsigned to\+\_\+y, unsigned \hyperlink{ml__main_8c_a6a9348d5147fb8e94c6d9a0dbeaf0d16}{turn})
+\begin{DoxyCompactList}\small\item\em Verifica che la mossa selezionata sia legale e la esegue. \end{DoxyCompactList}\item 
+int \hyperlink{ml__lib_8h_add69249d37e4dbcc03785bacd32d073b}{distance} (int from\+\_\+x, int from\+\_\+y, int to\+\_\+x, int to\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Restituisce un codice che descrive la lunghezza della mossa. \end{DoxyCompactList}\item 
+void \hyperlink{ml__lib_8h_af4867d370bacba9dfe7ad040d398fad7}{capture} (\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$\hyperlink{ml__main_8c_a62a3fe3d1df9ff58883b669f7f24e516}{board}, unsigned from\+\_\+x, unsigned from\+\_\+y, unsigned to\+\_\+x, unsigned to\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Esegue la cattura delle pedine. \end{DoxyCompactList}\item 
+int \hyperlink{ml__lib_8h_aa4910806fbd0410ca1f3dd2138e5a5c0}{grade\+Check} (\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$\hyperlink{ml__main_8c_a62a3fe3d1df9ff58883b669f7f24e516}{board}, unsigned from\+\_\+x, unsigned from\+\_\+y, unsigned to\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Verifica che la mossa selezionata sia compatibile con il grado della pedina. \end{DoxyCompactList}\item 
+int \hyperlink{ml__lib_8h_a0d2b0f301f106303b4693ffa24dc4824}{can\+\_\+eat} (\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$\hyperlink{ml__main_8c_a62a3fe3d1df9ff58883b669f7f24e516}{board}, int x, int y)
+\begin{DoxyCompactList}\small\item\em Verifica la possibilità di mangiare. \end{DoxyCompactList}\item 
+int \hyperlink{ml__lib_8h_af22c9987e665a9bed0de3abea459ed16}{exist\+Mandatory} (\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$\hyperlink{ml__main_8c_a62a3fe3d1df9ff58883b669f7f24e516}{board}, unsigned from\+\_\+x, unsigned from\+\_\+y, unsigned to\+\_\+x, unsigned to\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Controlla la presenza di mosse obbligatorie. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Header della libreria ml\+\_\+lib. 
+
+Questo file contiene le definizioni di tutte le strutture e delle funzioni che compongono la libreria ml\+\_\+lib 
+
+\subsection{Documentazione delle ridefinizioni di tipo (typedef)}
+\mbox{\Hypertarget{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}\label{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!pedina@{pedina}}
+\index{pedina@{pedina}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{pedina}{pedina}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structcella}{cella} \hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina}}
+
+Rinominazione del tipo struct cella in pedina, per praticità di scrittura 
+
+\subsection{Documentazione dei tipi enumerati}
+\mbox{\Hypertarget{ml__lib_8h_a25f6e8adc446355e3f42092ecf9d598c}\label{ml__lib_8h_a25f6e8adc446355e3f42092ecf9d598c}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!gr@{gr}}
+\index{gr@{gr}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{gr}{gr}}
+{\footnotesize\ttfamily enum \hyperlink{ml__lib_8h_a25f6e8adc446355e3f42092ecf9d598c}{gr}}
+
+Definizione dei due possibili gradi della pedina \mbox{\Hypertarget{ml__lib_8h_a0330ff92cbc796e96c3ce3e4401bf1e1}\label{ml__lib_8h_a0330ff92cbc796e96c3ce3e4401bf1e1}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!id\+\_\+p@{id\+\_\+p}}
+\index{id\+\_\+p@{id\+\_\+p}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{id\+\_\+p}{id\_p}}
+{\footnotesize\ttfamily enum \hyperlink{ml__lib_8h_a0330ff92cbc796e96c3ce3e4401bf1e1}{id\+\_\+p}}
+
+Definizione dei due giocatori esistenti 
+
+\subsection{Documentazione delle funzioni}
+\mbox{\Hypertarget{ml__lib_8h_a0d2b0f301f106303b4693ffa24dc4824}\label{ml__lib_8h_a0d2b0f301f106303b4693ffa24dc4824}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!can\+\_\+eat@{can\+\_\+eat}}
+\index{can\+\_\+eat@{can\+\_\+eat}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{can\+\_\+eat()}{can\_eat()}}
+{\footnotesize\ttfamily int can\+\_\+eat (\begin{DoxyParamCaption}\item[{\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$}]{board,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Verifica la possibilità di mangiare. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em board} & matrice linearizzata della scacchiera \\
+\hline
+{\em x} & coordinata x della cella \\
+\hline
+{\em y} & coordinata y della cella\\
+\hline
+\end{DoxyParams}
+Verifica la possibilità della pedina in {\itshape x} , {\itshape y} di mangiare le pedine avversarie intorno a sé \mbox{\Hypertarget{ml__lib_8h_a517bd042d8b769fbc621834a7ef350a7}\label{ml__lib_8h_a517bd042d8b769fbc621834a7ef350a7}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!can\+\_\+move@{can\+\_\+move}}
+\index{can\+\_\+move@{can\+\_\+move}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{can\+\_\+move()}{can\_move()}}
+{\footnotesize\ttfamily int can\+\_\+move (\begin{DoxyParamCaption}\item[{\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$}]{board,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Verifica la possibilità di muoversi. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em board} & matrice linearizzata della scacchiera \\
+\hline
+{\em x} & coordinata x della cella \\
+\hline
+{\em y} & coordinata y della cella\\
+\hline
+\end{DoxyParams}
+Verifica la possibilità della pedina in {\itshape x} , {\itshape y} di muoversi nelle caselle adiacenti \mbox{\Hypertarget{ml__lib_8h_af4867d370bacba9dfe7ad040d398fad7}\label{ml__lib_8h_af4867d370bacba9dfe7ad040d398fad7}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!capture@{capture}}
+\index{capture@{capture}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{capture()}{capture()}}
+{\footnotesize\ttfamily void capture (\begin{DoxyParamCaption}\item[{\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$}]{board,  }\item[{unsigned}]{from\+\_\+x,  }\item[{unsigned}]{from\+\_\+y,  }\item[{unsigned}]{to\+\_\+x,  }\item[{unsigned}]{to\+\_\+y }\end{DoxyParamCaption})}
+
+
+
+Esegue la cattura delle pedine. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em board} & matrice linearizzata della scacchiera \\
+\hline
+{\em from\+\_\+x} & coordinata x della cella di partenza \\
+\hline
+{\em from\+\_\+y} & coordinata y della cella di partenza \\
+\hline
+{\em to\+\_\+x} & coordinata x della cella di destinazione \\
+\hline
+{\em to\+\_\+y} & coordinata y della cella di destinazione\\
+\hline
+\end{DoxyParams}
+Questa funzione si occupa di catturare le pedine indicate. Si assume la correttezza delle coordinate inserite, la legalità della mossa è verificata nella funzione \hyperlink{ml__lib_8h_a52af2f129ce1f4939cc325823601f413}{move()}. \mbox{\Hypertarget{ml__lib_8h_af824dd8c8d8c26d7596de5b635b554e7}\label{ml__lib_8h_af824dd8c8d8c26d7596de5b635b554e7}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!catch\+Input@{catch\+Input}}
+\index{catch\+Input@{catch\+Input}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{catch\+Input()}{catchInput()}}
+{\footnotesize\ttfamily int catch\+Input (\begin{DoxyParamCaption}\item[{int $\ast$}]{cord,  }\item[{\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$}]{board }\end{DoxyParamCaption})}
+
+
+
+Legge l\textquotesingle{}input da tastiera. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em cord} & array contenente le coordinate di partenza e destinazione della pedina \\
+\hline
+{\em board} & matrice linearizzata della scacchiera\\
+\hline
+\end{DoxyParams}
+Legge l\textquotesingle{}input dall\textquotesingle{}utente e traduce le coordinate in int, che vengono inseriti in un array apposito. \mbox{\Hypertarget{ml__lib_8h_a4a5eb161590279b5189a68bb27f0882e}\label{ml__lib_8h_a4a5eb161590279b5189a68bb27f0882e}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!create\+Matrix@{create\+Matrix}}
+\index{create\+Matrix@{create\+Matrix}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{create\+Matrix()}{createMatrix()}}
+{\footnotesize\ttfamily \hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina}$\ast$$\ast$ create\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Funzione che crea la matrice della scacchiera. 
+
+Ritorna un puntatore di tipo {\itshape pedina$\ast$$\ast$} ad una matrice bidimensionale di puntatori a pedina linearizzata. \mbox{\Hypertarget{ml__lib_8h_a898a4ffd57725b4666aa768ca71f1e1f}\label{ml__lib_8h_a898a4ffd57725b4666aa768ca71f1e1f}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!destroy\+Matrix@{destroy\+Matrix}}
+\index{destroy\+Matrix@{destroy\+Matrix}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{destroy\+Matrix()}{destroyMatrix()}}
+{\footnotesize\ttfamily void destroy\+Matrix (\begin{DoxyParamCaption}\item[{\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$}]{board }\end{DoxyParamCaption})}
+
+
+
+Distrugge la matrice della scacchiera. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em board} & matrice linearizzata della scacchiera\\
+\hline
+\end{DoxyParams}
+Funzione che dealloca la memoria della matrice della scacchiera. \mbox{\Hypertarget{ml__lib_8h_add69249d37e4dbcc03785bacd32d073b}\label{ml__lib_8h_add69249d37e4dbcc03785bacd32d073b}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!distance@{distance}}
+\index{distance@{distance}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{distance()}{distance()}}
+{\footnotesize\ttfamily int distance (\begin{DoxyParamCaption}\item[{int}]{from\+\_\+x,  }\item[{int}]{from\+\_\+y,  }\item[{int}]{to\+\_\+x,  }\item[{int}]{to\+\_\+y }\end{DoxyParamCaption})}
+
+
+
+Restituisce un codice che descrive la lunghezza della mossa. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em from\+\_\+x} & coordinata x della cella di partenza \\
+\hline
+{\em from\+\_\+y} & coordinata y della cella di partenza \\
+\hline
+{\em to\+\_\+x} & coordinata x della cella di destinazione \\
+\hline
+{\em to\+\_\+y} & coordinata y della cella di destinazione\\
+\hline
+\end{DoxyParams}
+Restituisce la distanza in modulo tra due punti nella matrice\+: Se è maggiore di 2, uguale a 0, o la destinazione è in una casella non accessibile restituisce il codice errore -\/1.
+
+Le coordinate inserite sono corrette (la destinazione non è una casella proibita). \mbox{\Hypertarget{ml__lib_8h_af22c9987e665a9bed0de3abea459ed16}\label{ml__lib_8h_af22c9987e665a9bed0de3abea459ed16}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!exist\+Mandatory@{exist\+Mandatory}}
+\index{exist\+Mandatory@{exist\+Mandatory}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{exist\+Mandatory()}{existMandatory()}}
+{\footnotesize\ttfamily int exist\+Mandatory (\begin{DoxyParamCaption}\item[{\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$}]{board,  }\item[{unsigned}]{from\+\_\+x,  }\item[{unsigned}]{from\+\_\+y,  }\item[{unsigned}]{to\+\_\+x,  }\item[{unsigned}]{to\+\_\+y }\end{DoxyParamCaption})}
+
+
+
+Controlla la presenza di mosse obbligatorie. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em board} & matrice linearizzata della scacchiera \\
+\hline
+{\em from\+\_\+x} & coordinata x della cella di partenza \\
+\hline
+{\em from\+\_\+y} & coordinata y della cella di partenza \\
+\hline
+{\em to\+\_\+x} & coordinata x della cella di partenza \\
+\hline
+{\em to\+\_\+y} & coordinata y della cella di partenza\\
+\hline
+\end{DoxyParams}
+Verifica se, nel caso di non cattura, esiste una cattura obbligatoria da fare. Restituisce 1 se esiste una mossa obbligatoria non tentata, altrimenti 0. \mbox{\Hypertarget{ml__lib_8h_a421a28d47106a4070c6eea92c1401821}\label{ml__lib_8h_a421a28d47106a4070c6eea92c1401821}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!fill\+Board@{fill\+Board}}
+\index{fill\+Board@{fill\+Board}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{fill\+Board()}{fillBoard()}}
+{\footnotesize\ttfamily void fill\+Board (\begin{DoxyParamCaption}\item[{\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$}]{board }\end{DoxyParamCaption})}
+
+
+
+Riempie la scacchiera con le pedine. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em board} & matrice linearizzata della scacchiera\\
+\hline
+\end{DoxyParams}
+Riempie la scacchiera con le pedine. Il giocatore 1 ( {\itshape User\+One}) sarà posizionato nella parte bassa della scacchiera. \mbox{\Hypertarget{ml__lib_8h_a98af825db34dd320535062aa23675a71}\label{ml__lib_8h_a98af825db34dd320535062aa23675a71}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!get\+\_\+board\+\_\+value@{get\+\_\+board\+\_\+value}}
+\index{get\+\_\+board\+\_\+value@{get\+\_\+board\+\_\+value}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{get\+\_\+board\+\_\+value()}{get\_board\_value()}}
+{\footnotesize\ttfamily \hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina}$\ast$ get\+\_\+board\+\_\+value (\begin{DoxyParamCaption}\item[{\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$}]{board,  }\item[{unsigned}]{x,  }\item[{unsigned}]{y }\end{DoxyParamCaption})}
+
+
+
+Ritorna la {\itshape pedina} contenuta nella posizione {\itshape x} , {\itshape y} di {\itshape board}. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em board} & matrice linearizzata della scacchiera \\
+\hline
+{\em x} & coordinata x della cella desiderata \\
+\hline
+{\em y} & coordinata y della cella desiderata\\
+\hline
+\end{DoxyParams}
+Ritorna il puntatore alla pedina nella posizione x,y di board. \mbox{\Hypertarget{ml__lib_8h_ae874c64d588c5865633fc342fbbbafaa}\label{ml__lib_8h_ae874c64d588c5865633fc342fbbbafaa}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!get\+\_\+board\+\_\+value\+\_\+down@{get\+\_\+board\+\_\+value\+\_\+down}}
+\index{get\+\_\+board\+\_\+value\+\_\+down@{get\+\_\+board\+\_\+value\+\_\+down}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{get\+\_\+board\+\_\+value\+\_\+down()}{get\_board\_value\_down()}}
+{\footnotesize\ttfamily \hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina}$\ast$ get\+\_\+board\+\_\+value\+\_\+down (\begin{DoxyParamCaption}\item[{\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$}]{board,  }\item[{unsigned}]{x,  }\item[{unsigned}]{y }\end{DoxyParamCaption})}
+
+
+
+Ritorna la {\itshape pedina} \char`\"{}down\char`\"{} contenuta nella posizione {\itshape x}, {\itshape y} di {\itshape board}. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em board} & matrice linearizzata della scacchiera \\
+\hline
+{\em x} & coordinata x della cella desiderata \\
+\hline
+{\em y} & coordinata y della cella desiderata\\
+\hline
+\end{DoxyParams}
+Ritorna il valore della pedina down nella posizione indicata nella scacchiera. \mbox{\Hypertarget{ml__lib_8h_a59156018c085ef9af6563790b63c28d5}\label{ml__lib_8h_a59156018c085ef9af6563790b63c28d5}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!get\+\_\+board\+\_\+value\+\_\+middle@{get\+\_\+board\+\_\+value\+\_\+middle}}
+\index{get\+\_\+board\+\_\+value\+\_\+middle@{get\+\_\+board\+\_\+value\+\_\+middle}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{get\+\_\+board\+\_\+value\+\_\+middle()}{get\_board\_value\_middle()}}
+{\footnotesize\ttfamily \hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina}$\ast$ get\+\_\+board\+\_\+value\+\_\+middle (\begin{DoxyParamCaption}\item[{\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$}]{board,  }\item[{unsigned}]{x,  }\item[{unsigned}]{y }\end{DoxyParamCaption})}
+
+
+
+Ritorna la {\itshape pedina} \char`\"{}middle\char`\"{} contenuta nella posizione {\itshape x} , {\itshape y} di {\itshape board}. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em board} & matrice linearizzata della scacchiera \\
+\hline
+{\em x} & coordinata x della cella desiderata \\
+\hline
+{\em y} & coordinata y della cella desiderata\\
+\hline
+\end{DoxyParams}
+Ritorna il valore della pedina middle nella posizione x,y di board. \mbox{\Hypertarget{ml__lib_8h_a6ceb2e2fb4d39456d2b64b64f4841c67}\label{ml__lib_8h_a6ceb2e2fb4d39456d2b64b64f4841c67}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!get\+\_\+grade@{get\+\_\+grade}}
+\index{get\+\_\+grade@{get\+\_\+grade}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{get\+\_\+grade()}{get\_grade()}}
+{\footnotesize\ttfamily \hyperlink{ml__lib_8h_a25f6e8adc446355e3f42092ecf9d598c}{gr} get\+\_\+grade (\begin{DoxyParamCaption}\item[{\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$}]{p }\end{DoxyParamCaption})}
+
+
+
+Ritorna il grado {\itshape value} della pedina indicata dal puntatore {\itshape p}. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em p} & puntatore ad una pedina\\
+\hline
+\end{DoxyParams}
+Ritorna il grado di una pedina. \mbox{\Hypertarget{ml__lib_8h_aeebe06189e2bd221a0e65b7d15f6b1b5}\label{ml__lib_8h_aeebe06189e2bd221a0e65b7d15f6b1b5}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!get\+\_\+id\+\_\+player@{get\+\_\+id\+\_\+player}}
+\index{get\+\_\+id\+\_\+player@{get\+\_\+id\+\_\+player}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{get\+\_\+id\+\_\+player()}{get\_id\_player()}}
+{\footnotesize\ttfamily \hyperlink{ml__lib_8h_a0330ff92cbc796e96c3ce3e4401bf1e1}{id\+\_\+p} get\+\_\+id\+\_\+player (\begin{DoxyParamCaption}\item[{\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$}]{p }\end{DoxyParamCaption})}
+
+
+
+Ritorna {\itshape id\+\_\+player} dalla pedina {\itshape $\ast$p} specificata. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em p} & puntatore ad una pedina\\
+\hline
+\end{DoxyParams}
+Ritorna il proprietario della pedina. \mbox{\Hypertarget{ml__lib_8h_aa4910806fbd0410ca1f3dd2138e5a5c0}\label{ml__lib_8h_aa4910806fbd0410ca1f3dd2138e5a5c0}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!grade\+Check@{grade\+Check}}
+\index{grade\+Check@{grade\+Check}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{grade\+Check()}{gradeCheck()}}
+{\footnotesize\ttfamily int grade\+Check (\begin{DoxyParamCaption}\item[{\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$}]{board,  }\item[{unsigned}]{from\+\_\+x,  }\item[{unsigned}]{from\+\_\+y,  }\item[{unsigned}]{to\+\_\+y }\end{DoxyParamCaption})}
+
+
+
+Verifica che la mossa selezionata sia compatibile con il grado della pedina. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em board} & matrice linearizzata della scacchiera \\
+\hline
+{\em from\+\_\+x} & coordinata x della cella di partenza \\
+\hline
+{\em from\+\_\+y} & coordinata y della cella di partenza \\
+\hline
+{\em to\+\_\+y} & coordinata y della cella di destinazione\\
+\hline
+\end{DoxyParams}
+Verifica il grado della pedina mossa\+: restituisce 1 se la mossa è consentita, 0 se non è consentita. \mbox{\Hypertarget{ml__lib_8h_ac50c67875562e21c46610e2c97525c40}\label{ml__lib_8h_ac50c67875562e21c46610e2c97525c40}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!input\+Error@{input\+Error}}
+\index{input\+Error@{input\+Error}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{input\+Error()}{inputError()}}
+{\footnotesize\ttfamily void input\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Schermata di errore di input. 
+
+Fornisce informazioni in caso di inserimento dati scorretto. \mbox{\Hypertarget{ml__lib_8h_a5ffbe07c58992cdfe2f68ad35709829f}\label{ml__lib_8h_a5ffbe07c58992cdfe2f68ad35709829f}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!is\+Forbidden\+Cell@{is\+Forbidden\+Cell}}
+\index{is\+Forbidden\+Cell@{is\+Forbidden\+Cell}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{is\+Forbidden\+Cell()}{isForbiddenCell()}}
+{\footnotesize\ttfamily int is\+Forbidden\+Cell (\begin{DoxyParamCaption}\item[{unsigned}]{x,  }\item[{unsigned}]{y }\end{DoxyParamCaption})}
+
+
+
+Verifica che la cella sia accessibile. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em x} & coordinata x della cella \\
+\hline
+{\em y} & coordinata y della cella\\
+\hline
+\end{DoxyParams}
+Restituisce 1 se la cella non è accessibile (si possono usare solo le celle bianche della scacchiera), altrimenti 0. \mbox{\Hypertarget{ml__lib_8h_a0b5b57b74dd64318663e80224db22a29}\label{ml__lib_8h_a0b5b57b74dd64318663e80224db22a29}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!is\+Winner@{is\+Winner}}
+\index{is\+Winner@{is\+Winner}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{is\+Winner()}{isWinner()}}
+{\footnotesize\ttfamily int is\+Winner (\begin{DoxyParamCaption}\item[{\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$}]{board,  }\item[{\hyperlink{ml__lib_8h_a0330ff92cbc796e96c3ce3e4401bf1e1}{id\+\_\+p}}]{id\+Player }\end{DoxyParamCaption})}
+
+
+
+Verifica che il giocatore {\itshape player} abbia vinto. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em board} & matrice linearizzata della scacchiera \\
+\hline
+{\em id\+Player} & giocatore selezionato\\
+\hline
+\end{DoxyParams}
+Verifica che il giocatore {\itshape id\+Player} abbia vinto. Restituisce 1 se id\+Player ha vinto, altrimenti 0. \mbox{\Hypertarget{ml__lib_8h_a52af2f129ce1f4939cc325823601f413}\label{ml__lib_8h_a52af2f129ce1f4939cc325823601f413}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!move@{move}}
+\index{move@{move}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily int move (\begin{DoxyParamCaption}\item[{\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$}]{board,  }\item[{unsigned}]{from\+\_\+x,  }\item[{unsigned}]{from\+\_\+y,  }\item[{unsigned}]{to\+\_\+x,  }\item[{unsigned}]{to\+\_\+y,  }\item[{unsigned}]{turn }\end{DoxyParamCaption})}
+
+
+
+Verifica che la mossa selezionata sia legale e la esegue. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em board} & matrice linearizzata della scacchiera \\
+\hline
+{\em from\+\_\+x} & coordinata x della cella di partenza \\
+\hline
+{\em from\+\_\+y} & coordinata y della cella di partenza \\
+\hline
+{\em to\+\_\+x} & coordinata x della cella di destinazione \\
+\hline
+{\em to\+\_\+y} & coordinata y della cella di destinazione \\
+\hline
+{\em turn} & numero del turno corrente\\
+\hline
+\end{DoxyParams}
+Restituisce 1 se la mossa è stata fatta, 0 se non è stato possibile. Le coordinate inserite sono corrette in fase di input (sono all\textquotesingle{}interno della scacchiera e non sono caselle proibite). Verifica che la distanza ed il grado siano compatibili con la mossa. \mbox{\Hypertarget{ml__lib_8h_ac5423849c2701b9adbd33225a8a20288}\label{ml__lib_8h_ac5423849c2701b9adbd33225a8a20288}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!print\+Matrix@{print\+Matrix}}
+\index{print\+Matrix@{print\+Matrix}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{print\+Matrix()}{printMatrix()}}
+{\footnotesize\ttfamily void print\+Matrix (\begin{DoxyParamCaption}\item[{\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$}]{board }\end{DoxyParamCaption})}
+
+
+
+Stampa la scacchiera. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em board} & matrice linearizzata della scacchiera\\
+\hline
+\end{DoxyParams}
+Funzione che stampa la scacchiera con una cornice che definisce le coordinate. \mbox{\Hypertarget{ml__lib_8h_a724261d45664de95115edbec3fec7aef}\label{ml__lib_8h_a724261d45664de95115edbec3fec7aef}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!print\+Pedina@{print\+Pedina}}
+\index{print\+Pedina@{print\+Pedina}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{print\+Pedina()}{printPedina()}}
+{\footnotesize\ttfamily void print\+Pedina (\begin{DoxyParamCaption}\item[{\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$}]{p }\end{DoxyParamCaption})}
+
+
+
+Stampa una lettera rappresentante la pedina. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em p} & puntatore alla pedina\\
+\hline
+\end{DoxyParams}
+Stampa un carattere A\+S\+C\+II identificativo del contenuto della casella p\+: 
+\begin{DoxyItemize}
+\item b/n se il giocatore è bianco o nero ( {\itshape User\+One} / {\itshape User\+Two}). 
+\item maiuscola/minuscola se la pedina è ufficiale/soldato. 
+\end{DoxyItemize}\mbox{\Hypertarget{ml__lib_8h_afa3767d5c549d555cf1817fe57c614fc}\label{ml__lib_8h_afa3767d5c549d555cf1817fe57c614fc}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!print\+Rules@{print\+Rules}}
+\index{print\+Rules@{print\+Rules}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{print\+Rules()}{printRules()}}
+{\footnotesize\ttfamily void print\+Rules (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Stampa le regole del gioco. 
+
+Stampa le regole del gioco. \mbox{\Hypertarget{ml__lib_8h_a0e671ab1d1412c0843d69c03ab2cfbac}\label{ml__lib_8h_a0e671ab1d1412c0843d69c03ab2cfbac}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!print\+Status@{print\+Status}}
+\index{print\+Status@{print\+Status}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{print\+Status()}{printStatus()}}
+{\footnotesize\ttfamily void print\+Status (\begin{DoxyParamCaption}\item[{unsigned}]{turn }\end{DoxyParamCaption})}
+
+
+
+Stampa lo stato del gioco. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em turn} & numero dei turni passati\\
+\hline
+\end{DoxyParams}
+Stampa lo status del gioco (numero del turno e giocatore che deve muovere). \mbox{\Hypertarget{ml__lib_8h_af41d60dd64b7eb3f58f9d47100461310}\label{ml__lib_8h_af41d60dd64b7eb3f58f9d47100461310}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!set\+\_\+board\+\_\+value@{set\+\_\+board\+\_\+value}}
+\index{set\+\_\+board\+\_\+value@{set\+\_\+board\+\_\+value}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{set\+\_\+board\+\_\+value()}{set\_board\_value()}}
+{\footnotesize\ttfamily void set\+\_\+board\+\_\+value (\begin{DoxyParamCaption}\item[{\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$$\ast$}]{board,  }\item[{unsigned}]{x,  }\item[{unsigned}]{y,  }\item[{\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$}]{value }\end{DoxyParamCaption})}
+
+
+
+Imposta la pedina {\itshape value} nella posizione {\itshape x} , {\itshape y} nella scacchiera {\itshape board}. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em board} & matrice linearizzata della scacchiera \\
+\hline
+{\em x} & coordinata x della cella desiderata \\
+\hline
+{\em y} & coordinata y della cella desiderata \\
+\hline
+{\em value} & la pedina da inserire\\
+\hline
+\end{DoxyParams}
+Imposta il valore value nella posizione indicata nella scacchiera. \mbox{\Hypertarget{ml__lib_8h_a663d3a2fcf86042d03eb834766b7adea}\label{ml__lib_8h_a663d3a2fcf86042d03eb834766b7adea}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!set\+\_\+grade@{set\+\_\+grade}}
+\index{set\+\_\+grade@{set\+\_\+grade}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{set\+\_\+grade()}{set\_grade()}}
+{\footnotesize\ttfamily void set\+\_\+grade (\begin{DoxyParamCaption}\item[{\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$}]{p,  }\item[{\hyperlink{ml__lib_8h_a25f6e8adc446355e3f42092ecf9d598c}{gr}}]{value }\end{DoxyParamCaption})}
+
+
+
+Imposta il grado {\itshape value} della pedina indicata dal puntatore {\itshape p}. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em p} & puntatore ad una pedina \\
+\hline
+{\em value} & il valore da settare\\
+\hline
+\end{DoxyParams}
+Imposta il grado di una pedina. \mbox{\Hypertarget{ml__lib_8h_abbdcb7fca0fe313ecc63bc2ba1a73d8e}\label{ml__lib_8h_abbdcb7fca0fe313ecc63bc2ba1a73d8e}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!set\+\_\+id\+\_\+player@{set\+\_\+id\+\_\+player}}
+\index{set\+\_\+id\+\_\+player@{set\+\_\+id\+\_\+player}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{set\+\_\+id\+\_\+player()}{set\_id\_player()}}
+{\footnotesize\ttfamily void set\+\_\+id\+\_\+player (\begin{DoxyParamCaption}\item[{\hyperlink{ml__lib_8h_a71fee95122b31f5cb0b07d9c16ffa3a5}{pedina} $\ast$}]{p,  }\item[{\hyperlink{ml__lib_8h_a0330ff92cbc796e96c3ce3e4401bf1e1}{id\+\_\+p}}]{value }\end{DoxyParamCaption})}
+
+
+
+Imposta l\textquotesingle{}id\+\_\+player {\itshape value} della pedina indicata dal puntatore {\itshape $\ast$p}. 
+
+
+\begin{DoxyParams}{Parametri}
+{\em p} & puntatore ad una pedina \\
+\hline
+{\em value} & il valore da settare\\
+\hline
+\end{DoxyParams}
+Imposta il proprietario della pedina. \mbox{\Hypertarget{ml__lib_8h_a126ef35a3cacdc550c03a737bf1311bf}\label{ml__lib_8h_a126ef35a3cacdc550c03a737bf1311bf}} 
+\index{ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}!victory@{victory}}
+\index{victory@{victory}!ml\+\_\+lib.\+h@{ml\+\_\+lib.\+h}}
+\subsubsection{\texorpdfstring{victory()}{victory()}}
+{\footnotesize\ttfamily void victory (\begin{DoxyParamCaption}\item[{\hyperlink{ml__lib_8h_a0330ff92cbc796e96c3ce3e4401bf1e1}{id\+\_\+p}}]{winner }\end{DoxyParamCaption})}
+
+
+
+Schermata di vittoria. 
+
+Stampa il vincitore del gioco. 
