@@ -13,14 +13,18 @@
 #define ROW 7
 #define COL 7
 
-/*! Definizione dei due giocatori esistenti */
+/*! Definizione dei due giocatori esistenti*/
 typedef enum {UserOne, UserTwo} id_p;
 
-/*! Definizione dei due possibili gradi della pedina */
+/*! Definizione dei due possibili gradi della pedina*/
 typedef enum {Soldier, Officer} gr;
 
-/*! Rinominazione del tipo struct cella in pedina, per praticità di scrittura */
+/*! Definizione della direzione*/
+typedef enum {Up, Down} dir;
+
+/*! Rinominazione del tipo struct cella in pedina, per praticità di scrittura*/
 typedef struct cella pedina;
+
 
 /*!Definizione del tipo pedina*/
 struct cella{
@@ -118,6 +122,25 @@ void set_grade(pedina *p,gr value);
 *	Ritorna il grado di una pedina.
 */
 gr get_grade(pedina *p);
+
+/*! \fn is_inside(int x, int y)
+*   \brief Indica se \a x, \ay è dentro alla scacchiera
+*	\param x coordinata x della cella desiderata
+*	\param y coordinata y della cella desiderata
+*
+*	Indica se la posizione desiderata è dentro alla scacchiera
+*/
+int is_inside(int x, int y);
+
+/*! \fn right_path(int direction, gr grade, id_p player)
+*   \brief Indica se la direzione è corretta
+*	\param direction direzione della pedina (1 il basso, 0 l'alto)
+*	\param grade grado della pedina
+*	\param player giocatore
+*
+*	Ritorna 1 se la direzione della pedina è giusta, basandosi sul giocatore e sul grado di essa
+*/
+int right_path(dir direction, gr grade, id_p player);
 
 /**@}*/
 
