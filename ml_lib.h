@@ -25,6 +25,7 @@ typedef enum {Up, Down} dir;
 /*! Rinominazione del tipo struct cella in pedina, per praticità di scrittura*/
 typedef struct cella pedina;
 
+typedef struct punto point;
 
 /*!Definizione del tipo pedina*/
 struct cella{
@@ -32,6 +33,12 @@ struct cella{
     gr grado; /*!< Grado della pedina *//*SOLDATO = 0, UFFICIALE = 1*/
     pedina *middle; /*!< Puntatore alla pedina di mezzo della colonna */
     pedina *down; /*!< Puntatore alla pedina in fondo alla colonna */
+};
+
+/*TODO: ADATTARE CODICE A ADT POINT*/
+struct punto{
+    int x;
+    int y;
 };
 
 /*
@@ -364,6 +371,8 @@ int can_eat(pedina **board, int x, int y);
 */
 int can_move(pedina **board, int x, int y);
 
+
+/*TODO: FIX*/
 int existMandatory(pedina **board, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y); /*Verifica se esiste una mossa (obbligatoria) diversa che da quella tentata */
 
 /**@}*/
