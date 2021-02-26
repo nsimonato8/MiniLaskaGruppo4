@@ -81,7 +81,7 @@ id_p get_id_player(pedina *p);
 *
 *	Imposta il valore value nella posizione indicata nella scacchiera.
 */
-void set_board_value(pedina **board, unsigned x, unsigned y, pedina *value);
+void set_board_value(pedina **board, point p, pedina *value);
 
 /*! \fn get_board_value(pedina **board, unsigned x, unsigned y)
 *   \brief Ritorna la \a pedina contenuta nella posizione \a x , \a y di \a board
@@ -91,7 +91,7 @@ void set_board_value(pedina **board, unsigned x, unsigned y, pedina *value);
 *
 *	Ritorna il puntatore alla pedina nella posizione x,y di board.
 */
-pedina* get_board_value(pedina **board, unsigned x, unsigned y);
+pedina* get_board_value(pedina **board, point p);
 
 /*! \fn get_board_value_middle(pedina **board, unsigned x, unsigned y)
 *   \brief Ritorna la \a pedina "middle" contenuta nella posizione \a x , \a y di \a board
@@ -101,7 +101,7 @@ pedina* get_board_value(pedina **board, unsigned x, unsigned y);
 *
 *	Ritorna il valore della pedina middle nella posizione x,y di board.
 */
-pedina* get_board_value_middle(pedina **board, unsigned x, unsigned y);
+pedina* get_board_value_middle(pedina **board, point p);
 
 /*! \fn get_board_value_down(pedina **board, unsigned x, unsigned y)
 *   \brief Ritorna la \a pedina "down" contenuta nella posizione \a x, \a y di \a board
@@ -111,7 +111,7 @@ pedina* get_board_value_middle(pedina **board, unsigned x, unsigned y);
 
 *	Ritorna il valore della pedina down nella posizione indicata nella scacchiera.
 */
-pedina* get_board_value_down(pedina **board, unsigned x, unsigned y);
+pedina* get_board_value_down(pedina **board, point p);
 
 /*! \fn set_grade(pedina *p,gr value)
 *   \brief Imposta il grado \a value della pedina indicata dal puntatore \a p
@@ -137,7 +137,7 @@ gr get_grade(pedina *p);
 *
 *	Indica se la posizione desiderata è dentro alla scacchiera
 */
-int is_inside(int x, int y);
+int is_inside(point p);
 
 /*! \fn right_path(int direction, gr grade, id_p player)
 *   \brief Indica se la direzione è corretta
@@ -234,7 +234,7 @@ void printMatrix(pedina **board);
 *
 *	Stampa lo status del gioco (numero del turno e giocatore che deve muovere).
 */
-void printStatus(unsigned turn);
+void printStatus(int turn);
 
 /*! \fn printRules()
 *	\brief Stampa le regole del gioco
@@ -283,7 +283,7 @@ int isWinner(pedina **board, id_p player);
 *
 *	Restituisce 1 se la cella non è accessibile (si possono usare solo le celle bianche della scacchiera), altrimenti 0.
 */
-int isForbiddenCell(unsigned x,unsigned y);
+int isForbiddenCell(point p);
 
 /*! \fn move(pedina **p, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y, unsigned turn)
 *   \brief Verifica che la mossa selezionata sia legale e la esegue
@@ -298,7 +298,7 @@ int isForbiddenCell(unsigned x,unsigned y);
 * 	Le coordinate inserite sono corrette in fase di input (sono all'interno della scacchiera e non sono caselle proibite).
 * 	Verifica che la distanza ed il grado siano compatibili con la mossa.
 */
-int move(pedina** board, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y, unsigned turn); 
+int move(pedina** board, point from, point to, unsigned turn); 
 
 /*! \fn distance(int from_x, int from_y, int to_x, int to_y)
 *   \brief Restituisce un codice che descrive la lunghezza della mossa
@@ -312,7 +312,7 @@ int move(pedina** board, unsigned from_x, unsigned from_y, unsigned to_x, unsign
 *
 *	Le coordinate inserite sono corrette (la destinazione non è una casella proibita).
 */
-int distance(int from_x, int from_y, int to_x, int to_y);
+int distance(point from, point to);
 
 /*! \fn capture(pedina **p, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y)
 *   \brief Esegue la cattura delle pedine
@@ -325,7 +325,7 @@ int distance(int from_x, int from_y, int to_x, int to_y);
 * 	Questa funzione si occupa di catturare le pedine indicate.
 * 	Si assume la correttezza delle coordinate inserite, la legalità della mossa è verificata nella funzione move().
 */
-void capture(pedina **board, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y);
+void capture(pedina **board, point from, point to);
 
 /*! \fn gradeCheck(pedina **board, unsigned from_x, unsigned from_y, unsigned to_y)
 *   \brief Verifica che la mossa selezionata sia compatibile con il grado della pedina
@@ -337,7 +337,7 @@ void capture(pedina **board, unsigned from_x, unsigned from_y, unsigned to_x, un
 *	Verifica il grado della pedina mossa:
 *	restituisce 1 se la mossa è consentita, 0 se non è consentita.
 */
-int gradeCheck(pedina **board, unsigned from_x, unsigned from_y, unsigned to_y);
+int gradeCheck(pedina **board, point from, point to);
 
 /*! \fn can_eat(pedina **board, int x, int y)
 *   \brief Verifica la possibilità di mangiare
@@ -347,7 +347,7 @@ int gradeCheck(pedina **board, unsigned from_x, unsigned from_y, unsigned to_y);
 *
 *	Verifica la possibilità della pedina in \a x , \a y di mangiare le pedine avversarie intorno a sé
 */
-int can_eat(pedina **board, int x, int y);
+int can_eat(pedina **board, point p);
 
 /*! \fn int existMandatory(pedina **board, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y)
 *   \brief Controlla la presenza di mosse obbligatorie
@@ -369,10 +369,10 @@ int can_eat(pedina **board, int x, int y);
 *
 *	Verifica la possibilità della pedina in \a x , \a y di muoversi nelle caselle adiacenti
 */
-int can_move(pedina **board, int x, int y);
+int can_move(pedina **board, point p);
 
 
 /*TODO: FIX*/
-int existMandatory(pedina **board, unsigned from_x, unsigned from_y, unsigned to_x, unsigned to_y); /*Verifica se esiste una mossa (obbligatoria) diversa che da quella tentata */
+int existMandatory(pedina **board, point from, point to); /*Verifica se esiste una mossa (obbligatoria) diversa che da quella tentata */
 
 /**@}*/

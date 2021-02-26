@@ -60,7 +60,14 @@ int main(){
                 inputError();
             }
             success_input = catchInput(coordinate,board);
-            success_move = move(board,coordinate[1],coordinate[0],coordinate[3],coordinate[2],turn);
+			
+			point from,to;
+			from.x = coordinate[1];
+			from.y = coordinate[0];
+			to.x = coordinate[3];
+			to.y = coordinate[2];
+			
+            success_move = move(board,from,to,turn);
         }while(!(success_input && success_move));/*Inserimento dati e mossa*/
         turn++;
     }while(!(isWinner(board,UserOne)||isWinner(board,UserTwo))); /*Controllo esistenza vincitore*/
