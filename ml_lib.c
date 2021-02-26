@@ -427,7 +427,7 @@ int distance(point from, point to){
 */
 void capture(pedina **board, point from, point to){ /*Correggi con funzioni ausiliarie*/
 
-	point mid
+	point mid;
 	mid.x = (from.x+to.x)/2;
 	mid.y = (to.y+from.y)/2;
     pedina *prisoner = get_board_value(board,mid.x,mid.y);
@@ -524,7 +524,6 @@ int can_eat(pedina **board, point p){
 	int success;
 	success = 0;
 	
-	if(can_move(board,p.x,p.y)){
 		id_p current_player;
 		gr current_grade;
 	
@@ -543,8 +542,7 @@ int can_eat(pedina **board, point p){
 		else if(is_inside(p.x-2,p.y+2) && !get_board_value(board,p.x-2,p.y+2) && get_board_value(board,p.x-1,p.y+1) && right_path(Down,current_grade,current_player)){
 			success = get_id_player(get_board_value(board,p.x - 1,p.y + 1)) != current_player;
 		}
-		
-	}	
+			
 	return success;		
 }
 
@@ -576,7 +574,7 @@ int can_move(pedina **board, point p){
 		success = 1;
 	}
 	
-	return success;
+	return success || can_eat(board,p);
 		
 }
 
@@ -597,7 +595,7 @@ int existMandatory(pedina **board, point from, point to){
 		
 		printf("\nPedina partenza:\tcan_eat: %d\nMosse obbligatorie:\n", can_eat(board,from.x,from.y));
 	
-		if(distance(from.,from.y,to.x,to.y) != 2 || !can_eat(board,from.,from.y)){/*Se la pedina di partenza non sta mangiando*/
+		if(distance(from.x,from.y,to.x,to.y) != 2 || !can_eat(board,from.,from.y)){/*Se la pedina di partenza non sta mangiando*/
 			for(i = 0; i < COL; i++){
 				for(j = 0; j < ROW; j++){
 					if(get_board_value(board,i,j) && (get_id_player(get_board_value(board,i,j)) == current_player) && can_eat(board,i,j)){

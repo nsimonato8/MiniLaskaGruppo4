@@ -36,9 +36,10 @@ struct cella{
 };
 
 /*TODO: ADATTARE CODICE A ADT POINT*/
+/*!Definizione del tipo punto*/
 struct punto{
-    int x;
-    int y;
+    int x; /*!<Coordinata x */
+    int y; /*!<Coordinata y */
 };
 
 /*
