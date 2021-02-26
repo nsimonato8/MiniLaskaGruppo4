@@ -520,30 +520,32 @@ int gradeCheck(pedina **board, unsigned from_x, unsigned from_y, unsigned to_y){
 * Poi viene verificata la possibilità di mangiare la pedina nella casella adiacente.    
 */
 int can_eat(pedina **board, int x, int y){
-	int success;
-	id_p current_player;
-	gr current_grade;
 	
-	current_grade = get_grade(get_board_value(board,x,y));
-	current_player = get_id_player(get_board_value(board,x,y));
+	int success;
 	success = 0;
 	
+	if(can_move(board,x,y)){
+		id_p current_player;
+		gr current_grade;
 	
-	if(is_inside(x+2,y+2) && !get_board_value(board,x+2,y+2) && get_board_value(board,x+1,y+1) && right_path(Down,current_grade,current_player)){ /*Controllo (x+2,y+2)*/
-		success = get_id_player(get_board_value(board,x + 1,y + 1)) != current_player;
-	}
-	else if(is_inside(x+2,y-2) && !get_board_value(board,x+2,y-2) && get_board_value(board,x+1,y-1) && right_path(Up,current_grade,current_player)){
-		success = get_id_player(get_board_value(board,x + 1,y - 1)) != current_player;	
-	}
-	else if(is_inside(x-2,y-2) && !get_board_value(board,x-2,y-2) && get_board_value(board,x-1,y-1) && right_path(Up,current_grade,current_player)){
-		success = get_id_player(get_board_value(board,x - 1,y - 1)) != current_player;
-	}
-	else if(is_inside(x-2,y+2) && !get_board_value(board,x-2,y+2) && get_board_value(board,x-1,y+1) && right_path(Down,current_grade,current_player)){
-		success = get_id_player(get_board_value(board,x - 1,y + 1)) != current_player;
-	}
+		current_grade = get_grade(get_board_value(board,x,y));
+		current_player = get_id_player(get_board_value(board,x,y));
 	
-	return success;
+		if(is_inside(x+2,y+2) && !get_board_value(board,x+2,y+2) && get_board_value(board,x+1,y+1) && right_path(Down,current_grade,current_player)){ /*Controllo (x+2,y+2)*/
+			success = get_id_player(get_board_value(board,x + 1,y + 1)) != current_player;
+		}
+		else if(is_inside(x+2,y-2) && !get_board_value(board,x+2,y-2) && get_board_value(board,x+1,y-1) && right_path(Up,current_grade,current_player)){
+			success = get_id_player(get_board_value(board,x + 1,y - 1)) != current_player;	
+		}
+		else if(is_inside(x-2,y-2) && !get_board_value(board,x-2,y-2) && get_board_value(board,x-1,y-1) && right_path(Up,current_grade,current_player)){
+			success = get_id_player(get_board_value(board,x - 1,y - 1)) != current_player;
+		}
+		else if(is_inside(x-2,y+2) && !get_board_value(board,x-2,y+2) && get_board_value(board,x-1,y+1) && right_path(Down,current_grade,current_player)){
+			success = get_id_player(get_board_value(board,x - 1,y + 1)) != current_player;
+		}
 		
+	}	
+	return success;		
 }
 
 /*
@@ -553,14 +555,13 @@ int can_eat(pedina **board, int x, int y){
 */
 int can_move(pedina **board, int x, int y){
 
-	int success;
+	int success = 0;
 	id_p current_player;
 	gr current_grade;
 	
 	current_grade = get_grade(get_board_value(board,x,y));
 	current_player = get_id_player(get_board_value(board,x,y));
 
-	success = 0;
 	
 	if(is_inside(x+1,y+1) && !get_board_value(board,x+1,y+1) && right_path(Down,current_grade,current_player)){ /*Controllo (x+2,y+2)*/
 		success = 1;
@@ -575,7 +576,7 @@ int can_move(pedina **board, int x, int y){
 		success = 1;
 	}
 	
-	return success || can_eat(board,x,y);
+	return success;
 		
 }
 
