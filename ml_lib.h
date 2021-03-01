@@ -156,12 +156,28 @@ int is_inside(int x, int y);
 */
 int right_path(dir direction, gr grade, id_p player);
 
-/*Ritorna 1 se input è una lettera da a ad g, altrimenti è 0*/
+/*! \fn is_valid_letter(char input)
+*   \brief Verifica che input sia una lettera
+*   \param input char da verificare
+*
+*	Ritorna 1 se input è una lettera da a ad g, altrimenti è 0
+*/
 int is_valid_letter(char input);
 
-/*Ritorna 1 se input è un numero da 1 a 7, altrimenti è 0*/
+/*! \fn is_valid_number(char input)
+*   \brief Verifica che input sia un numero
+*   \param input char da verificare
+*
+*	Ritorna 1 se input è un numero da 1 a 7, altrimenti è 0
+*/
 int is_valid_number(char input);
 
+/*! \fn is_valid_input(char input[5])
+*   \brief Verifica che la stringa in input sia valida
+*   \param input stringa da verificare
+*
+*	Ritorna 1 se la stringa input è un input valido
+*/
 /*Ritorna 1 se l'input da tastiera è valido, altrimenti è 0*/
 int is_valid_input(char input[5]);
 
