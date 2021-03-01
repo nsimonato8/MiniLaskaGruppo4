@@ -22,7 +22,9 @@ int success_move = 1; /*!< Flag che verifica la legalità di una mossa */
 int success_input = 1; /*!< Flag che verifica la correttezza dell'input */
 
 
-unsigned turn = 0; /*!< Contatore del turno corrente */
+int turn = 0; /*!< Contatore del turno corrente */
+
+point from,to; /*!< Segnaposto dei punti di partenza e arrivo di ogni mossa */
 
 
 /*! \fn main()
@@ -59,9 +61,8 @@ int main(){
             if(!success_move || !success_input){
                 inputError();
             }
-            success_input = catchInput(coordinate,board);
+            success_input = catchInput(coordinate/*,board*/);
 			
-			point from,to;
 			from.x = coordinate[1];
 			from.y = coordinate[0];
 			to.x = coordinate[3];

@@ -24,6 +24,11 @@ pedina* get_board_value(pedina **board, point p){
     return board[p.y * COL + p.x];
 }
 
+/* Ritorna il valore nella posizione indicata nella scacchiera*/
+pedina* get_board_value_immediate(pedina **board, int x, int y){
+    return board[y * COL + x];
+}
+
 /* Ritorna il valore della pedina middle nella posizione indicata nella scacchiera*/
 pedina* get_board_value_middle(pedina **board, point p){
     if(!board[p.y * COL + p.x])
@@ -51,13 +56,28 @@ gr get_grade(pedina *p){
 }
 
 /*Ritorna 1 se x,y è dentro la scacchiera, 0 altrimenti*/
-int is_inside(point p){
-	return (p.x >= 0) && (p.x <= 6) && (p.y >= 0) && (p.y <= 6);
+int is_inside(int x, int y){
+	return (x >= 0) && (x <= 6) && (y >= 0) && (y <= 6);
 }
 
 /*Ritorna 1 la direzione della pedina è giusta*/
 int right_path(dir direction, gr grade, id_p player){
 	return grade || !(direction^player);
+}
+
+/*Ritorna 1 se input è una lettera da a ad g, altrimenti è 0*/
+int is_valid_letter(char input){
+	return ((input >= 65) && (input <= 71)) || ((input >= 97) && (input <= 103));
+}
+
+/*Ritorna 1 se input è un numero da 1 a 7, altrimenti è 0*/
+int is_valid_number(char input){
+	return (input >= 49) && (input <= 55);
+}
+
+/*Ritorna 1 se l'input da tastiera è valido, altrimenti è 0*/
+int is_valid_input(char input[5]){
+	return is_valid_letter(input[0]) && is_valid_number(input[1]) && is_valid_letter(input[2]) && is_valid_number(input[3]);
 }
 
 /*---------------------------------SEZIONE FUNZIONI GESTIONE MEMORIA---------------------------------*/
@@ -105,12 +125,15 @@ int isForbiddenCell(point p){
 
 void fillBoard(pedina** board){
 
-    unsigned i,j;
+    int i,j;
+    point p;
 
     for(i = 0; i < ROW; i++){
         for(j = 0; j < COL; j++){
-            if(isForbiddenCell(j,i) || i == 3){
-                set_board_value(board,j,i,0);
+        	p.x = j;
+        	p.y = i; 
+            if(isForbiddenCell(p) || i == 3){
+                set_board_value(board,p,0);
             }
             else{
                 pedina *a = NULL;
@@ -124,7 +147,7 @@ void fillBoard(pedina** board){
                 else{
                     set_id_player(a, UserOne);
                 }
-                set_board_value(board,j,i,a);
+                set_board_value(board,p,a);
             }
         }
     }
@@ -136,7 +159,7 @@ void fillBoard(pedina** board){
  * FUNZIONE CHE PRENDE IN INPUT CORDINATE PER LO SPOSTAMENTO DELLA PEDINA
  * controllo aggiuntivo per non inserire coordinate di start su cella a null.
  * per la destinazione non posso mettere questo controllod
-*/
+*//*
 int catchInput(int *cord, pedina **board){
     char *v = (char *)malloc(sizeof(char)*4);
 
@@ -191,6 +214,29 @@ int catchInput(int *cord, pedina **board){
     cord[3]=((v[3]-'0')-1);
 
     return 1;
+}*/
+
+int catchInput(int *cord){
+	char input[5];
+	int success = 0;
+	do{
+		printf("\tInserisci le coordinate della mossa [LETTERA-NUMERO-LETTERA-NUMERO]: \n\t\t");
+		scanf("%s",input);
+		
+		if(is_valid_input(input)){ /*Controllo validità input*/
+			success = 1;
+			printf("\n");}
+		else
+			printf("\t\t[Input Error] Coordinate inserite non valide \n");
+	}while(!success);
+	
+	cord[0] = input[0] - 96 - 1;
+	cord[1] = input[1] - '0' - 1;
+	cord[2] = input[2] - 96 - 1;
+	cord[3] = input[3] - '0' - 1;
+	
+	return success;	
+	
 }
 
 /*---------------------------------SEZIONE FUNZIONI OUTPUT---------------------------------*/
@@ -218,7 +264,7 @@ void printPedina(pedina *p){
 /* Funzione che stampa la scacchiera in base al posizionamento delle pedine. */
 void printMatrix(pedina** board){
 
-    unsigned i,j;
+    int i,j;
 	point p;
 
     for(i=0; i<ROW; i++){
@@ -349,24 +395,28 @@ int move(pedina** board, point from, point to, int turn){
     
 	success = 1;
 	
-	printf("\ndist: ");
+	printf("\npedina from: %d\t",get_board_value(board,from));
+	
+	printf("pedina to: %d\t",get_board_value(board,to));
+	
+	printf("dist: ");
 	d = distance(from,to);
 	printf("%d|\t", d);
 	
-	printf(" grade: ");
+	printf("grade: ");
 	grade_control = gradeCheck(board,from,to);
 	printf("%d|\t", grade_control);
 	
-	printf(" legal_player: ");
+	printf("legal_player: ");
 	legal_player = (get_id_player(get_board_value(board,from)) == (turn %2));
 	printf("%d|\t", legal_player);
 	
-	printf(" exist m: ");
+	printf("exist m: ");
 	existM = existMandatory(board,from,to);
 	printf("%d|\n", existM);
 	
     
-	if(!legal_player || get_board_value(board,to) || d == -1 || !grade_control || existM){
+	if(!legal_player || !get_board_value(board,from) || get_board_value(board,to) || d == -1 || !grade_control || existM){
         success = 0;
     } else{
         if(d == 1){
@@ -530,22 +580,22 @@ int can_eat(pedina **board, point p){
 	success = 0;
 	
 		id_p current_player;
-		gr current_grade;
+		gr current_grade;		
 	
-		current_grade = get_grade(get_board_value(board,p.x,p.y));
-		current_player = get_id_player(get_board_value(board,p.x,p.y));
+		current_grade = get_grade(get_board_value(board,p));
+		current_player = get_id_player(get_board_value(board,p));
 	
-		if(is_inside(p.x+2,p.y+2) && !get_board_value(board,p.x+2,p.y+2) && get_board_value(board,p.x+1,p.y+1) && right_path(Down,current_grade,current_player)){ /*Controllo (p.x+2,p.y+2)*/
-			success = get_id_player(get_board_value(board,p.x + 1,p.y + 1)) != current_player;
+		if(is_inside(p.x+2,p.y+2) && !get_board_value_immediate(board,p.x+2,p.y+2) && get_board_value_immediate(board,p.x+1,p.y+1) && right_path(Down,current_grade,current_player)){ /*Controllo (p.x+2,p.y+2)*/
+			success = get_id_player(get_board_value_immediate(board,p.x + 1,p.y + 1)) != current_player;
 		}
-		else if(is_inside(p.x+2,p.y-2) && !get_board_value(board,p.x+2,p.y-2) && get_board_value(board,p.x+1,p.y-1) && right_path(Up,current_grade,current_player)){
-			success = get_id_player(get_board_value(board,p.x + 1,p.y - 1)) != current_player;	
+		else if(is_inside(p.x+2,p.y-2) && !get_board_value_immediate(board,p.x+2,p.y-2) && get_board_value_immediate(board,p.x+1,p.y-1) && right_path(Up,current_grade,current_player)){
+			success = get_id_player(get_board_value_immediate(board,p.x + 1,p.y - 1)) != current_player;	
 		}
-		else if(is_inside(p.x-2,p.y-2) && !get_board_value(board,p.x-2,p.y-2) && get_board_value(board,p.x-1,p.y-1) && right_path(Up,current_grade,current_player)){
-			success = get_id_player(get_board_value(board,p.x - 1,p.y - 1)) != current_player;
+		else if(is_inside(p.x-2,p.y-2) && !get_board_value_immediate(board,p.x-2,p.y-2) && get_board_value_immediate(board,p.x-1,p.y-1) && right_path(Up,current_grade,current_player)){
+			success = get_id_player(get_board_value_immediate(board,p.x - 1,p.y - 1)) != current_player;
 		}
-		else if(is_inside(p.x-2,p.y+2) && !get_board_value(board,p.x-2,p.y+2) && get_board_value(board,p.x-1,p.y+1) && right_path(Down,current_grade,current_player)){
-			success = get_id_player(get_board_value(board,p.x - 1,p.y + 1)) != current_player;
+		else if(is_inside(p.x-2,p.y+2) && !get_board_value_immediate(board,p.x-2,p.y+2) && get_board_value_immediate(board,p.x-1,p.y+1) && right_path(Down,current_grade,current_player)){
+			success = get_id_player(get_board_value_immediate(board,p.x - 1,p.y + 1)) != current_player;
 		}
 			
 	return success;		
@@ -566,16 +616,16 @@ int can_move(pedina **board, point p){
 	current_player = get_id_player(get_board_value(board,p));
 
 	
-	if(is_inside(p.x+1,p.y+1) && !get_board_value(board,p.x+1,p.y+1) && right_path(Down,current_grade,current_player)){ /*Controllo (p.x+2,p.y+2)*/
+	if(is_inside(p.x+1,p.y+1) && !get_board_value_immediate(board,p.x+1,p.y+1) && right_path(Down,current_grade,current_player)){ /*Controllo (p.x+2,p.y+2)*/
 		success = 1;
 	}
-	else if(is_inside(p.x+1,p.y-1) && !get_board_value(board,p.x+1,p.y-1) && right_path(Up,current_grade,current_player)){
+	else if(is_inside(p.x+1,p.y-1) && !get_board_value_immediate(board,p.x+1,p.y-1) && right_path(Up,current_grade,current_player)){
 		success = 1;	
 	}
-	else if(is_inside(p.x-1,p.y-1) && !get_board_value(board,p.x-1,p.y-1) && right_path(Up,current_grade,current_player)){
+	else if(is_inside(p.x-1,p.y-1) && !get_board_value_immediate(board,p.x-1,p.y-1) && right_path(Up,current_grade,current_player)){
 		success = 1;
 	}
-	else if(is_inside(p.x-1,p.y+1) && !get_board_value(board,p.x-1,p.y+1) && right_path(Down,current_grade,current_player)){
+	else if(is_inside(p.x-1,p.y+1) && !get_board_value_immediate(board,p.x-1,p.y+1) && right_path(Down,current_grade,current_player)){
 		success = 1;
 	}
 	
