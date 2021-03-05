@@ -519,6 +519,9 @@ void capture(pedina **board, point from, point to){ /*Correggi con funzioni ausi
                 soldier->down = prisoner;
         }else
             soldier->middle = prisoner;
+		
+		prisoner->middle = 0;
+		prisoner->down = 0;
     }
     else{ /*In questo ramo la pedina catturata non ha pedine sottostanti*/
         set_board_value(board,mid,0);
