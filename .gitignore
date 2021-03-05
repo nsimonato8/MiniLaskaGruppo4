@@ -3,3 +3,7 @@
 *.exe
 *.iml
 *.idea
+*.log
+html
+latex
+Doxyfile.*

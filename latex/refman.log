@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.1.15)  15 JAN 2021 15:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.1.15)  1 MAR 2021 15:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1283,6 +1283,15 @@ Chapter 2.
 
 LaTeX Warning: Reference `structcella' on page 3 undefined on input line 3.
 
+
+LaTeX Warning: Reference `structmossa' on page 3 undefined on input line 4.
+
+
+LaTeX Warning: Reference `structnode' on page 3 undefined on input line 5.
+
+
+LaTeX Warning: Reference `structpunto' on page 3 undefined on input line 6.
+
 ) [3] [4
 
 ]
@@ -1320,81 +1329,86 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
 (Font)              scaled to size 6.29996pt on input line 7.
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
-(Font)              scaled to size 8.99994pt on input line 31.
+(Font)              scaled to size 8.99994pt on input line 47.
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
-(Font)              scaled to size 6.29996pt on input line 31.
+(Font)              scaled to size 6.29996pt on input line 47.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 7.19995pt on input line 32.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 32.
+(Font)              scaled to size 7.19995pt on input line 48.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 48.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <8> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 32.
-LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 36.
-LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 8.99994pt on input line 36.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 48.
  [7]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.1 on input line 46.
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.2 on input line 65.
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 52.
+LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
+(Font)              scaled to size 8.99994pt on input line 52.
 
 
 Package longtable Warning: Column widths have changed
-(longtable)                in table 4.3 on input line 84.
+(longtable)                in table 4.1 on input line 60.
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 4.2 on input line 77.
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 4.3 on input line 96.
 
 [8]
 
 Package longtable Warning: Column widths have changed
-(longtable)                in table 4.4 on input line 99.
+(longtable)                in table 4.4 on input line 113.
 
 
 Package longtable Warning: Column widths have changed
-(longtable)                in table 4.5 on input line 114.
+(longtable)                in table 4.5 on input line 128.
 
 
 Package longtable Warning: Column widths have changed
-(longtable)                in table 4.6 on input line 135.
+(longtable)                in table 4.6 on input line 143.
 
 [9]
 
 Package longtable Warning: Column widths have changed
-(longtable)                in table 4.7 on input line 152.
+(longtable)                in table 4.7 on input line 160.
 
 
 Package longtable Warning: Column widths have changed
-(longtable)                in table 4.8 on input line 169.
+(longtable)                in table 4.8 on input line 179.
 
-) [10]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 4.9 on input line 196.
+
+[10]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 4.10 on input line 213.
+
+) [11]
 \openout2 = `group__Memoria.aux'.
 
  (./group__Memoria.tex
 
 Package longtable Warning: Column widths have changed
-(longtable)                in table 4.9 on input line 42.
+(longtable)                in table 4.11 on input line 42.
 
-[11
+[12
 
 ]
 
 Package longtable Warning: Column widths have changed
-(longtable)                in table 4.10 on input line 57.
+(longtable)                in table 4.12 on input line 57.
 
-) [12]
+) [13]
 \openout2 = `group__Input.aux'.
 
- (./group__Input.tex
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.11 on input line 30.
-
-) [13
+ (./group__Input.tex) [14
 
 
 ]
@@ -1403,89 +1417,91 @@ Package longtable Warning: Column widths have changed
  (./group__Output.tex
 
 Package longtable Warning: Column widths have changed
-(longtable)                in table 4.12 on input line 48.
+(longtable)                in table 4.13 on input line 48.
 
-[14
+[15
 
 
 ]
 
 Package longtable Warning: Column widths have changed
-(longtable)                in table 4.13 on input line 63.
+(longtable)                in table 4.14 on input line 63.
 
 
 Package longtable Warning: Column widths have changed
-(longtable)                in table 4.14 on input line 92.
+(longtable)                in table 4.15 on input line 92.
 
-) [15]
+) [16]
 \openout2 = `group__Logiche.aux'.
 
  (./group__Logiche.tex
 
 Package longtable Warning: Column widths have changed
-(longtable)                in table 4.15 on input line 48.
+(longtable)                in table 4.16 on input line 46.
 
-[16
+[17
 
 
 ]
 
 Package longtable Warning: Column widths have changed
-(longtable)                in table 4.16 on input line 67.
-
-LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <7> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 72.
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.17 on input line 90.
-
-[17]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.18 on input line 111.
+(longtable)                in table 4.17 on input line 63.
 
 
 Package longtable Warning: Column widths have changed
-(longtable)                in table 4.19 on input line 136.
+(longtable)                in table 4.18 on input line 82.
 
 
 Package longtable Warning: Column widths have changed
-(longtable)                in table 4.20 on input line 157.
+(longtable)                in table 4.19 on input line 99.
 
 [18]
 
 Package longtable Warning: Column widths have changed
-(longtable)                in table 4.21 on input line 174.
+(longtable)                in table 4.20 on input line 120.
 
 
 Package longtable Warning: Column widths have changed
-(longtable)                in table 4.22 on input line 191.
+(longtable)                in table 4.21 on input line 139.
 
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 4.22 on input line 154.
+
+LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <7> not available
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 159.
 [19]
 
 Package longtable Warning: Column widths have changed
-(longtable)                in table 4.23 on input line 216.
+(longtable)                in table 4.23 on input line 171.
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 4.24 on input line 192.
 
 ) [20]
 Chapter 5.
 (./structcella.tex [21
 
 
-]) [22]
-Chapter 6.
-(./ml__lib_8h.tex [23
+]) (./structmossa.tex) (./structnode.tex)
+(./structpunto.tex [22]) [23] [24
 
-] [24]) (./ml__main_8c.tex [25]) [26]
+]
+Chapter 6.
+(./ml__lib_8h.tex [25] [26]) (./ml__main_8c.tex [27] [28]) [29] [30
+
+]
 No file refman.ind.
 
 Package longtable Warning: Table widths have changed. Rerun LaTeX.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 171.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 171.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 174.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 174.
 (./refman.aux (./group__Memoria.aux) (./group__Input.aux) (./group__Output.aux)
 (./group__Logiche.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 171.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 171.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 174.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 174.
 
 
 Package rerunfilecheck Warning: File `refman.out' has changed.
@@ -1494,39 +1510,37 @@ Package rerunfilecheck Warning: File `refman.out' has changed.
 
 Package rerunfilecheck Info: Checksums for `refman.out':
 (rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  5EF3950558A86CD0732B9E860F70B27D;14650.
+(rerunfilecheck)             After:  A6B1620EB3955AD74466D910873C1E09;16365.
 
 LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 171.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 174.
  ) 
 Here is how much of TeX's memory you used:
- 15201 strings out of 494923
- 217009 string characters out of 6180742
- 301913 words of memory out of 5000000
- 18046 multiletter control sequences out of 15000+600000
+ 15259 strings out of 494923
+ 218918 string characters out of 6180742
+ 302913 words of memory out of 5000000
+ 18062 multiletter control sequences out of 15000+600000
  67832 words of font info for 92 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 53i,15n,92p,832b,641s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 53i,16n,92p,835b,631s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucr
-r8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (30 pages, 149770 bytes).
+f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
+rw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/uc
+rro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
+Output written on refman.pdf (34 pages, 141388 bytes).
 PDF statistics:
- 595 PDF objects out of 1000 (max. 8388607)
- 545 compressed objects within 6 object streams
- 186 named destinations out of 1000 (max. 500000)
+ 735 PDF objects out of 1000 (max. 8388607)
+ 682 compressed objects within 7 object streams
+ 222 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

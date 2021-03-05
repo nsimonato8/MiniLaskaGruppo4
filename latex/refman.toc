@@ -8,45 +8,45 @@
 \contentsline {section}{\numberline {4.1}Funzioni ausiliarie}{7}{section.4.1}
 \contentsline {subsection}{\numberline {4.1.1}Descrizione dettagliata}{7}{subsection.4.1.1}
 \contentsline {subsection}{\numberline {4.1.2}Documentazione delle funzioni}{7}{subsection.4.1.2}
-\contentsline {subsubsection}{\numberline {4.1.2.1}get\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}board\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}value()}{7}{subsubsection.4.1.2.1}
+\contentsline {subsubsection}{\numberline {4.1.2.1}get\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}board\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}value()}{8}{subsubsection.4.1.2.1}
 \contentsline {subsubsection}{\numberline {4.1.2.2}get\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}board\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}value\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}down()}{8}{subsubsection.4.1.2.2}
-\contentsline {subsubsection}{\numberline {4.1.2.3}get\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}board\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}value\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}middle()}{8}{subsubsection.4.1.2.3}
-\contentsline {subsubsection}{\numberline {4.1.2.4}get\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}grade()}{8}{subsubsection.4.1.2.4}
-\contentsline {subsubsection}{\numberline {4.1.2.5}get\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}id\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}player()}{9}{subsubsection.4.1.2.5}
-\contentsline {subsubsection}{\numberline {4.1.2.6}set\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}board\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}value()}{9}{subsubsection.4.1.2.6}
-\contentsline {subsubsection}{\numberline {4.1.2.7}set\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}grade()}{9}{subsubsection.4.1.2.7}
-\contentsline {subsubsection}{\numberline {4.1.2.8}set\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}id\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}player()}{10}{subsubsection.4.1.2.8}
-\contentsline {section}{\numberline {4.2}Funzioni di gestione della memoria}{11}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Descrizione dettagliata}{11}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Documentazione delle funzioni}{11}{subsection.4.2.2}
-\contentsline {subsubsection}{\numberline {4.2.2.1}create\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Matrix()}{11}{subsubsection.4.2.2.1}
-\contentsline {subsubsection}{\numberline {4.2.2.2}destroy\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Matrix()}{11}{subsubsection.4.2.2.2}
-\contentsline {subsubsection}{\numberline {4.2.2.3}fill\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Board()}{11}{subsubsection.4.2.2.3}
-\contentsline {section}{\numberline {4.3}Funzioni di input}{13}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Descrizione dettagliata}{13}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Documentazione delle funzioni}{13}{subsection.4.3.2}
-\contentsline {subsubsection}{\numberline {4.3.2.1}catch\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Input()}{13}{subsubsection.4.3.2.1}
-\contentsline {section}{\numberline {4.4}Funzioni di output}{14}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Descrizione dettagliata}{14}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}Documentazione delle funzioni}{14}{subsection.4.4.2}
-\contentsline {subsubsection}{\numberline {4.4.2.1}input\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Error()}{14}{subsubsection.4.4.2.1}
-\contentsline {subsubsection}{\numberline {4.4.2.2}print\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Matrix()}{14}{subsubsection.4.4.2.2}
-\contentsline {subsubsection}{\numberline {4.4.2.3}print\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Pedina()}{14}{subsubsection.4.4.2.3}
-\contentsline {subsubsection}{\numberline {4.4.2.4}print\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Rules()}{15}{subsubsection.4.4.2.4}
-\contentsline {subsubsection}{\numberline {4.4.2.5}print\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Status()}{15}{subsubsection.4.4.2.5}
-\contentsline {subsubsection}{\numberline {4.4.2.6}victory()}{15}{subsubsection.4.4.2.6}
-\contentsline {section}{\numberline {4.5}Funzioni delle logiche di gioco}{16}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Descrizione dettagliata}{16}{subsection.4.5.1}
-\contentsline {subsection}{\numberline {4.5.2}Documentazione delle funzioni}{16}{subsection.4.5.2}
-\contentsline {subsubsection}{\numberline {4.5.2.1}can\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}eat()}{16}{subsubsection.4.5.2.1}
+\contentsline {subsubsection}{\numberline {4.1.2.3}get\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}board\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}value\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}immediate()}{8}{subsubsection.4.1.2.3}
+\contentsline {subsubsection}{\numberline {4.1.2.4}get\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}board\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}value\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}middle()}{9}{subsubsection.4.1.2.4}
+\contentsline {subsubsection}{\numberline {4.1.2.5}get\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}grade()}{9}{subsubsection.4.1.2.5}
+\contentsline {subsubsection}{\numberline {4.1.2.6}get\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}id\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}player()}{9}{subsubsection.4.1.2.6}
+\contentsline {subsubsection}{\numberline {4.1.2.7}is\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}inside()}{9}{subsubsection.4.1.2.7}
+\contentsline {subsubsection}{\numberline {4.1.2.8}set\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}board\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}value()}{10}{subsubsection.4.1.2.8}
+\contentsline {subsubsection}{\numberline {4.1.2.9}set\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}grade()}{10}{subsubsection.4.1.2.9}
+\contentsline {subsubsection}{\numberline {4.1.2.10}set\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}id\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}player()}{10}{subsubsection.4.1.2.10}
+\contentsline {section}{\numberline {4.2}Funzioni di gestione della memoria}{12}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Descrizione dettagliata}{12}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Documentazione delle funzioni}{12}{subsection.4.2.2}
+\contentsline {subsubsection}{\numberline {4.2.2.1}create\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Matrix()}{12}{subsubsection.4.2.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2.2}destroy\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Matrix()}{12}{subsubsection.4.2.2.2}
+\contentsline {subsubsection}{\numberline {4.2.2.3}fill\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Board()}{12}{subsubsection.4.2.2.3}
+\contentsline {section}{\numberline {4.3}Funzioni di input}{14}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Descrizione dettagliata}{14}{subsection.4.3.1}
+\contentsline {section}{\numberline {4.4}Funzioni di output}{15}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Descrizione dettagliata}{15}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Documentazione delle funzioni}{15}{subsection.4.4.2}
+\contentsline {subsubsection}{\numberline {4.4.2.1}input\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Error()}{15}{subsubsection.4.4.2.1}
+\contentsline {subsubsection}{\numberline {4.4.2.2}print\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Matrix()}{15}{subsubsection.4.4.2.2}
+\contentsline {subsubsection}{\numberline {4.4.2.3}print\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Pedina()}{15}{subsubsection.4.4.2.3}
+\contentsline {subsubsection}{\numberline {4.4.2.4}print\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Rules()}{16}{subsubsection.4.4.2.4}
+\contentsline {subsubsection}{\numberline {4.4.2.5}print\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Status()}{16}{subsubsection.4.4.2.5}
+\contentsline {subsubsection}{\numberline {4.4.2.6}victory()}{16}{subsubsection.4.4.2.6}
+\contentsline {section}{\numberline {4.5}Funzioni delle logiche di gioco}{17}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Descrizione dettagliata}{17}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Documentazione delle funzioni}{17}{subsection.4.5.2}
+\contentsline {subsubsection}{\numberline {4.5.2.1}can\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}eat()}{17}{subsubsection.4.5.2.1}
 \contentsline {subsubsection}{\numberline {4.5.2.2}can\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}move()}{17}{subsubsection.4.5.2.2}
-\contentsline {subsubsection}{\numberline {4.5.2.3}capture()}{17}{subsubsection.4.5.2.3}
-\contentsline {subsubsection}{\numberline {4.5.2.4}distance()}{17}{subsubsection.4.5.2.4}
-\contentsline {subsubsection}{\numberline {4.5.2.5}exist\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Mandatory()}{18}{subsubsection.4.5.2.5}
-\contentsline {subsubsection}{\numberline {4.5.2.6}grade\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Check()}{18}{subsubsection.4.5.2.6}
+\contentsline {subsubsection}{\numberline {4.5.2.3}capture()}{18}{subsubsection.4.5.2.3}
+\contentsline {subsubsection}{\numberline {4.5.2.4}distance()}{18}{subsubsection.4.5.2.4}
+\contentsline {subsubsection}{\numberline {4.5.2.5}exist\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Mandatory()}{19}{subsubsection.4.5.2.5}
+\contentsline {subsubsection}{\numberline {4.5.2.6}grade\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Check()}{19}{subsubsection.4.5.2.6}
 \contentsline {subsubsection}{\numberline {4.5.2.7}is\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Forbidden\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Cell()}{19}{subsubsection.4.5.2.7}
-\contentsline {subsubsection}{\numberline {4.5.2.8}is\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Winner()}{19}{subsubsection.4.5.2.8}
-\contentsline {subsubsection}{\numberline {4.5.2.9}move()}{19}{subsubsection.4.5.2.9}
+\contentsline {subsubsection}{\numberline {4.5.2.8}is\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Winner()}{20}{subsubsection.4.5.2.8}
+\contentsline {subsubsection}{\numberline {4.5.2.9}move()}{20}{subsubsection.4.5.2.9}
 \contentsline {chapter}{\numberline {5}Documentazione delle classi}{21}{chapter.5}
 \contentsline {section}{\numberline {5.1}Riferimenti per la struct cella}{21}{section.5.1}
 \contentsline {subsection}{\numberline {5.1.1}Descrizione dettagliata}{21}{subsection.5.1.1}
@@ -55,21 +55,30 @@
 \contentsline {subsubsection}{\numberline {5.1.2.2}grado}{21}{subsubsection.5.1.2.2}
 \contentsline {subsubsection}{\numberline {5.1.2.3}id\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}player}{22}{subsubsection.5.1.2.3}
 \contentsline {subsubsection}{\numberline {5.1.2.4}middle}{22}{subsubsection.5.1.2.4}
-\contentsline {chapter}{\numberline {6}Documentazione dei file}{23}{chapter.6}
-\contentsline {section}{\numberline {6.1}Riferimenti per il file ml\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}lib.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}h}{23}{section.6.1}
-\contentsline {subsection}{\numberline {6.1.1}Descrizione dettagliata}{24}{subsection.6.1.1}
-\contentsline {subsection}{\numberline {6.1.2}Documentazione delle ridefinizioni di tipo (typedef)}{25}{subsection.6.1.2}
-\contentsline {subsubsection}{\numberline {6.1.2.1}pedina}{25}{subsubsection.6.1.2.1}
-\contentsline {subsection}{\numberline {6.1.3}Documentazione dei tipi enumerati}{25}{subsection.6.1.3}
-\contentsline {subsubsection}{\numberline {6.1.3.1}gr}{25}{subsubsection.6.1.3.1}
-\contentsline {subsubsection}{\numberline {6.1.3.2}id\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}p}{25}{subsubsection.6.1.3.2}
-\contentsline {section}{\numberline {6.2}Riferimenti per il file ml\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}main.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}c}{25}{section.6.2}
-\contentsline {subsection}{\numberline {6.2.1}Descrizione dettagliata}{26}{subsection.6.2.1}
-\contentsline {subsection}{\numberline {6.2.2}Documentazione delle funzioni}{26}{subsection.6.2.2}
-\contentsline {subsubsection}{\numberline {6.2.2.1}main()}{26}{subsubsection.6.2.2.1}
-\contentsline {subsection}{\numberline {6.2.3}Documentazione delle variabili}{26}{subsection.6.2.3}
-\contentsline {subsubsection}{\numberline {6.2.3.1}board}{26}{subsubsection.6.2.3.1}
-\contentsline {subsubsection}{\numberline {6.2.3.2}coordinate}{26}{subsubsection.6.2.3.2}
-\contentsline {subsubsection}{\numberline {6.2.3.3}success\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}input}{26}{subsubsection.6.2.3.3}
-\contentsline {subsubsection}{\numberline {6.2.3.4}success\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}move}{26}{subsubsection.6.2.3.4}
-\contentsline {subsubsection}{\numberline {6.2.3.5}turn}{26}{subsubsection.6.2.3.5}
+\contentsline {section}{\numberline {5.2}Riferimenti per la struct mossa}{22}{section.5.2}
+\contentsline {section}{\numberline {5.3}Riferimenti per la struct node}{22}{section.5.3}
+\contentsline {section}{\numberline {5.4}Riferimenti per la struct punto}{22}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Descrizione dettagliata}{23}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Documentazione dei membri dato}{23}{subsection.5.4.2}
+\contentsline {subsubsection}{\numberline {5.4.2.1}x}{23}{subsubsection.5.4.2.1}
+\contentsline {subsubsection}{\numberline {5.4.2.2}y}{23}{subsubsection.5.4.2.2}
+\contentsline {chapter}{\numberline {6}Documentazione dei file}{25}{chapter.6}
+\contentsline {section}{\numberline {6.1}Riferimenti per il file ml\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}lib.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}h}{25}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Descrizione dettagliata}{27}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Documentazione delle ridefinizioni di tipo (typedef)}{27}{subsection.6.1.2}
+\contentsline {subsubsection}{\numberline {6.1.2.1}pedina}{27}{subsubsection.6.1.2.1}
+\contentsline {subsection}{\numberline {6.1.3}Documentazione dei tipi enumerati}{27}{subsection.6.1.3}
+\contentsline {subsubsection}{\numberline {6.1.3.1}dir}{27}{subsubsection.6.1.3.1}
+\contentsline {subsubsection}{\numberline {6.1.3.2}gr}{27}{subsubsection.6.1.3.2}
+\contentsline {subsubsection}{\numberline {6.1.3.3}id\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}p}{27}{subsubsection.6.1.3.3}
+\contentsline {section}{\numberline {6.2}Riferimenti per il file ml\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}main.\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}c}{27}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Descrizione dettagliata}{28}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Documentazione delle funzioni}{28}{subsection.6.2.2}
+\contentsline {subsubsection}{\numberline {6.2.2.1}main()}{28}{subsubsection.6.2.2.1}
+\contentsline {subsection}{\numberline {6.2.3}Documentazione delle variabili}{28}{subsection.6.2.3}
+\contentsline {subsubsection}{\numberline {6.2.3.1}board}{28}{subsubsection.6.2.3.1}
+\contentsline {subsubsection}{\numberline {6.2.3.2}coordinate}{28}{subsubsection.6.2.3.2}
+\contentsline {subsubsection}{\numberline {6.2.3.3}success\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}input}{29}{subsubsection.6.2.3.3}
+\contentsline {subsubsection}{\numberline {6.2.3.4}success\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}move}{29}{subsubsection.6.2.3.4}
+\contentsline {subsubsection}{\numberline {6.2.3.5}to}{29}{subsubsection.6.2.3.5}
+\contentsline {subsubsection}{\numberline {6.2.3.6}turn}{29}{subsubsection.6.2.3.6}
