@@ -1,20 +1,21 @@
 #include<stdio.h>
 #include<ml_lib.c>
 
-typedef struct node rec_tree;
-typedef struct row t_row;
+typedef struct s_node t_node;
+typedef struct s_row t_row;
+typedef struct s_mossa mossa;
 
-struct node { //valore,mossa
+struct s_node { //coppia valore,mossa
 	int alfa;
 	point destinazione;
 }
 
-struct row{ //pedina,(valore,mossa)
+struct s_row{ //coppia pedina,(valore,mossa)
 	pedina *ped;
-	rec_tree value;
+	t_node value;
 }
 
-struct mossa{
+struct s_mossa{
 	pedina *ped;
 	point destinazione;	
 }
@@ -23,7 +24,7 @@ t_row database_mosse[2][14]; //situazione
 
 
 
-rec_tree minimax(rec_tree node, int depth){
+t_node minimax(t_node node, int depth){
 	//Vedi https://it.wikipedia.org/wiki/Minimax
 }
 
