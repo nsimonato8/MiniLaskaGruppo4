@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include<ml_lib.c>
+#include<ml_lib.h>
 
 #define NUMERO_PEDINE 7
 
@@ -16,6 +16,24 @@ struct s_node { //coppia valore,mossa
 
 
 t_node database_mosse[NUMERO_PEDINE]; //situazione
+
+
+/*Legge i valori da db_mosse e li passa a cord
+* Invoca select_pedina e traduce from->to
+*/
+int catchInput_Autoplay(int *cord); 
+
+int can_be_eaten(pedina **board, t_node node);
+
+int evaluate(pedina **board, t_node node){
+	if(can_eat(board,node.end))
+		return 1;
+	else if(can_be_eaten(board,node.end))
+		return -1;
+	else
+		return 0;
+	
+}
 
 
 /*
@@ -38,21 +56,21 @@ function minimax(nodo, profondità)
 			
     return α
 */
-t_node minimax(/*pedina **board, */t_node node, int depth, int turn){
+t_node minimax(pedina **board, t_node node, int depth, int turn){
 	
 	t_node res;
 	if(!depth){
-		res = valutazione_euristica(node);
+		res = evaluate(board, node);
 	}else{
-		int alfa = INT_MIN;
-		if(turn%2){
-			
-			/*res = node + (+1,+1)
-			/*if (can_eat || can_move){
-				res = minimax(res,depth-1,turn+1)
-				if(alfa < res.alfa)
-					alfa = res.alfa;
-			}
+		int alfa;
+		if(turn%2){ /*Gioca AI*/
+			alfa = INT_MIN;
+			/*  res = node + (+1,+1)
+				if (can_eat || can_move){
+					res = minimax(res,depth-1,turn+1)
+					if(alfa < res.alfa)
+						alfa = res.alfa;
+				}
 			*/
 			
 			/*-1,+1*/
@@ -61,8 +79,21 @@ t_node minimax(/*pedina **board, */t_node node, int depth, int turn){
 				/*-1,-1*/
 			}
 			
-		}else{
-			/**/
+		}else{ /*Gioca UMANO*/
+			alfa = INT_MAX;
+			/*	res = node + (+1,+1)
+				if (can_eat || can_move){
+					res = minimax(res,depth-1,turn+1)
+					if(alfa > res.alfa)
+						alfa = res.alfa;
+				}
+			*/
+			
+			/*-1,+1*/
+			if(get_grade(node.data) == Officer){
+				/*+1,-1*/
+				/*-1,-1*/
+			}
 			
 		}
 		

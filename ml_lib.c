@@ -67,7 +67,7 @@ int right_path(dir direction, gr grade, id_p player){
 
 /*Ritorna 1 se input è una lettera da a ad g, altrimenti è 0*/
 int is_valid_letter(char input){
-	return ((input >= 65) && (input <= 71)) || ((input >= 97) && (input <= 103));
+	return ((input >= 'a') && (input <= 'g'));
 }
 
 /*Ritorna 1 se input è un numero da 1 a 7, altrimenti è 0*/
@@ -230,9 +230,9 @@ int catchInput(int *cord){
 			printf("\t\t[Input Error] Coordinate inserite non valide \n");
 	}while(!success);
 	
-	cord[0] = input[0] - 96 - 1;
+	cord[0] = input[0] - 'a' - 1;
 	cord[1] = input[1] - '0' - 1;
-	cord[2] = input[2] - 96 - 1;
+	cord[2] = input[2] - 'a' - 1;
 	cord[3] = input[3] - '0' - 1;
 	
 	return success;	
@@ -412,7 +412,7 @@ int move(pedina** board, point from, point to, int turn){
 	printf("%d|\t", legal_player);
 	
 	printf("exist m: ");
-	existM = existMandatory(board,from,to);
+	existM = existMandatory(board,from,to); /*Da rivederla*/
 	printf("%d|\n", existM);
 	
     
@@ -544,21 +544,17 @@ void capture(pedina **board, point from, point to){ /*Correggi con funzioni ausi
 int gradeCheck(pedina **board, point from, point to){ /*IMPLEMENTA UP/DOWN*/
 
     int success = 1;
-	/*printf("\n\t\t GRADE CHECK");*/
     if(get_board_value(board,from)) { /* controlla se la casella è piena o vuota*/
-        /*printf("\n\n\t\t\t FROM: %d,%d --> to X,%d\n\n", from.x, from.y, to.y);*/
         if (!get_grade(get_board_value(board, from))) { /*controlla il grado della pedina*/
 
             if (!get_id_player(get_board_value(board, from))) {
 
                 if (to.y > from.y){
-                    /*printf("\n\n\t\t\t\t if toY %d > fromy %d\n\n", to.y,from.y);*/
                     success = 0;
                 }
 
             } else { /*controlla se la pedina appartiene al giocatore 1*/
                 if (to.y < from.y) {
-                    /*printf("\n\n\t\t\t\t if toY %d < fromy %d\n\n", to.y,from.y)*/;
                     success = 0;
                 }
             }
