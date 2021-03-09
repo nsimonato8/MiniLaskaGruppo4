@@ -18,12 +18,64 @@ struct s_node { //coppia valore,mossa
 t_node database_mosse[NUMERO_PEDINE]; //situazione
 
 
-/*Legge i valori da db_mosse e li passa a cord
+/*
+* Legge i valori da db_mosse e li passa a cord
 * Invoca select_pedina e traduce from->to
 */
-int catchInput_Autoplay(int *cord); 
+void catchInput_Autoplay(int *cord, t_node result){
+	cord[1] = result.start.x + 'a' + 1;
+	cord[0] = result.start.y + '0' + 1;
+	cord[3] = result.end.x + 'a' + 1;
+	cord[2] = result.end.y + '0' + 1;
+	
+}
 
-int can_be_eaten(pedina **board, t_node node);
+int can_be_eaten(pedina **board, t_node node){
+	int success;
+	success = 0;
+	
+	point p = node.end;
+
+	id_p current_player;
+	gr current_grade;
+	
+	current_grade = get_grade(get_board_value(board,p));
+	current_player = get_id_player(get_board_value(board,p));
+	
+	pedina avversario;
+	
+	avversario = get_board_value_immediate(board,p.x-1,p.y-1);	
+	if(is_inside(p.x+1,p.y+1) && !get_board_value_immediate(board,p.x+1,p.y+1) && avversario && right_path(Up,avversario.grade,avversario.id_player)){ /*Controllo (p.x+2,p.y+2)*/
+		success = 1;
+	}
+	
+	avversario = get_board_value_immediate(board,p.x-1,p.y+1);	
+	else if(is_inside(p.x+1,p.y-1) && !get_board_value_immediate(board,p.x+1,p.y-1) && avversario && right_path(Up,avversario.grade,avversario.id_player)){ /*Controllo (p.x+2,p.y+2)*/
+		success = 1;
+	}
+	
+	avversario = get_board_value_immediate(board,p.x+1,p.y+1);	
+	else if(is_inside(p.x-1,p.y-1) && !get_board_value_immediate(board,p.x-1,p.y-1) && avversario && right_path(Up,avversario.grade,avversario.id_player)){ /*Controllo (p.x+2,p.y+2)*/
+		success = 1;
+	}
+	
+	avversario = get_board_value_immediate(board,p.x+1,p.y-1);	
+	else if(is_inside(p.x-1,p.y+1) && !get_board_value_immediate(board,p.x-1,p.+1) && avversario && right_path(Up,avversario.grade,avversario.id_player)){ /*Controllo (p.x+2,p.y+2)*/
+		success = 1;
+	}
+	
+	return success;
+}
+
+void check_son(pedina **board, t_node *res, int x, int y, t_node *node, int *alfa, int depth, int turn){
+	(*res).end.x = (*node).end.x + x;
+	(*res).end.y = (*node).end.y + y;
+	if (can_eat(board,(*res).end) || can_move(board,(*res).end)){
+		*res = minimax(board,(*res),depth-1,turn+1);
+		if(alfa < (*res).alfa)
+			*alfa = (*res).alfa;
+	}	
+}
 
 int evaluate(pedina **board, t_node node){
 	if(can_eat(board,node.end))
@@ -65,34 +117,34 @@ t_node minimax(pedina **board, t_node node, int depth, int turn){
 		int alfa;
 		if(turn%2){ /*Gioca AI*/
 			alfa = INT_MIN;
-			/*  res = node + (+1,+1)
-				if (can_eat || can_move){
-					res = minimax(res,depth-1,turn+1)
-					if(alfa < res.alfa)
-						alfa = res.alfa;
-				}
-			*/
+			
+			/*+1,+1*/  /*void check_son(pedina **board, t_node *res, int x, int y, t_node *node, int *alfa, int depth, int turn)*/
+			check_son(board, &res, +1, +1, &node, &alfa, depth, turn);
 			
 			/*-1,+1*/
+			check_son(board, &res, -1, +1, &node, &alfa, depth, turn);
+			
 			if(get_grade(node.data) == Officer){
 				/*+1,-1*/
+				check_son(board, &res, +1, -1, &node, &alfa, depth, turn);
 				/*-1,-1*/
+				check_son(board, &res, -1, -1, &node, &alfa, depth, turn);
 			}
 			
 		}else{ /*Gioca UMANO*/
 			alfa = INT_MAX;
-			/*	res = node + (+1,+1)
-				if (can_eat || can_move){
-					res = minimax(res,depth-1,turn+1)
-					if(alfa > res.alfa)
-						alfa = res.alfa;
-				}
-			*/
+			/*-1,+1*/
+			check_son(board, &res, +1, +1, &node, &alfa, depth, turn);
 			
 			/*-1,+1*/
+			check_son(board, &res, -1, +1, &node, &alfa, depth, turn);
+			
 			if(get_grade(node.data) == Officer){
 				/*+1,-1*/
+				check_son(board, &res, +1, -1, &node, &alfa, depth, turn);
+				
 				/*-1,-1*/
+				check_son(board, &res, -1, -1, &node, &alfa, depth, turn);
 			}
 			
 		}
