@@ -159,63 +159,7 @@ void fillBoard(pedina** board){
  * FUNZIONE CHE PRENDE IN INPUT CORDINATE PER LO SPOSTAMENTO DELLA PEDINA
  * controllo aggiuntivo per non inserire coordinate di start su cella a null.
  * per la destinazione non posso mettere questo controllod
-*//*
-int catchInput(int *cord, pedina **board){
-    char *v = (char *)malloc(sizeof(char)*4);
-
-    do {
-        printf("\n\nInserisci le coordinate della pedina da muovere: \n\n");
-
-        printf("Coordinata Alfabetica: \n");
-
-        do {
-            if (scanf(" %c", &v[0]) != 1)
-                perror("Errore acquisizione coordinata");
-
-        } while (!(v[0] >= 'a' && v[0] <= 'g'));
-
-        cord[0] = ((v[0] - 96) - 1);
-
-        printf("Coordinata Numerica: \n");
-
-        do {
-            if (scanf(" %c", &v[1]) != 1)
-                perror("Errore acquisizione coordinata");
-
-        } while (!(v[1] >= '1' && v[1] <= '7'));
-
-        cord[1] = ((v[1] - '0') - 1);
-
-        if(get_board_value(board, cord[1], cord[0]) == 0)
-            printf("\nCella non selezionabile, reinserisci le coordinate\n");
-
-    }while(get_board_value(board, cord[1], cord[0]) == 0);
-
-    printf("\nInserisci le coordinate di destinazione: \n\n");
-
-    printf("Coordinata Alfabetica: \n");
-
-    do{
-        if(scanf(" %c",&v[2])!=1)
-            perror("Errore acquisizione coordinata");
-
-    }while(!(v[2]>='a' && v[2]<='g'));
-
-    cord[2]=((v[2]-96)-1);
-
-    printf("Coordinata Numerica: \n");
-
-    do{
-        if(scanf(" %c",&v[3])!=1)
-            perror("Errore acquisizione coordinata");
-
-    }while(!(v[3]>='1' && v[3]<='7'));
-
-    cord[3]=((v[3]-'0')-1);
-
-    return 1;
-}*/
-
+*/
 int catchInput(int *cord){
 	char input[5];
 	int success = 0;
@@ -389,10 +333,10 @@ int isWinner(pedina **board, id_p idPlayer) {
 */
 int move(pedina** board, point from, point to, int turn){
 
+    int success, d, grade_control, existM, legal_player;
+
     printf("\nMOVE From: %d,%d --> To: %d,%d", from.x,from.y,to.x ,to.y);
 
-    int success, d, grade_control, existM, legal_player;
-    
 	success = 1;
 	
 	printf("\npedina from: %d\t",get_board_value(board,from));

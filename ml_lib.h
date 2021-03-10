@@ -35,7 +35,6 @@ struct cella{
     pedina *down; /*!< Puntatore alla pedina in fondo alla colonna */
 };
 
-/*TODO: ADATTARE CODICE A ADT POINT*/
 /*!Definizione del tipo punto*/
 struct punto{
     int x; /*!<Coordinata x */

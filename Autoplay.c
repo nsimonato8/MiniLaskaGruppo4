@@ -1,21 +1,9 @@
 #include<stdio.h>
-#include<ml_lib.h>
+#include<limits.h>
+#include "Autoplay.h"
 
 #define NUMERO_PEDINE 7
-
-typedef struct s_node t_node;
-
-/*alfa -> [-1,1]*/
-
-struct s_node { //coppia valore,mossa
-	int alfa; //indice 
-	point start;
-	point end;
-	pedina *data;
-}
-
-
-t_node database_mosse[NUMERO_PEDINE]; //situazione
+t_node database_mosse[NUMERO_PEDINE]; /*situazione*/
 
 
 /*
@@ -30,37 +18,29 @@ void catchInput_Autoplay(int *cord, t_node result){
 	
 }
 
-int can_be_eaten(pedina **board, t_node node){
+int can_be_eaten(pedina **board, point p){
 	int success;
-	success = 0;
+	pedina *avversario;
 	
-	point p = node.end;
-
-	id_p current_player;
-	gr current_grade;
-	
-	current_grade = get_grade(get_board_value(board,p));
-	current_player = get_id_player(get_board_value(board,p));
-	
-	pedina avversario;
+	success = 0;	
 	
 	avversario = get_board_value_immediate(board,p.x-1,p.y-1);	
-	if(is_inside(p.x+1,p.y+1) && !get_board_value_immediate(board,p.x+1,p.y+1) && avversario && right_path(Up,avversario.grade,avversario.id_player)){ /*Controllo (p.x+2,p.y+2)*/
+	if(is_inside(p.x+1,p.y+1) && !get_board_value_immediate(board,p.x+1,p.y+1) && avversario && right_path(Up,avversario->grado,avversario->id_player)){ /*Controllo (p.x+2,p.y+2)*/
 		success = 1;
 	}
 	
 	avversario = get_board_value_immediate(board,p.x-1,p.y+1);	
-	else if(is_inside(p.x+1,p.y-1) && !get_board_value_immediate(board,p.x+1,p.y-1) && avversario && right_path(Up,avversario.grade,avversario.id_player)){ /*Controllo (p.x+2,p.y+2)*/
+	if(is_inside(p.x+1,p.y-1) && !get_board_value_immediate(board,p.x+1,p.y-1) && avversario && right_path(Up,avversario->grado,avversario->id_player)){ /*Controllo (p.x+2,p.y+2)*/
 		success = 1;
 	}
 	
 	avversario = get_board_value_immediate(board,p.x+1,p.y+1);	
-	else if(is_inside(p.x-1,p.y-1) && !get_board_value_immediate(board,p.x-1,p.y-1) && avversario && right_path(Up,avversario.grade,avversario.id_player)){ /*Controllo (p.x+2,p.y+2)*/
+	if(is_inside(p.x-1,p.y-1) && !get_board_value_immediate(board,p.x-1,p.y-1) && avversario && right_path(Up,avversario->grado,avversario->id_player)){ /*Controllo (p.x+2,p.y+2)*/
 		success = 1;
 	}
 	
 	avversario = get_board_value_immediate(board,p.x+1,p.y-1);	
-	else if(is_inside(p.x-1,p.y+1) && !get_board_value_immediate(board,p.x-1,p.+1) && avversario && right_path(Up,avversario.grade,avversario.id_player)){ /*Controllo (p.x+2,p.y+2)*/
+	if(is_inside(p.x-1,p.y+1) && !get_board_value_immediate(board,p.x-1,p.y+1) && avversario && right_path(Up,avversario->grado,avversario->id_player)){ /*Controllo (p.x+2,p.y+2)*/
 		success = 1;
 	}
 	
@@ -72,8 +52,8 @@ void check_son(pedina **board, t_node *res, int x, int y, t_node *node, int *alf
 	(*res).end.y = (*node).end.y + y;
 	if (can_eat(board,(*res).end) || can_move(board,(*res).end)){
 		*res = minimax(board,(*res),depth-1,turn+1);
-		if(alfa < (*res).alfa)
-			*alfa = (*res).alfa;
+		if(*alfa < res->alfa)
+			*alfa = res->alfa;
 	}	
 }
 
@@ -112,7 +92,7 @@ t_node minimax(pedina **board, t_node node, int depth, int turn){
 	
 	t_node res;
 	if(!depth){
-		res = evaluate(board, node);
+		res.alfa = evaluate(board, node);
 	}else{
 		int alfa;
 		if(turn%2){ /*Gioca AI*/
