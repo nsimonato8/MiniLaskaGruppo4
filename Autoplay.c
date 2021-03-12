@@ -3,6 +3,7 @@
 #include "Autoplay.h"
 
 #define NUMERO_PEDINE 7
+#define DIFFICOLTA 5
 t_node database_mosse[NUMERO_PEDINE]; /*situazione*/
 
 
@@ -10,7 +11,15 @@ t_node database_mosse[NUMERO_PEDINE]; /*situazione*/
 * Legge i valori da db_mosse e li passa a cord
 * Invoca select_pedina e traduce from->to
 */
-void catchInput_Autoplay(int *cord, t_node result){
+void catchInput_Autoplay(int *cord, t_node *db){
+	
+	int i;
+	for(i = 0; i < NUMERO_PEDINE; i++){
+		db[i] = minimax(board, db[i], DIFFICOLTA, turn);
+	}
+	
+	t_node result = select_pedina(database_mosse);
+	
 	cord[1] = result.start.x + 'a' + 1;
 	cord[0] = result.start.y + '0' + 1;
 	cord[3] = result.end.x + 'a' + 1;

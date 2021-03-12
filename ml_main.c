@@ -24,6 +24,8 @@ int success_input = 1; /*!< Flag che verifica la correttezza dell'input */
 
 int turn = 0; /*!< Contatore del turno corrente */
 
+int mode;  /*!< Modalità di gioco*/
+
 point from,to; /*!< Segnaposto dei punti di partenza e arrivo di ogni mossa */
 
 
@@ -50,34 +52,89 @@ int main(){
      * 3) credits --> printf
      * 4) exit
     */
+	
+	scanf("%d",&mode);
+	
+	
+	do{
+		if(mode == 1){
+			/*1vs1*/
+			do{
+				do{
 
-    /*Gioco 1v1*/
-    do{
-        do{
+					printStatus(turn); /*Status giocatore + n°turno */
+					printMatrix(board); /*Status scacchiera */
 
-            printStatus(turn); /*Status giocatore + n°turno */
-            printMatrix(board); /*Status scacchiera */
+					if(!success_move || !success_input){
+						inputError();
+					}
+					
+					success_input = catchInput(coordinate/*,board*/);
+					
+					from.x = coordinate[1];
+					from.y = coordinate[0];
+					to.x = coordinate[3];
+					to.y = coordinate[2];
+					
+					success_move = move(board,from,to,turn);
+				}while(!(success_input && success_move));/*Inserimento dati e mossa*/
+				turn++;
+			}while(!(isWinner(board,UserOne)||isWinner(board,UserTwo))); /*Controllo esistenza vincitore*/
 
-            if(!success_move || !success_input){
-                inputError();
-            }
-            success_input = catchInput(coordinate/*,board*/);
+			if(isWinner(board,UserOne))
+				victory(UserOne);
+			else{
+				victory(UserTwo);
+			}
 			
-			from.x = coordinate[1];
-			from.y = coordinate[0];
-			to.x = coordinate[3];
-			to.y = coordinate[2];
-			
-            success_move = move(board,from,to,turn);
-        }while(!(success_input && success_move));/*Inserimento dati e mossa*/
-        turn++;
-    }while(!(isWinner(board,UserOne)||isWinner(board,UserTwo))); /*Controllo esistenza vincitore*/
+		}
+		else if(mode == 2){
+			/*1vsCPU*/ /*TODO: ADATTARE AD AUTOPLAY*/
+			do{
+				do{
 
-    if(isWinner(board,UserOne))
-        victory(UserOne);
-    else{
-        victory(UserTwo);
-    }
+					printStatus(turn); /*Status giocatore + n°turno */
+					printMatrix(board); /*Status scacchiera */
+
+					if(!success_move || !success_input){
+						inputError();
+					}
+					
+					if(turn%2)
+						/*Input autoplay*/success_input = catchInput_Autoplay(coordinate, database_mosse);
+					else
+						success_input = catchInput(coordinate/*,board*/);
+					
+					
+					from.x = coordinate[1];
+					from.y = coordinate[0];
+					to.x = coordinate[3];
+					to.y = coordinate[2];
+					
+					success_move = move(board,from,to,turn);
+				}while(!(success_input && success_move));/*Inserimento dati e mossa*/
+				turn++;
+			}while(!(isWinner(board,UserOne)||isWinner(board,UserTwo))); /*Controllo esistenza vincitore*/
+
+			if(isWinner(board,UserOne))
+				victory(UserOne);
+			else{
+				victory(UserTwo);
+			}
+			
+			
+		}else if(mode == 3){
+			/*Credits*/
+			exit(0);
+		}
+		else{
+			/*Exits*/
+			printf("Esco...\n");
+			exit(0);
+		}
+		
+	}while(mode != 4);	
+    
 
     /*Liberazione memoria*/
     destroyMatrix(board);
