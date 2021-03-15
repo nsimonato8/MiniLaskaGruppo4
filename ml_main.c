@@ -12,6 +12,8 @@
 
 pedina **board = NULL; /*!< La scacchiera */
 
+t_node database_mosse[NUMERO_PEDINE]; /*!< La situazione*/
+
 
 int coordinate[4]; /*!< Array contenente le coordinate di partenza e di arrivo di ogni mossa */
 

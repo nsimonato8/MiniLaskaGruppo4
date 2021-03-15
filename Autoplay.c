@@ -4,7 +4,7 @@
 
 #define NUMERO_PEDINE 7
 #define DIFFICOLTA 5
-t_node database_mosse[NUMERO_PEDINE]; /*situazione*/
+
 
 
 /*
