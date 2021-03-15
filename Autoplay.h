@@ -14,7 +14,7 @@ struct s_node { /*coppia valore,mossa*/
 	pedina *data;
 };
 
-void catchInput_Autoplay(int *cord, t_node result);
+void catchInput_Autoplay(pedina **board, int *cord, t_node *db, int turn);
 
 int can_be_eaten(pedina **board, point p);
 

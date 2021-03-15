@@ -11,7 +11,7 @@ t_node database_mosse[NUMERO_PEDINE]; /*situazione*/
 * Legge i valori da db_mosse e li passa a cord
 * Invoca select_pedina e traduce from->to
 */
-void catchInput_Autoplay(int *cord, t_node *db){
+void catchInput_Autoplay(pedina **board, int *cord, t_node *db, int turn){
 	
 	int i;
 	for(i = 0; i < NUMERO_PEDINE; i++){

@@ -101,7 +101,7 @@ int main(){
 					}
 					
 					if(turn%2)
-						/*Input autoplay*/success_input = catchInput_Autoplay(coordinate, database_mosse);
+						/*Input autoplay*/success_input = catchInput_Autoplay(board, coordinate, database_mosse, turn);
 					else
 						success_input = catchInput(coordinate/*,board*/);
 					
