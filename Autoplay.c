@@ -18,7 +18,7 @@ void catchInput_Autoplay(pedina **board, int *cord, t_node *db, int turn){
 		db[i] = minimax(board, db[i], DIFFICOLTA, turn);
 	}
 	
-	t_node result = select_pedina(database_mosse);
+	t_node result = select_pedina(db);
 	
 	cord[1] = result.start.x + 'a' + 1;
 	cord[0] = result.start.y + '0' + 1;

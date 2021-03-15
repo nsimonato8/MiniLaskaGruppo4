@@ -14,7 +14,6 @@ pedina **board = NULL; /*!< La scacchiera */
 
 t_node database_mosse[NUMERO_PEDINE]; /*!< La situazione*/
 
-
 int coordinate[4]; /*!< Array contenente le coordinate di partenza e di arrivo di ogni mossa */
 
 
@@ -103,7 +102,7 @@ int main(){
 					}
 					
 					if(turn%2)
-						/*Input autoplay*/success_input = catchInput_Autoplay(board, coordinate, database_mosse, turn);
+						/*Input autoplay*/catchInput_Autoplay(board, coordinate, database_mosse, turn);
 					else
 						success_input = catchInput(coordinate/*,board*/);
 					
