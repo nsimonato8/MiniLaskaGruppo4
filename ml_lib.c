@@ -67,7 +67,7 @@ int right_path(dir direction, gr grade, id_p player){
 
 /*Ritorna 1 se input è una lettera da a ad g, altrimenti è 0*/
 int is_valid_letter(char input){
-    return ((input >= 65) && (input <= 71)) || ((input >= 97) && (input <= 103));
+    return ((input >= 'a') && (input <= 'g'));
 }
 
 /*Ritorna 1 se input è un numero da 1 a 7, altrimenti è 0*/
@@ -78,6 +78,16 @@ int is_valid_number(char input){
 /*Ritorna 1 se l'input da tastiera è valido, altrimenti è 0*/
 int is_valid_input(char input[5]){
     return is_valid_letter(input[0]) && is_valid_number(input[1]) && is_valid_letter(input[2]) && is_valid_number(input[3]);
+}
+
+void print_coord(int *c){
+    printf("\n");
+    for(int i=0;i<4;i++){
+        if(i%2==0)
+            printf("i: %d -> x= %d\n",i,c[i]);
+        else
+            printf("i: %d -> y= %d\n",i,c[i]);
+    }
 }
 
 /*---------------------------------SEZIONE FUNZIONI GESTIONE MEMORIA---------------------------------*/
@@ -159,63 +169,7 @@ void fillBoard(pedina** board){
  * FUNZIONE CHE PRENDE IN INPUT CORDINATE PER LO SPOSTAMENTO DELLA PEDINA
  * controllo aggiuntivo per non inserire coordinate di start su cella a null.
  * per la destinazione non posso mettere questo controllod
-*//*
-int catchInput(int *cord, pedina **board){
-    char *v = (char *)malloc(sizeof(char)*4);
-
-    do {
-        printf("\n\nInserisci le coordinate della pedina da muovere: \n\n");
-
-        printf("Coordinata Alfabetica: \n");
-
-        do {
-            if (scanf(" %c", &v[0]) != 1)
-                perror("Errore acquisizione coordinata");
-
-        } while (!(v[0] >= 'a' && v[0] <= 'g'));
-
-        cord[0] = ((v[0] - 96) - 1);
-
-        printf("Coordinata Numerica: \n");
-
-        do {
-            if (scanf(" %c", &v[1]) != 1)
-                perror("Errore acquisizione coordinata");
-
-        } while (!(v[1] >= '1' && v[1] <= '7'));
-
-        cord[1] = ((v[1] - '0') - 1);
-
-        if(get_board_value(board, cord[1], cord[0]) == 0)
-            printf("\nCella non selezionabile, reinserisci le coordinate\n");
-
-    }while(get_board_value(board, cord[1], cord[0]) == 0);
-
-    printf("\nInserisci le coordinate di destinazione: \n\n");
-
-    printf("Coordinata Alfabetica: \n");
-
-    do{
-        if(scanf(" %c",&v[2])!=1)
-            perror("Errore acquisizione coordinata");
-
-    }while(!(v[2]>='a' && v[2]<='g'));
-
-    cord[2]=((v[2]-96)-1);
-
-    printf("Coordinata Numerica: \n");
-
-    do{
-        if(scanf(" %c",&v[3])!=1)
-            perror("Errore acquisizione coordinata");
-
-    }while(!(v[3]>='1' && v[3]<='7'));
-
-    cord[3]=((v[3]-'0')-1);
-
-    return 1;
-}*/
-
+*/
 int catchInput(int *cord){
     char input[5];
     int success = 0;
@@ -230,10 +184,10 @@ int catchInput(int *cord){
             printf("\t\t[Input Error] Coordinate inserite non valide \n");
     }while(!success);
     
-    cord[0] = (input[0] - 96) - 1;
-    cord[1] = (input[1] - '0') - 1;
-    cord[2] = (input[2] - 96) - 1;
-    cord[3] = (input[3] - '0') - 1;
+    cord[0] = input[0] - 'a';
+    cord[1] = input[1] - '0' - 1;
+    cord[2] = input[2] - 'a';
+    cord[3] = input[3] - '0' - 1;
     
     return success;
     
@@ -389,16 +343,15 @@ int isWinner(pedina **board, id_p idPlayer) {
 */
 int my_move(pedina** board, point from, point to, int turn){
 
-    printf("\nMOVE From: %d,%d --> To: %d,%d", from.x,from.y,to.x ,to.y);
+    int success, d, grade_control, existM, legal_player;
 
-    int success, d, grade_control, existM, legal_player = 0;
-    
     success = 1;
     
     printf("\npedina from: %d\t",get_board_value(board,from));
     
     printf("pedina to: %d\t",get_board_value(board,to));
     
+    printf("\n 1 FROM x: %d, y: %d\n",from.x, from.y);
     printf("dist: ");
     d = distance(from,to);
     printf("%d|\t", d);
@@ -408,15 +361,13 @@ int my_move(pedina** board, point from, point to, int turn){
     printf("%d|\t", grade_control);
     
     printf("legal_player: ");
-    if(get_board_value(board,from)){
-        legal_player = (get_id_player(get_board_value(board,from)) == (turn %2));
-    }
-        
+    legal_player = (get_id_player(get_board_value(board,from)) == (turn %2));
     printf("%d|\t", legal_player);
     
     printf("exist m: ");
-    existM = existMandatory(board,from,to);
+    existM = existMandatory(board,from,to); /*Da rivederla*/
     printf("%d|\n", existM);
+    
     
     if(!legal_player || !get_board_value(board,from) || get_board_value(board,to) || d == -1 || !grade_control || existM){
         success = 0;
@@ -446,7 +397,7 @@ int my_move(pedina** board, point from, point to, int turn){
         }
         
         if(success && (to.y == 6 || to.y == 0)){ /*Controllo per l'aumento del grado della pedina*/
-            int tb = 0;
+            int tb;
             if(to.y == 6)
                 tb = 1;
             if(to.y == 0)
@@ -521,6 +472,9 @@ void capture(pedina **board, point from, point to){ /*Correggi con funzioni ausi
                 soldier->down = prisoner;
         }else
             soldier->middle = prisoner;
+        
+        prisoner->middle = 0;
+        prisoner->down = 0;
     }
     else{ /*In questo ramo la pedina catturata non ha pedine sottostanti*/
         set_board_value(board,mid,0);
@@ -543,21 +497,17 @@ void capture(pedina **board, point from, point to){ /*Correggi con funzioni ausi
 int gradeCheck(pedina **board, point from, point to){ /*IMPLEMENTA UP/DOWN*/
 
     int success = 1;
-    /*printf("\n\t\t GRADE CHECK");*/
     if(get_board_value(board,from)) { /* controlla se la casella è piena o vuota*/
-        /*printf("\n\n\t\t\t FROM: %d,%d --> to X,%d\n\n", from.x, from.y, to.y);*/
         if (!get_grade(get_board_value(board, from))) { /*controlla il grado della pedina*/
 
             if (!get_id_player(get_board_value(board, from))) {
 
                 if (to.y > from.y){
-                    /*printf("\n\n\t\t\t\t if toY %d > fromy %d\n\n", to.y,from.y);*/
                     success = 0;
                 }
 
             } else { /*controlla se la pedina appartiene al giocatore 1*/
                 if (to.y < from.y) {
-                    /*printf("\n\n\t\t\t\t if toY %d < fromy %d\n\n", to.y,from.y)*/;
                     success = 0;
                 }
             }
