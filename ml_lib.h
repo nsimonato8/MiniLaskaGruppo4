@@ -296,7 +296,57 @@ void inputError();
  * \defgroup Logiche Funzioni delle logiche di gioco
  * @{
  */
+ 
+ 
 
+/*! \fn is_legal_player(pedina **board, point from, int turn)
+*   \brief Verifica che il giocatore sia corretto
+*   \param board matrice linearizzata della scacchiera
+*   \param from punto di partenza della pedina
+*   \param turn numero del turno corrente
+*
+* 	Restituisce 1 se il giocatore che muove è abilitato a farlo, 0 altrimenti.
+*/ 
+int is_legal_player(pedina **board, point from, int turn);
+
+/*! \fn is_empty(pedina **board, point x)
+*   \brief Verifica che casella sia vuota
+*   \param board matrice linearizzata della scacchiera
+*   \param x punto di arrivo della pedina
+*
+* 	Restituisce 1 se la casella è vuota, 0 altrimenti.
+*/
+int is_empty(pedina **board, point x);
+
+/*! \fn is_full(pedina **board, point x)
+*   \brief Verifica che casella sia piena
+*   \param board matrice linearizzata della scacchiera
+*   \param x punto di partenza della pedina
+*
+* 	Restituisce 1 se la casella è piena, 0 altrimenti.
+*/
+int is_full(pedina **board, point x);
+
+/*! \fn is_valid_distance(point from, point to)
+*   \brief Verifica che la validità della lunghezza della mossa
+*   \param from punto di partenza della pedina
+*   \param to punto di arrivo della pedina
+*
+* 	Restituisce 1 se la distanza della mossa è valida, 0 altrimenti.
+*/
+int is_valid_distance(point from, point to);
+
+/*! \fn is_valid_move(pedina** board, point from, point to, int turn)
+*   \brief Verifica che la mossa selezionata sia legale
+*   \param board matrice linearizzata della scacchiera
+*   \param from punto di partenza della pedina
+*   \param to punto di arrivo della pedina
+*   \param turn numero del turno corrente
+*
+* 	Restituisce 1 se ila mossa from->to è valida, 0 altrimenti.
+*/
+int is_valid_move(pedina** board, point from, point to, int turn);
+ 
 /*! \fn isWinner(pedina **p, id_p player)
 *   \brief Verifica che il giocatore \a player abbia vinto
 *   \param board matrice linearizzata della scacchiera
