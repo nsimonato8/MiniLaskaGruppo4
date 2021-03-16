@@ -292,6 +292,28 @@ void inputError(){
 
 /*---------------------------------SEZIONE FUNZIONI LOGICHE DI GIOCO---------------------------------*/
 
+int is_legal_player(pedina **board, point from, int turn){
+	return get_id_player(get_board_value(board,from)) == (turn %2);
+}
+
+int is_empty(pedina **board, point x){
+	return !get_board_value(board,x);
+}
+
+int is_full(pedina **board, point x){
+	return get_board_value(board,x);
+}
+
+int is_valid_distance(point from, point to){
+	return distance(from,to) != -1;
+}
+
+int is_valid_move(pedina** board, point from, point to, int turn){
+	return is_legal_player(board,from,turn) && is_empty(board,to) && is_full(board,from) && is_valid_distance(from,to) && !existMandatory(board,from,to) && gradeCheck(board,from,to);
+}
+
+
+
 /* Verifica che il giocatore idPlayer abbia vinto
  * Restituisce 1 se idPlayer ha vinto, altrimenti 0
  * TODO: DA RIVEDERE QUANDO TI BLOCCANO
@@ -352,7 +374,7 @@ int move(pedina** board, point from, point to, int turn){
 	printf("%d|\t", grade_control);
 	
 	printf("legal_player: ");
-	legal_player = (get_id_player(get_board_value(board,from)) == (turn %2));
+	legal_player = is_legal_player(board,from,turn);
 	printf("%d|\t", legal_player);
 	
 	printf("exist m: ");
@@ -360,7 +382,7 @@ int move(pedina** board, point from, point to, int turn){
 	printf("%d|\n", existM);
 	
     
-	if(!legal_player || !get_board_value(board,from) || get_board_value(board,to) || d == -1 || !grade_control || existM){
+	if(!is_valid_move(board,from,to,turn)){
         success = 0;
     } else{
         if(d == 1){

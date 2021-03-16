@@ -56,14 +56,19 @@ int can_be_eaten(pedina **board, point p){
 	return success;
 }
 
+/*
+* Routine di controllo per la chiamata ricorsiva di minimax()
+*/
 void check_son(pedina **board, t_node *res, int x, int y, t_node *node, int *alfa, int depth, int turn){
 	(*res).end.x = (*node).end.x + x;
 	(*res).end.y = (*node).end.y + y;
-	if (can_eat(board,(*res).end) || can_move(board,(*res).end)){
+	if(is_valid_move(board,res->start,res->end,turn)){
+		if (can_eat(board,(*res).end) || can_move(board,(*res).end)){
 		*res = minimax(board,(*res),depth-1,turn+1);
 		if(*alfa < res->alfa)
 			*alfa = res->alfa;
-	}	
+		}
+	}
 }
 
 int evaluate(pedina **board, t_node node){
