@@ -1,6 +1,16 @@
+//
+//  ml_lib.h
+//  ML_V3
+//
+//  Created by Giovanni Rocchini on 15/03/21.
+//
+
+#ifndef ml_lib_h
+#define ml_lib_h
+
 /*! \file ml_lib.h
     \brief Header della libreria ml_lib
-	 *
+     *
     Questo file contiene le definizioni di tutte le strutture e delle funzioni che compongono la libreria ml_lib
 */
 
@@ -60,7 +70,7 @@ struct punto{
 *   \param p puntatore ad una pedina
 *   \param value il valore da settare
 *
-*	Imposta il proprietario della pedina.
+*    Imposta il proprietario della pedina.
 */
 void set_id_player(pedina *p, id_p value);
 
@@ -68,17 +78,17 @@ void set_id_player(pedina *p, id_p value);
 *   \brief Ritorna \a id_player dalla pedina \a *p specificata
 *   \param p puntatore ad una pedina
 *
-*	Ritorna il proprietario della pedina.
+*    Ritorna il proprietario della pedina.
 */
 id_p get_id_player(pedina *p);
 
 /*! \fn set_board_value(pedina **board, point p, pedina *value)
 *   \brief Imposta la pedina \a value nella posizione \a x , \a y nella scacchiera \a board
 *   \param board matrice linearizzata della scacchiera
-*	\param p punto in cui si trova la pedina nella scacchiera
-*	\param value la pedina da inserire
+*    \param p punto in cui si trova la pedina nella scacchiera
+*    \param value la pedina da inserire
 *
-*	Imposta il valore value nella posizione indicata nella scacchiera.
+*    Imposta il valore value nella posizione indicata nella scacchiera.
 */
 void set_board_value(pedina **board, point p, pedina *value);
 
@@ -87,35 +97,35 @@ void set_board_value(pedina **board, point p, pedina *value);
 *   \param board matrice linearizzata della scacchiera
 *   \param p punto in cui si trova la pedina nella scacchiera
 *
-*	Ritorna il puntatore alla pedina nella posizione x,y di board.
+*    Ritorna il puntatore alla pedina nella posizione x,y di board.
 */
 pedina* get_board_value(pedina **board, point p);
 
 /*! \fn get_board_value_immediate(pedina **board, int x, int y)
 *   \brief Ritorna la \a pedina contenuta nella posizione \a x , \a y di \a board
 *   \param board matrice linearizzata della scacchiera
-*	\param x coordinata x della cella desiderata
-*	\param y coordinata y della cella desiderata
+*    \param x coordinata x della cella desiderata
+*    \param y coordinata y della cella desiderata
 *
-*	Ritorna il puntatore alla pedina nella posizione x,y di board.
+*    Ritorna il puntatore alla pedina nella posizione x,y di board.
 */
 pedina* get_board_value_immediate(pedina **board, int x, int y);
 
 /*! \fn get_board_value_middle(pedina **board, point p)
 *   \brief Ritorna la \a pedina "middle" contenuta nella posizione \a x , \a y di \a board
 *   \param board matrice linearizzata della scacchiera
-*	\param p punto in cui si trova la pedina nella scacchiera
+*    \param p punto in cui si trova la pedina nella scacchiera
 *
-*	Ritorna il valore della pedina middle nella posizione x,y di board.
+*    Ritorna il valore della pedina middle nella posizione x,y di board.
 */
 pedina* get_board_value_middle(pedina **board, point p);
 
 /*! \fn get_board_value_down(pedina **board, point p)
 *   \brief Ritorna la \a pedina "down" contenuta nella posizione \a x, \a y di \a board
 *   \param board matrice linearizzata della scacchiera
-*	\param p punto in cui si trova la pedina nella scacchiera
+*    \param p punto in cui si trova la pedina nella scacchiera
 
-*	Ritorna il valore della pedina down nella posizione indicata nella scacchiera.
+*    Ritorna il valore della pedina down nella posizione indicata nella scacchiera.
 */
 pedina* get_board_value_down(pedina **board, point p);
 
@@ -132,26 +142,26 @@ void set_grade(pedina *p,gr value);
 *   \brief Ritorna il grado \a value della pedina indicata dal puntatore \a p
 *   \param p puntatore ad una pedina
 *
-*	Ritorna il grado di una pedina.
+*    Ritorna il grado di una pedina.
 */
 gr get_grade(pedina *p);
 
 /*! \fn is_inside(int x, int y)
 *   \brief Indica se \a x, \ay è dentro alla scacchiera
-*	\param x coordinata x della cella desiderata
-*	\param y coordinata y della cella desiderata
+*    \param x coordinata x della cella desiderata
+*    \param y coordinata y della cella desiderata
 *
-*	Indica se la posizione desiderata è dentro alla scacchiera
+*    Indica se la posizione desiderata è dentro alla scacchiera
 */
 int is_inside(int x, int y);
 
 /*! \fn right_path(int direction, gr grade, id_p player)
 *   \brief Indica se la direzione è corretta
-*	\param direction direzione della pedina (1 il basso, 0 l'alto)
-*	\param grade grado della pedina
-*	\param player giocatore
+*    \param direction direzione della pedina (1 il basso, 0 l'alto)
+*    \param grade grado della pedina
+*    \param player giocatore
 *
-*	Ritorna 1 se la direzione della pedina è giusta, basandosi sul giocatore e sul grado di essa
+*    Ritorna 1 se la direzione della pedina è giusta, basandosi sul giocatore e sul grado di essa
 */
 int right_path(dir direction, gr grade, id_p player);
 
@@ -159,7 +169,7 @@ int right_path(dir direction, gr grade, id_p player);
 *   \brief Verifica che input sia una lettera
 *   \param input char da verificare
 *
-*	Ritorna 1 se input è una lettera da a ad g, altrimenti è 0
+*    Ritorna 1 se input è una lettera da a ad g, altrimenti è 0
 */
 int is_valid_letter(char input);
 
@@ -167,7 +177,7 @@ int is_valid_letter(char input);
 *   \brief Verifica che input sia un numero
 *   \param input char da verificare
 *
-*	Ritorna 1 se input è un numero da 1 a 7, altrimenti è 0
+*    Ritorna 1 se input è un numero da 1 a 7, altrimenti è 0
 */
 int is_valid_number(char input);
 
@@ -175,7 +185,7 @@ int is_valid_number(char input);
 *   \brief Verifica che la stringa in input sia valida
 *   \param input stringa da verificare
 *
-*	Ritorna 1 se la stringa input è un input valido
+*    Ritorna 1 se la stringa input è un input valido
 */
 /*Ritorna 1 se l'input da tastiera è valido, altrimenti è 0*/
 int is_valid_input(char input[5]);
@@ -192,15 +202,15 @@ int is_valid_input(char input[5]);
 /*! \fn **createMatrix()
 *   \brief Funzione che crea la matrice della scacchiera
 *
-* 	Ritorna un puntatore di tipo \a pedina** ad una matrice bidimensionale di puntatori a pedina linearizzata.
+*     Ritorna un puntatore di tipo \a pedina** ad una matrice bidimensionale di puntatori a pedina linearizzata.
 */
-pedina **createMatrix();
+pedina **createMatrix(void);
 
 /*! \fn destroyMatrix(pedina **p)
 *   \brief Distrugge la matrice della scacchiera
 *   \param board matrice linearizzata della scacchiera
 *
-*	Funzione che dealloca la memoria della matrice della scacchiera.
+*    Funzione che dealloca la memoria della matrice della scacchiera.
 */
 void destroyMatrix(pedina **board);
 
@@ -208,7 +218,7 @@ void destroyMatrix(pedina **board);
 *   \brief Riempie la scacchiera con le pedine
 *   \param board matrice linearizzata della scacchiera
 *
-*	Riempie la scacchiera con le pedine. Il giocatore 1 ( \a UserOne) sarà posizionato nella parte bassa della scacchiera.
+*    Riempie la scacchiera con le pedine. Il giocatore 1 ( \a UserOne) sarà posizionato nella parte bassa della scacchiera.
 */
 void fillBoard(pedina **board);
 
@@ -223,10 +233,10 @@ void fillBoard(pedina **board);
 
 /*! \fn catchInput(int *cord, pedina **board)
 *   \brief Legge l'input da tastiera
-*	\param cord array contenente le coordinate di partenza e destinazione della pedina
+*    \param cord array contenente le coordinate di partenza e destinazione della pedina
 *   \param board matrice linearizzata della scacchiera
 *
-* 	Legge l'input dall'utente e traduce le coordinate in int, che vengono inseriti in un array apposito.
+*     Legge l'input dall'utente e traduce le coordinate in int, che vengono inseriti in un array apposito.
 */
 int catchInput(int *cord /*, pedina **board */);
 
@@ -241,52 +251,52 @@ int catchInput(int *cord /*, pedina **board */);
 
 /*! \fn printPedina(pedina *p)
 *   \brief Stampa una lettera rappresentante la pedina
-*	\param p puntatore alla pedina
+*    \param p puntatore alla pedina
 *
-*	Stampa un carattere ASCII identificativo del contenuto della casella p:
-* 	<ul>
-* 		<li>b/n se il giocatore è bianco o nero ( \a UserOne / \a UserTwo).</li>
-* 		<li>maiuscola/minuscola se la pedina è ufficiale/soldato.</li>
-* 	</ul>
+*    Stampa un carattere ASCII identificativo del contenuto della casella p:
+*     <ul>
+*         <li>b/n se il giocatore è bianco o nero ( \a UserOne / \a UserTwo).</li>
+*         <li>maiuscola/minuscola se la pedina è ufficiale/soldato.</li>
+*     </ul>
 */
 void printPedina(pedina *p);
 
 /*! \fn printMatrix(pedina **p)
 *   \brief Stampa la scacchiera
-*	\param board matrice linearizzata della scacchiera
+*    \param board matrice linearizzata della scacchiera
 *
-*	Funzione che stampa la scacchiera con una cornice che definisce le coordinate.
+*    Funzione che stampa la scacchiera con una cornice che definisce le coordinate.
 */
 void printMatrix(pedina **board);
 
 /*! \fn printStatus(int turn)
 *   \brief Stampa lo stato del gioco
-*	\param turn numero dei turni passati
+*    \param turn numero dei turni passati
 *
-*	Stampa lo status del gioco (numero del turno e giocatore che deve muovere).
+*    Stampa lo status del gioco (numero del turno e giocatore che deve muovere).
 */
 void printStatus(int turn);
 
 /*! \fn printRules()
-*	\brief Stampa le regole del gioco
+*    \brief Stampa le regole del gioco
 *
-*	Stampa le regole del gioco.
+*    Stampa le regole del gioco.
 */
-void printRules();
+void printRules(void);
 
 /*! \fn victory(id_p winner)
-*	\brief Schermata di vittoria
+*    \brief Schermata di vittoria
 *
-*	Stampa il vincitore del gioco.
+*    Stampa il vincitore del gioco.
 */
 void victory(id_p winner);
 
 /*! \fn inputError()
-*	\brief Schermata di errore di input
+*    \brief Schermata di errore di input
 *
-*	Fornisce informazioni in caso di inserimento dati scorretto.
+*    Fornisce informazioni in caso di inserimento dati scorretto.
 */
-void inputError();
+void inputError(void);
 
 /**@}*/
 
@@ -296,64 +306,13 @@ void inputError();
  * \defgroup Logiche Funzioni delle logiche di gioco
  * @{
  */
- 
- 
-
-/*! \fn is_legal_player(pedina **board, point from, int turn)
-*   \brief Verifica che il giocatore sia corretto
-*   \param board matrice linearizzata della scacchiera
-*   \param from punto di partenza della pedina
-*   \param turn numero del turno corrente
-*
-* 	Restituisce 1 se il giocatore che muove è abilitato a farlo, 0 altrimenti.
-*/ 
-int is_legal_player(pedina **board, point from, int turn);
-
-/*! \fn is_empty(pedina **board, point x)
-*   \brief Verifica che casella sia vuota
-*   \param board matrice linearizzata della scacchiera
-*   \param x punto di arrivo della pedina
-*
-* 	Restituisce 1 se la casella è vuota, 0 altrimenti.
-*/
-int is_empty(pedina **board, point x);
-
-/*! \fn is_full(pedina **board, point x)
-*   \brief Verifica che casella sia piena
-*   \param board matrice linearizzata della scacchiera
-*   \param x punto di partenza della pedina
-*
-* 	Restituisce 1 se la casella è piena, 0 altrimenti.
-*/
-int is_full(pedina **board, point x);
-
-/*! \fn is_valid_distance(point from, point to)
-*   \brief Verifica che la validità della lunghezza della mossa
-*   \param from punto di partenza della pedina
-*   \param to punto di arrivo della pedina
-*
-* 	Restituisce 1 se la distanza della mossa è valida, 0 altrimenti.
-*/
-int is_valid_distance(point from, point to);
-
-/*! \fn is_valid_move(pedina** board, point from, point to, int turn)
-*   \brief Verifica che la mossa selezionata sia legale
-*   \param board matrice linearizzata della scacchiera
-*   \param from punto di partenza della pedina
-*   \param to punto di arrivo della pedina
-*   \param turn numero del turno corrente
-*
-* 	Restituisce 1 se ila mossa from->to è valida, 0 altrimenti.
-*/
-int is_valid_move(pedina** board, point from, point to, int turn);
- 
 /*! \fn isWinner(pedina **p, id_p player)
 *   \brief Verifica che il giocatore \a player abbia vinto
 *   \param board matrice linearizzata della scacchiera
 *   \param idPlayer giocatore selezionato
 *
-*	Verifica che il giocatore \a idPlayer abbia vinto.
-*	Restituisce 1 se idPlayer ha vinto, altrimenti 0.
+*    Verifica che il giocatore \a idPlayer abbia vinto.
+*    Restituisce 1 se idPlayer ha vinto, altrimenti 0.
 */
 int isWinner(pedina **board, id_p player);
 
@@ -361,7 +320,7 @@ int isWinner(pedina **board, id_p player);
 *   \brief Verifica che la cella sia accessibile
 *   \param p punto in cui si trova la pedina nella scacchiera
 *
-*	Restituisce 1 se la cella non è accessibile (si possono usare solo le celle bianche della scacchiera), altrimenti 0.
+*    Restituisce 1 se la cella non è accessibile (si possono usare solo le celle bianche della scacchiera), altrimenti 0.
 */
 int isForbiddenCell(point p);
 
@@ -372,21 +331,21 @@ int isForbiddenCell(point p);
 *   \param to punto di arrivo della pedina
 *   \param turn numero del turno corrente
 *
-* 	Restituisce 1 se la mossa è stata fatta, 0 se non è stato possibile.
-* 	Le coordinate inserite sono corrette in fase di input (sono all'interno della scacchiera e non sono caselle proibite).
-* 	Verifica che la distanza ed il grado siano compatibili con la mossa.
+*     Restituisce 1 se la mossa è stata fatta, 0 se non è stato possibile.
+*     Le coordinate inserite sono corrette in fase di input (sono all'interno della scacchiera e non sono caselle proibite).
+*     Verifica che la distanza ed il grado siano compatibili con la mossa.
 */
-int move(pedina** board, point from, point to, int turn); 
+int my_move(pedina** board, point from, point to, int turn);
 
 /*! \fn distance(point from, point to)
 *   \brief Restituisce un codice che descrive la lunghezza della mossa
 *   \param from punto di partenza della pedina
 *   \param to punto di arrivo della pedina
 *
-*	Restituisce la distanza in modulo tra due punti nella matrice:
-*	Se è maggiore di 2, uguale a 0, o la destinazione è in una casella non accessibile restituisce il codice errore -1.
+*    Restituisce la distanza in modulo tra due punti nella matrice:
+*    Se è maggiore di 2, uguale a 0, o la destinazione è in una casella non accessibile restituisce il codice errore -1.
 *
-*	Le coordinate inserite sono corrette (la destinazione non è una casella proibita).
+*    Le coordinate inserite sono corrette (la destinazione non è una casella proibita).
 */
 int distance(point from, point to);
 
@@ -396,8 +355,8 @@ int distance(point from, point to);
 *   \param from punto di partenza della pedina
 *   \param to punto di arrivo della pedina
 *
-* 	Questa funzione si occupa di catturare le pedine indicate.
-* 	Si assume la correttezza delle coordinate inserite, la legalità della mossa è verificata nella funzione move().
+*     Questa funzione si occupa di catturare le pedine indicate.
+*     Si assume la correttezza delle coordinate inserite, la legalità della mossa è verificata nella funzione move().
 */
 void capture(pedina **board, point from, point to);
 
@@ -407,8 +366,8 @@ void capture(pedina **board, point from, point to);
 *   \param from punto di partenza della pedina
 *   \param to punto di arrivo della pedina
 *
-*	Verifica il grado della pedina mossa:
-*	restituisce 1 se la mossa è consentita, 0 se non è consentita.
+*    Verifica il grado della pedina mossa:
+*    restituisce 1 se la mossa è consentita, 0 se non è consentita.
 */
 int gradeCheck(pedina **board, point from, point to);
 
@@ -417,7 +376,7 @@ int gradeCheck(pedina **board, point from, point to);
 *   \param board matrice linearizzata della scacchiera
 *   \param p punto in cui si trova la pedina nella scacchiera
 *
-*	Verifica la possibilità della pedina in \a x , \a y di mangiare le pedine avversarie intorno a sé
+*    Verifica la possibilità della pedina in \a x , \a y di mangiare le pedine avversarie intorno a sé
 */
 int can_eat(pedina **board, point p);
 
@@ -426,7 +385,7 @@ int can_eat(pedina **board, point p);
 *   \param board matrice linearizzata della scacchiera
 *   \param p punto in cui si trova la pedina nella scacchiera
 *
-*	Verifica la possibilità della pedina in \a x , \a y di muoversi nelle caselle adiacenti
+*    Verifica la possibilità della pedina in \a x , \a y di muoversi nelle caselle adiacenti
 */
 int can_move(pedina **board, point p);
 
@@ -436,9 +395,14 @@ int can_move(pedina **board, point p);
 *   \param from punto di partenza della pedina
 *   \param to punto di arrivo della pedina
 *
-*	Verifica se, nel caso di non cattura, esiste una cattura obbligatoria da fare.
-*	Restituisce 1 se esiste una mossa obbligatoria non tentata, altrimenti 0.
+*    Verifica se, nel caso di non cattura, esiste una cattura obbligatoria da fare.
+*    Restituisce 1 se esiste una mossa obbligatoria non tentata, altrimenti 0.
 */
 int existMandatory(pedina **board, point from, point to);
 
 /**@}*/
+
+void print_coord(int *c);
+
+
+#endif /* ml_lib_h */

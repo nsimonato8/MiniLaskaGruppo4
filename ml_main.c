@@ -1,7 +1,7 @@
 /*! \file ml_main.c
 *   \brief Il main di MiniLaska
 *
-*	Questo file contiene il programma del gioco MiniLaska, che utilizza la libreria ml_lib
+*    Questo file contiene il programma del gioco MiniLaska, che utilizza la libreria ml_lib
 */
 
 #include <stdio.h>
@@ -32,7 +32,7 @@ point from,to; /*!< Segnaposto dei punti di partenza e arrivo di ogni mossa */
 
 /*! \fn main()
 *
-*	Funzione principale del gioco
+*    Funzione principale del gioco
 */
 int main(){
 
@@ -44,6 +44,10 @@ int main(){
     printf("Riempimento campo di gioco...\n");
 
     fillBoard(board);
+    
+    create_db(database_mosse);
+    
+    fill_db(database_mosse, board);
 
     printRules();
 
@@ -53,88 +57,99 @@ int main(){
      * 3) credits --> printf
      * 4) exit
     */
-	
-	scanf("%d",&mode);
-	
-	
-	do{
-		if(mode == 1){
-			/*1vs1*/
-			do{
-				do{
+    
+    scanf("%d",&mode);
+    
+    
+    do{
+        if(mode == 1){
+            /*1vs1*/
+            do{
+                do{
 
-					printStatus(turn); /*Status giocatore + n°turno */
-					printMatrix(board); /*Status scacchiera */
+                    printStatus(turn); /*Status giocatore + n°turno */
+                    printMatrix(board); /*Status scacchiera */
 
-					if(!success_move || !success_input){
-						inputError();
-					}
-					
-					success_input = catchInput(coordinate/*,board*/);
-					
-					from.x = coordinate[1];
-					from.y = coordinate[0];
-					to.x = coordinate[3];
-					to.y = coordinate[2];
-					
-					success_move = move(board,from,to,turn);
-				}while(!(success_input && success_move));/*Inserimento dati e mossa*/
-				turn++;
-			}while(!(isWinner(board,UserOne)||isWinner(board,UserTwo))); /*Controllo esistenza vincitore*/
+                    if(!success_move || !success_input){
+                        inputError();
+                    }
+                    
+                    success_input = catchInput(coordinate/*,board*/);
+                    
+                    from.x = coordinate[1];
+                    from.y = coordinate[0];
+                    to.x = coordinate[3];
+                    to.y = coordinate[2];
+                    
+                    success_move = my_move(board,from,to,turn);
+                }while(!(success_input && success_move));/*Inserimento dati e mossa*/
+                turn++;
+            }while(!(isWinner(board,UserOne)||isWinner(board,UserTwo))); /*Controllo esistenza vincitore*/
 
-			if(isWinner(board,UserOne))
-				victory(UserOne);
-			else{
-				victory(UserTwo);
-			}
-			
-		}
-		else if(mode == 2){
-			/*1vsCPU*/ /*TODO: ADATTARE AD AUTOPLAY*/
-			do{
-				do{
+            if(isWinner(board,UserOne))
+                victory(UserOne);
+            else{
+                victory(UserTwo);
+            }
+            
+        }
+        else if(mode == 2){
+            /*1vsCPU*/ /*TODO: ADATTARE AD AUTOPLAY*/
+            do{
+                do{
 
-					printStatus(turn); /*Status giocatore + n°turno */
-					printMatrix(board); /*Status scacchiera */
+                    printStatus(turn); /*Status giocatore + n°turno */
+                    printMatrix(board); /*Status scacchiera */
 
-					if(!success_move || !success_input){
-						inputError();
-					}
-					
-					if(turn%2)
-						/*Input autoplay*/catchInput_Autoplay(board, coordinate, database_mosse, turn);
-					else
-						success_input = catchInput(coordinate/*,board*/);
-					
-					
-					from.x = coordinate[1];
-					from.y = coordinate[0];
-					to.x = coordinate[3];
-					to.y = coordinate[2];
-					
-					success_move = move(board,from,to,turn);
-				}while(!(success_input && success_move));/*Inserimento dati e mossa*/
-				turn++;
-			}while(!(isWinner(board,UserOne)||isWinner(board,UserTwo))); /*Controllo esistenza vincitore*/
+                    if(!success_move || !success_input){
+                        inputError();
+                    }
+                    
+                    if(turn%2){
+                       /* printf("\n INSIDE TURNO 2 IF\n");
+                        printf("\n Prima\n");
+                        print_coord(coordinate);*/
+                        
+                        /*Input autoplay*/catchInput_Autoplay(board, coordinate, database_mosse, turn);
+                       
+                        /* printf("\n Dopo");
+                        print_coord(coordinate);
+                        print_datab(database_mosse);
+                        printf("\nAuto main: from.x %d, from.y %d, to.x %d, to.y %d\n",from.x,from.y,to.x,to.y );*/
+                    }
+                    else
+                        success_input = catchInput(coordinate/*,board*/);
+                    
+                    
+                    from.x = coordinate[1];
+                    from.y = coordinate[0];
+                    to.x = coordinate[3];
+                    to.y = coordinate[2];
+                    
+                    
+                    success_move = my_move(board,from,to,turn);
+                }while(!(success_input && success_move));/*Inserimento dati e mossa*/
+                turn++;
+            }while(!(isWinner(board,UserOne)||isWinner(board,UserTwo))); /*Controllo esistenza vincitore*/
 
-			if(isWinner(board,UserOne))
-				victory(UserOne);
-			else{
-				victory(UserTwo);
-			}
-			
-			
-		}else if(mode == 3){
-			/*Credits*/
-			exit(0);
-		}
-		else{
-			/*Exits*/
-			printf("Esco...\n");
-			exit(0);
-		}
-		
-	}while(mode != 4);	
+            if(isWinner(board,UserOne))
+                victory(UserOne);
+            else{
+                victory(UserTwo);
+            }
+            
+            
+        }else if(mode == 3){
+            /*Credits*/
+            exit(0);
+        }
+        else{
+            /*Exits*/
+            printf("Esco...\n");
+            exit(0);
+        }
+        
+    }while(mode != 4);
     
 
     /*Liberazione memoria*/
