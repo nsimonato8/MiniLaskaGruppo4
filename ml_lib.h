@@ -1,10 +1,3 @@
-//
-//  ml_lib.h
-//  ML_V3
-//
-//  Created by Giovanni Rocchini on 15/03/21.
-//
-
 #ifndef ml_lib_h
 #define ml_lib_h
 
@@ -24,7 +17,7 @@
 #define COL 7
 
 /*! Definizione dei due giocatori esistenti*/
-typedef enum {UserOne, UserTwo} id_p;
+typedef enum {Umano, Ai} id_p; /**/
 
 /*! Definizione dei due possibili gradi della pedina*/
 typedef enum {Soldier, Officer} gr;
@@ -35,6 +28,7 @@ typedef enum {Up, Down} dir;
 /*! Rinominazione del tipo struct cella in pedina, per praticità di scrittura*/
 typedef struct cella pedina;
 
+/*! Rinominazione del tipo struct punto in point, per praticità di scrittura*/
 typedef struct punto point;
 
 /*!Definizione del tipo pedina*/
@@ -187,8 +181,16 @@ int is_valid_number(char input);
 *
 *    Ritorna 1 se la stringa input è un input valido
 */
-/*Ritorna 1 se l'input da tastiera è valido, altrimenti è 0*/
 int is_valid_input(char input[5]);
+
+/*! \fn add_point(point p, point l)
+*   \brief Modifica lo stato di un punto
+*   \param p Punto da modificare
+*    \param l Punto da  aggiungere a p
+*
+*    Effettua la somma vettoriale di p e l
+*/
+point add_point(point p, point l);
 
 /**@}*/
 
@@ -204,7 +206,16 @@ int is_valid_input(char input[5]);
 *
 *     Ritorna un puntatore di tipo \a pedina** ad una matrice bidimensionale di puntatori a pedina linearizzata.
 */
-pedina **createMatrix(void);
+pedina **createMatrix();
+
+/*! \fn cloneMatrix(pedina **board, pedina **new_board)
+*   \brief Clona la matrice contenuta in board nella matrice new_board
+*    \param board matrice linearizzata della scacchiera
+*    \param new_board matrice in cui verrà clonato il contenuto di board
+*
+*     Copia il contenuto di board in new_board
+*/
+pedina** cloneMatrix(pedina **board);
 
 /*! \fn destroyMatrix(pedina **p)
 *   \brief Distrugge la matrice della scacchiera
@@ -218,7 +229,7 @@ void destroyMatrix(pedina **board);
 *   \brief Riempie la scacchiera con le pedine
 *   \param board matrice linearizzata della scacchiera
 *
-*    Riempie la scacchiera con le pedine. Il giocatore 1 ( \a UserOne) sarà posizionato nella parte bassa della scacchiera.
+*    Riempie la scacchiera con le pedine. Il giocatore 1 ( \a Umano) sarà posizionato nella parte bassa della scacchiera.
 */
 void fillBoard(pedina **board);
 
@@ -255,7 +266,7 @@ int catchInput(int *cord /*, pedina **board */);
 *
 *    Stampa un carattere ASCII identificativo del contenuto della casella p:
 *     <ul>
-*         <li>b/n se il giocatore è bianco o nero ( \a UserOne / \a UserTwo).</li>
+*         <li>b/n se il giocatore è bianco o nero ( \a Umano / \a Ai).</li>
 *         <li>maiuscola/minuscola se la pedina è ufficiale/soldato.</li>
 *     </ul>
 */
@@ -282,7 +293,7 @@ void printStatus(int turn);
 *
 *    Stampa le regole del gioco.
 */
-void printRules(void);
+void printRules();
 
 /*! \fn victory(id_p winner)
 *    \brief Schermata di vittoria
@@ -291,12 +302,19 @@ void printRules(void);
 */
 void victory(id_p winner);
 
+/*! \fn moveError()
+*    \brief Schermata di errore di gioco
+*
+*    Fornisce informazioni in caso di mossa inserita non corretta.
+*/
+void moveError(pedina **board, int cord[4], int turn);
+
 /*! \fn inputError()
 *    \brief Schermata di errore di input
 *
 *    Fornisce informazioni in caso di inserimento dati scorretto.
 */
-void inputError(void);
+void inputError(int cord[4]);
 
 /**@}*/
 
@@ -306,6 +324,73 @@ void inputError(void);
  * \defgroup Logiche Funzioni delle logiche di gioco
  * @{
  */
+ 
+ /*! \fn is_same_team(pedina **board, point a, point b)
+*   \brief Verifica che due pedine siano della stessa squadra
+*   \param board matrice linearizzata della scacchiera
+*   \param a prima pedina
+*   \param b seconda pedina
+*
+*     Restituisce 1 se le due pedine a e appartengono alla stessa squadra
+*/
+int is_same_team(pedina **board, point a, point b);
+
+/*! \fn is_legal_player(pedina **board, point from, int turn)
+*   \brief Verifica che il giocatore sia corretto
+*   \param board matrice linearizzata della scacchiera
+*   \param from punto di partenza della pedina
+*   \param turn numero del turno corrente
+*
+*     Restituisce 1 se il giocatore che muove è abilitato a farlo, 0 altrimenti.
+*/
+int is_legal_player(pedina **board, point from, int turn);
+
+/*! \fn is_empty(pedina **board, point x)
+*   \brief Verifica che casella sia vuota
+*   \param board matrice linearizzata della scacchiera
+*   \param x punto di arrivo della pedina
+*
+*     Restituisce 1 se la casella è vuota, 0 altrimenti.
+*/
+int is_empty(pedina **board, point x);
+
+/*! \fn is_full(pedina **board, point x)
+*   \brief Verifica che casella sia piena
+*   \param board matrice linearizzata della scacchiera
+*   \param x punto di partenza della pedina
+*
+*     Restituisce 1 se la casella è piena, 0 altrimenti.
+*/
+int is_full(pedina **board, point x);
+
+/*! \fn is_valid_distance(point from, point to)
+*   \brief Verifica che la validità della lunghezza della mossa
+*   \param from punto di partenza della pedina
+*   \param to punto di arrivo della pedina
+*
+*     Restituisce 1 se la distanza della mossa è valida, 0 altrimenti.
+*/
+int is_valid_distance(point from, point to);
+
+/*! \fn is_valid_move(pedina** board, point from, point to, int turn)
+*   \brief Verifica che la mossa selezionata sia legale
+*   \param board matrice linearizzata della scacchiera
+*   \param from punto di partenza della pedina
+*   \param to punto di arrivo della pedina
+*   \param turn numero del turno corrente
+*
+*     Restituisce 1 se la mossa from->to è valida, 0 altrimenti.
+*/
+int is_valid_move(pedina** board, point from, point to, int turn);
+
+/*! \fn increase_grade(pedina **board, point soldier)
+*   \brief Verifica che la pedina soldier sia sa promuovere
+*   \param board matrice linearizzata della scacchiera
+*   \param soldier pedina candidata alla promozione
+*
+*     Se la pedina soldier è nella condizione di essere promossa la promuove
+*/
+void increase_grade(pedina **board, point soldier);
 
 /*! \fn isWinner(pedina **p, id_p player)
 *   \brief Verifica che il giocatore \a player abbia vinto
@@ -402,8 +487,6 @@ int can_move(pedina **board, point p);
 int existMandatory(pedina **board, point from, point to);
 
 /**@}*/
-
-void print_coord(int *c);
 
 
 #endif /* ml_lib_h */

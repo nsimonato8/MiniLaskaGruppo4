@@ -1,204 +1,324 @@
-#include<stdio.h>
-#include<limits.h>
-#include "Autoplay.h"
+#include"Autoplay.h"
 
-#define NUMERO_PEDINE 11
-#define DIFFICOLTA 5
-
-/*
-* Legge i valori da db_mosse e li passa a cord
-* Invoca select_pedina e traduce from->to
+/*Ai:
+    Soldier: (1,1) , (-1,1) , (2,2) , (-2,2)
+    Officer: Soldier, (1,-1) ,(-1,-1) , (2,-2) , (-2,-2)
+*/
+/*Umano:
+    Soldier: (1,-1) ,(-1,-1) , (2,-2) , (-2,-2)
+    Officer: Soldier , (1,1) , (-1,1) , (2,2) , (-2,2)
 */
 
-void print_datab(t_node *db){
-    for(int i=0;i<NUMERO_PEDINE;i++){
-        printf("\nAlfa: %d",db[i].alfa);
-        printf("\nStart.x: %d",db[i].start.x);
-        printf("\nStart.y: %d",db[i].start.y);
-        printf("\nEnd.x: %d",db[i].end.x);
-        printf("\nEnd.y: %d",db[i].end.y);
-        printf("\n");
-    }
-}
+/*TODO:
+1- Obbligo mangiare in select_pedina
+2-
+*/
 
-void create_db(t_node *db){
-    db = (t_node*) malloc (sizeof(t_node)*NUMERO_PEDINE);
-}
-
-void fill_db(t_node *db, pedina **board){
-    int i=0;
-    int j;
-    int k;
-    int f=0;
+/*
+* Invoca minimax e restituisce la mossa (start,end) migliore
+*/
+int catchInput_Autoplay(pedina **board, int turn){
     
-    for(i=0;i<3;i++){
-        
-        if(i%2!=0) k=1;
-        else k=0;
-        
-        for(j=k;j<7;j=j+2){
-            t_node *app_db = (t_node*) malloc(sizeof(t_node));
-            pedina *p = get_board_value_immediate(board, j, i);
-            printf("\nI: %d, J: %d\n", i,j);
-            
-            app_db->alfa=0;
-            app_db->start.x=i;
-            app_db->start.y=j;
-            app_db->end.x=0;
-            app_db->end.y=0;
-            app_db->data=p;
-            
-            db[f++]= *app_db;
-        }
-    }
-
-}
-
-void catchInput_Autoplay(pedina **board, int *cord, t_node *db, int turn){
+    t_node result;
+    t_node_list possible_moves = NULL, i;
     
-    int i;
-    for(i = 0; i < NUMERO_PEDINE; i++){
-        //db[i] = minimax(board, db[i], DIFFICOLTA, turn);
+    possible_moves = get_moves(board,turn);
+    
+    printf("\npossible_moves:\n");
+    print_list(possible_moves);
+    printf("\n");
+    
+    for(i = possible_moves; i != NULL; i = i->next){ /*Scorro e valuto tutte le possibili mosse*/
+        pedina** new_board;
+                
+        new_board = cloneMatrix(board);
+                
+        i->data.value = minimax(new_board,i->data,DEPTH_MAX,turn);
+        destroyMatrix(new_board);
     }
     
-    t_node result = select_pedina(db);
+    result = get_from_list(possible_moves,MAX);
     
-    cord[1] = result.start.x ;
-    cord[0] = result.start.y ;
-    cord[3] = result.end.x ;
-    cord[2] = result.end.y;
+    printf("\nresult:\n");
+    print_t_node(result);
+    printf("\n");
+    
+    destroy_list(possible_moves);
+    
+    printf("\nVolte richiamo my move catchinput Autoplay\n");
+    return my_move(board,result.start,result.end,turn);
     
 }
 
 int can_be_eaten(pedina **board, point p){
     int success;
-    pedina *avversario;
-    
+    pedina *avversario, *noi;
+    int vuoto;
     success = 0;
     
-    avversario = get_board_value_immediate(board,p.x-1,p.y-1);
-    if(is_inside(p.x+1,p.y+1) && !get_board_value_immediate(board,p.x+1,p.y+1) && avversario && right_path(Up,avversario->grado,avversario->id_player)){ /*Controllo (p.x+2,p.y+2)*/
-        success = 1;
-    }
+    if((noi = get_board_value(board,p))){
     
-    avversario = get_board_value_immediate(board,p.x-1,p.y+1);
-    if(is_inside(p.x+1,p.y-1) && !get_board_value_immediate(board,p.x+1,p.y-1) && avversario && right_path(Up,avversario->grado,avversario->id_player)){ /*Controllo (p.x+2,p.y+2)*/
-        success = 1;
-    }
+        avversario = is_inside(p.x-1,p.y-1)? get_board_value_immediate(board,p.x-1,p.y-1): 0;
+        vuoto = is_inside(p.x+1,p.y+1) ? !get_board_value_immediate(board,p.x+1,p.y+1) : 0;
+        if(vuoto && avversario && right_path(Up,avversario->grado,avversario->id_player)){ /*Controllo (NW -> SE)*/
+            success = (int) avversario->id_player != noi->id_player;
+        }
     
-    avversario = get_board_value_immediate(board,p.x+1,p.y+1);
-    if(is_inside(p.x-1,p.y-1) && !get_board_value_immediate(board,p.x-1,p.y-1) && avversario && right_path(Up,avversario->grado,avversario->id_player)){ /*Controllo (p.x+2,p.y+2)*/
-        success = 1;
-    }
+        avversario = is_inside(p.x-1,p.y+1)? get_board_value_immediate(board,p.x-1,p.y+1): 0;
+        vuoto = is_inside(p.x+1,p.y-1) ? !get_board_value_immediate(board,p.x+1,p.y-1) : 0;
+        if(vuoto && avversario && right_path(Up,avversario->grado,avversario->id_player)){ /*Controllo (SW -> NE)*/
+            success = (int) avversario->id_player != noi->id_player;
+        }
     
-    avversario = get_board_value_immediate(board,p.x+1,p.y-1);
-    if(is_inside(p.x-1,p.y+1) && !get_board_value_immediate(board,p.x-1,p.y+1) && avversario && right_path(Up,avversario->grado,avversario->id_player)){ /*Controllo (p.x+2,p.y+2)*/
-        success = 1;
+        avversario = is_inside(p.x+1,p.y+1)? get_board_value_immediate(board,p.x+1,p.y+1): 0;
+        vuoto = is_inside(p.x-1,p.y-1) ? !get_board_value_immediate(board,p.x-1,p.y-1) : 0;
+        if(vuoto && avversario && right_path(Up,avversario->grado,avversario->id_player)){ /*Controllo (SE -> NW)*/
+            success = (int) avversario->id_player != noi->id_player;
+        }
+    
+        avversario = is_inside(p.x+1,p.y-1)? get_board_value_immediate(board,p.x+1,p.y-1): 0;
+        vuoto = is_inside(p.x-1,p.y+1) ? !get_board_value_immediate(board,p.x-1,p.y+1) : 0;
+        if(vuoto && avversario && right_path(Up,avversario->grado,avversario->id_player)){ /*Controllo (NE -> SW)*/
+            success = (int) avversario->id_player != noi->id_player;
+        }
+    
     }
     
     return success;
 }
 
-void check_son(pedina **board, t_node *res, int x, int y, t_node *node, int *alfa, int depth, int turn){
-    (*res).end.x = (*node).end.x + x;
-    (*res).end.y = (*node).end.y + y;
-    if (can_eat(board,(*res).end) || can_move(board,(*res).end)){
-        *res = minimax(board,(*res),depth-1,turn+1);
-        if(*alfa < res->alfa)
-            *alfa = res->alfa;
+/*Valutazione euristica pedina*/
+int evaluate(pedina **board){
+    
+    int res;
+    
+    if(isWinner(board, Ai))
+        res = 20;
+    else if (isWinner(board, Umano))
+        res = -20;
+    else{
+        int can_eat_count = 0, can_be_eaten_count = 0;
+        point i;
+        pedina *aux;
+        for(i.y = 0; i.y < ROW; i.y++){
+            for(i.x = 0; i.x < COL; i.x++){
+                if((int)(aux = get_board_value(board,i)) && ((int)get_id_player(aux) == Ai)){
+                    if(can_be_eaten(board,i))
+                        can_be_eaten_count++;
+                    if(can_eat(board,i))
+                        can_eat_count++;
+                }
+            }
+        }
+        res = can_eat_count - can_be_eaten_count;
+    }
+    return res;
+    
+}
+
+void print_t_node(t_node t){
+    printf("(%d,%d)->(%d,%d) ",t.start.x,t.start.y,t.end.x,t.end.y);
+}
+
+void print_list(t_node_list i){
+    if(i){
+        print_t_node(i->data);
+        printf(" |-> ");
+        print_list(i->next);
     }
 }
 
-int evaluate(pedina **board, t_node node){
-    if(can_eat(board,node.end))
+int prepend(t_node_list *l, t_node val){
+    t_node_list new;
+    new = (t_node_list) malloc(sizeof(struct s_node_list));
+    if(new != NULL)
+    {
+        new->next = *l;
+        new->data = val;
+        *l = new;
         return 1;
-    else if(can_be_eaten(board,node.end))
-        return -1;
+    }
     else
         return 0;
+}
+
+void destroy_list(t_node_list l){
+    if(l){
+        destroy_list(l->next);
+        free(l);
+    }
+}
+
+int append(t_node_list *l, t_node val){
+    if(*l)
+        return append(&((*l)->next),val);
+    else
+        return prepend(l,val);
+}
+
+t_node get_from_list(t_node_list l, mode x){
+    t_node_list i;
+    t_node m;
+    
+    m.value = (x?INT_MIN:INT_MAX);
+    
+    for(i = l; i != NULL; i = i->next){
+        if((x && i->data.value == 20) || (!x && i->data.value == -20))
+            return i->data;
+        if((x && i->data.value > m.value) || (!x && i->data.value < m.value))/*se x == MAX prende il massimo, altrimenti il minimo*/
+            m = i->data;
+    }
+    return m;
     
 }
 
-
-/*
-function minimax(nodo, profondità)
-
-    SE nodo è un nodo terminale OPPURE profondità = 0
-        return il valore euristico del nodo
-        
-    SE l'avversario deve giocare
-        α := +∞
-        PER OGNI figlio di nodo
-            α := min(α, minimax(figlio, profondità-1))
-            
-            
-    ALTRIMENTI dobbiamo giocare noi
-        α := -∞
-        PER OGNI figlio di nodo
-            α := max(α, minimax(figlio, profondità-1))
-            
-            
-    return α
-*/
-t_node minimax(pedina **board, t_node node, int depth, int turn){
+point* get_dir(){
+    point *res;
     
-    t_node res;
-    if(!depth){
-        res.alfa = evaluate(board, node);
-    }else{
-        int alfa;
+    res = (point *) malloc(MOSSE*sizeof(point));
+    
+    res[0].x = 1;
+    res[0].y = 1;
+    
+    res[1].x = 1;
+    res[1].y = -1;
+    
+    res[2].x = -1;
+    res[2].y = -1;
+    
+    res[3].x = -1;
+    res[3].y = 1;
+    
+    res[4].x = 2;
+    res[4].y = 2;
+    
+    res[5].x = 2;
+    res[5].y = -2;
+    
+    res[6].x = -2;
+    res[6].y = -2;
+    
+    res[7].x = -2;
+    res[7].y = 2;
+        
+    return res;
+}
+
+/*Calcola tutte le mosse possibili per ogni pedina e restituisce una lista che le contiene. Se il giocatore può muovere viene restituita una lista con un singleton della mossa di cattura*/
+t_node_list get_moves(pedina **board, int turn){
+    int j, stop = 0;
+    point i;
+    t_node aux;
+    t_node_list possible_moves = NULL;
+    extern point *moves;
+    
+    for(i.y = 0; !stop && i.y < ROW; i.y++){
+        for(i.x = 0; !stop && i.x < COL; i.x++){/*Scorro tutte le pedine*/
+            if(is_full(board,i) && is_legal_player(board,i,turn)){ /*Seleziono le pedine del giocatore che deve muovere*/
+                if(can_eat(board,i)){
+                    for(j = 4; !stop && j < MOSSE; j++){
+                        if(is_valid_move(board,i,add_point(i,moves[j]),turn)){ /*In caso di possibilità di mangiare elimina le altre mosse e restituisce un singleton con la mossa */
+                            aux.start = i;
+                            aux.end = add_point(i,moves[j]);
+                            aux.value = (turn%2) ? 20 : -20;
+                            destroy_list(possible_moves);
+                            stop = 1;
+                            if(!append(&possible_moves,aux)) /*Controllo su malloc*/
+                                printf("get_moves -> append -> malloc failed");
+                            
+                        }
+                    }
+                }else{
+                    for(j = 0; j < MOSSE; j++){
+                        if(is_valid_move(board,i,add_point(i,moves[j]),turn)){
+                            aux.start = i;
+                            aux.end = add_point(i,moves[j]);
+                            aux.value = 0;
+                            if(!append(&possible_moves,aux)) /*Controllo su malloc*/
+                                printf("get_moves -> append -> malloc failed");
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    return possible_moves;
+}
+
+/*Ritorna un indice numerico della bontà della mossa fatta
+*
+*            Per ogni pedina Ai
+*                Per ogni mossa
+*                    Se è valida
+*                        genera nuova board con stato modificato
+*                        ritorna minimax sul nuovo stato e turno modificato
+*/
+int minimax(pedina **board, t_node movement, int depth, int turn){
+    
+    int alfa;
+    t_node_list new_move, i; /*Lista di mosse non valutate e iteratore*/
+    t_node aux;
+    
+    new_move = NULL;
+    i = NULL;
+    
+    my_move(board,movement.start,movement.end,turn); /*attuo la mossa movement*/
+
+    if(!depth || isWinner(board,Umano) || isWinner(board,Ai)){
+        return evaluate(board);
+    } else{
         if(turn%2){ /*Gioca AI*/
+            
             alfa = INT_MIN;
             
-            /*+1,+1*/  /*void check_son(pedina **board, t_node *res, int x, int y, t_node *node, int *alfa, int depth, int turn)*/
-            check_son(board, &res, +1, +1, &node, &alfa, depth, turn);
+            new_move = get_moves(board, turn); /*Riempe la lista di mosse possibili non valutate*/
             
-            /*-1,+1*/
-            check_son(board, &res, -1, +1, &node, &alfa, depth, turn);
-            
-            if(get_grade(node.data) == Officer){
-                /*+1,-1*/
-                check_son(board, &res, +1, -1, &node, &alfa, depth, turn);
-                /*-1,-1*/
-                check_son(board, &res, -1, -1, &node, &alfa, depth, turn);
-            }
-            
-        }else{ /*Gioca UMANO*/
-            alfa = INT_MAX;
-            /*-1,+1*/
-            check_son(board, &res, +1, +1, &node, &alfa, depth, turn);
-            
-            /*-1,+1*/
-            check_son(board, &res, -1, +1, &node, &alfa, depth, turn);
-            
-            if(get_grade(node.data) == Officer){
-                /*+1,-1*/
-                check_son(board, &res, +1, -1, &node, &alfa, depth, turn);
+            for(i = new_move; i != NULL; i = i->next){
+                pedina** new_board;
                 
-                /*-1,-1*/
-                check_son(board, &res, -1, -1, &node, &alfa, depth, turn);
+                new_board = cloneMatrix(board);
+                
+                i->data.value = minimax(new_board,i->data,depth - 1,turn + 1);
+                destroyMatrix(new_board);
+                
+                if(i->data.value == 20)
+                    return 20;
             }
             
+            aux = get_from_list(new_move,MAX); /*Cerco il maggiore*/
+
+            if(aux.value > alfa)
+                alfa = aux.value;
         }
-        
+        else{ /*Gioca UMANO*/
+
+            alfa = INT_MAX;
+            
+            new_move = get_moves(board, turn); /*Riempe la lista di mosse possibili non valutate*/
+            
+            for(i = new_move; i != NULL; i = i->next){
+                pedina** new_board;
+                
+                new_board = cloneMatrix(board);
+                
+                i->data.value = minimax(new_board,i->data,depth - 1,turn + 1);
+                destroyMatrix(new_board);
+                
+                if(i->data.value == -20)
+                    return -20;
+            }
+            
+            aux = get_from_list(new_move,MIN); /*Cerco il minore*/
+            
+            if(aux.value < alfa)
+                alfa = aux.value;
+        }
     }
-    return res;
+    
+    destroy_list(new_move);
+    
+    return alfa;
 }
 
-/*
-* 1) Selezione riga
-* 2) Selezione max alfa;
-* 3) Ritorno pedina,mossa (t_node)
-*/
-t_node select_pedina(t_node db[NUMERO_PEDINE]){
-    int i, max = INT_MIN;
-    t_node res;
-    for(i = 0; i < NUMERO_PEDINE; i++){
-        if(db[i].alfa > max){
-            res = db[i];
-            max = db[i].alfa;
-        }
-    }
-    return res;
-}
-
+/*EXPERIMENTAL IMPLEMENTATION*/

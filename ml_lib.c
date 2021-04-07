@@ -80,14 +80,10 @@ int is_valid_input(char input[5]){
     return is_valid_letter(input[0]) && is_valid_number(input[1]) && is_valid_letter(input[2]) && is_valid_number(input[3]);
 }
 
-void print_coord(int *c){
-    printf("\n");
-    for(int i=0;i<4;i++){
-        if(i%2==0)
-            printf("i: %d -> x= %d\n",i,c[i]);
-        else
-            printf("i: %d -> y= %d\n",i,c[i]);
-    }
+point add_point(point p, point l){
+    p.x += l.x;
+    p.y += l.y;
+    return p;
 }
 
 /*---------------------------------SEZIONE FUNZIONI GESTIONE MEMORIA---------------------------------*/
@@ -97,7 +93,7 @@ void print_coord(int *c){
 */
 pedina **createMatrix(){
 
-    pedina** board = (pedina **) malloc(7*7*sizeof(pedina *));
+    pedina** board = (pedina **) malloc(COL*ROW*sizeof(pedina *));
 
     if(!board){
         printf("createMatrix failed malloc");
@@ -105,6 +101,32 @@ pedina **createMatrix(){
     }
     else
         return board;
+}
+
+pedina** cloneMatrix(pedina **board){
+    point i;
+    
+    pedina **new_board = createMatrix();
+    
+    
+    for(i.y = 0; i.y < ROW; i.y++){
+        for(i.x = 0; i.x < COL; i.x++)
+            if(get_board_value(board,i)){
+                pedina *app = (pedina*)malloc(sizeof(pedina));
+                set_board_value(new_board,i,app);
+                set_grade(app, get_grade(get_board_value(board, i)));
+                set_id_player(app, get_id_player(get_board_value(board, i)));
+                app->middle=get_board_value_middle(board, i);
+                app->down=get_board_value_down(board, i);
+                
+            } else {
+                set_board_value(new_board,i,get_board_value(board,i));
+            }
+    }
+    if(!new_board)
+        printf("cloneMatrix failed malloc");
+    
+    return new_board;
 }
 
 /*
@@ -153,9 +175,9 @@ void fillBoard(pedina** board){
                 a->middle=NULL;
 
                 if(i < 3)
-                    set_id_player(a, UserTwo);
+                    set_id_player(a, Ai);
                 else{
-                    set_id_player(a, UserOne);
+                    set_id_player(a, Umano);
                 }
                 set_board_value(board,p,a);
             }
@@ -170,16 +192,16 @@ void fillBoard(pedina** board){
  * controllo aggiuntivo per non inserire coordinate di start su cella a null.
  * per la destinazione non posso mettere questo controllod
 */
-int catchInput(int *cord){
+int catchInput(int cord[4]){
     char input[5];
     int success = 0;
     do{
-        printf("\tInserisci le coordinate della mossa [LETTERA-NUMERO-LETTERA-NUMERO]: \n\t\t");
-        scanf("%s",input);
+        printf("\tInserisci le coordinate della mossa [LETTERA-NUMERO-LETTERA-NUMERO]: \n\t");
         
-        if(is_valid_input(input)){ /*Controllo validità input*/
-            success = 1;
-            printf("\n");}
+        success = scanf("%s",input);
+                
+        if(success && is_valid_input(input)) /*Controllo validità input*/
+            printf("\n");
         else
             printf("\t\t[Input Error] Coordinate inserite non valide \n");
     }while(!success);
@@ -290,17 +312,87 @@ void printRules(){
 }
 
 void victory(id_p winner){
-    if(winner == UserOne)
+    if(winner == Umano)
         printf("\tComplimenti giocatore, grande vittoria!!!");
     else
-        printf("\tComplimenti UserTwo, grande vittoria!!!");
+        printf("\tComplimenti Ai, grande vittoria!!!");
 }
 
-void inputError(){
-    printf("\n\n|----- Non puoi spostarti in quella casella -----|\n");
+void moveError(pedina **board, int cord[4], int turn){
+    point from,to;
+    from.x = cord[1];
+    from.y = cord[1];
+    to.x = cord[3];
+    to.y = cord[2];
+    
+    printf("\n<<<---|Non puoi spostarti in quella casella:\t(%d,%d)->(%d,%d)\tPlayer: %d Distance: %d EM: %d |",cord[1],cord[0],cord[3],cord[2],is_legal_player(board,from,turn), is_valid_distance(from,to), existMandatory(board,from,to));
+    printf("--->>>\n");
+}
+
+void inputError(int cord[4]){
+    printf("+++---|Errore di inserimento:\t(%d,%d)->(%d,%d)\t%s\tLegal: #%d#%d#%d#%d#|",cord[1],cord[0],cord[3],cord[2],(char *)cord,is_valid_letter(cord[1]),is_valid_number(cord[0]),is_valid_letter(cord[3]),is_valid_number(cord[2]));
+    printf("--->>>\n");
 }
 
 /*---------------------------------SEZIONE FUNZIONI LOGICHE DI GIOCO---------------------------------*/
+
+
+int is_same_team(pedina **board, point a, point b){
+    return (int) (get_id_player(get_board_value(board,a)) == get_id_player(get_board_value(board,b)));
+}
+
+int is_legal_player(pedina **board, point from, int turn){
+    return (int)get_id_player(get_board_value(board,from)) == (turn %2);
+}
+
+int is_empty(pedina **board, point x){
+    return (int)!get_board_value(board,x);
+}
+
+int is_full(pedina **board, point x){
+    return (int)!is_empty(board,x);
+}
+
+int is_valid_distance(point from, point to){
+    return distance(from,to) != -1;
+}
+
+int is_valid_cell(point p){
+    return is_inside(p.x,p.y) && !isForbiddenCell(p);
+}
+
+int is_valid_move(pedina** board, point from, point to, int turn){
+
+    int res = 1;
+    
+    if(is_valid_cell(from) && is_valid_cell(to) && is_full(board,from) && is_legal_player(board, from, turn) && is_empty(board,to) && is_valid_distance(from,to) && !existMandatory(board,from,to) && gradeCheck(board,from,to)){
+        if(distance(from,to) == 2){
+            point middle;
+            middle.x = (from.x + to.x)/2;
+            middle.y = (from.y + to.y)/2;
+            
+            if(is_empty(board, middle) || is_same_team(board,from,middle))
+                res = 0;
+        }
+    }
+    else
+        res = 0;
+
+    return res;
+}
+
+void increase_grade(pedina **board, point soldier){
+    if(soldier.y == 6 || soldier.y == 0){ /*Controllo per l'aumento del grado della pedina*/
+        int tb = 0;/*top 0 - bottom 1*/
+            if(soldier.y == 6)
+                tb = 1;
+            if(soldier.y == 0)
+                tb = 0;
+                
+            if(!(tb ^ get_id_player(get_board_value(board,soldier))))
+                set_grade(get_board_value(board,soldier), Officer); /*increase_grade(pedina **board,point soldier) */
+        }
+}
 
 /* Verifica che il giocatore idPlayer abbia vinto
  * Restituisce 1 se idPlayer ha vinto, altrimenti 0
@@ -339,75 +431,31 @@ int isWinner(pedina **board, id_p idPlayer) {
  * distance -> distanza tra due punti
  * grade_cntrl -> ctrl spostamento tipo pedina
  * existM -> se esiste mossa obb.
- *legal ply-> ctrl player che muove
+ * legal ply-> ctrl player che muove
 */
-int my_move(pedina** board, point from, point to, int turn){
+int my_move(pedina** b, point from, point to, int turn){
 
-    int success, d, grade_control, existM, legal_player;
-
+    int success, d;
+    /*pedina *from_p, *to_p;*/
+    
     success = 1;
-    
-    printf("\npedina from: %d\t",get_board_value(board,from));
-    
-    printf("pedina to: %d\t",get_board_value(board,to));
-    
-    printf("\n 1 FROM x: %d, y: %d\n",from.x, from.y);
-    printf("dist: ");
     d = distance(from,to);
-    printf("%d|\t", d);
     
-    printf("grade: ");
-    grade_control = gradeCheck(board,from,to);
-    printf("%d|\t", grade_control);
-    
-    printf("legal_player: ");
-    legal_player = (get_id_player(get_board_value(board,from)) == (turn %2));
-    printf("%d|\t", legal_player);
-    
-    printf("exist m: ");
-    existM = existMandatory(board,from,to); /*Da rivederla*/
-    printf("%d|\n", existM);
-    
-    
-    if(!legal_player || !get_board_value(board,from) || get_board_value(board,to) || d == -1 || !grade_control || existM){
+    if(!is_valid_move(b,from,to,turn)){
         success = 0;
     } else{
         if(d == 1){
-            printf("\n\t--> if d == 1\n");
-            set_board_value(board,to,get_board_value(board,from));
-            set_board_value(board,from,0);
+            set_board_value(b,to,get_board_value(b,from));
+            set_board_value(b,from,0);
         }
         else if(d == 2){
-            printf("\n\t--> if d == 2\n");
-            point middle;
-            middle.x = (from.x + to.x)/2;
-            middle.y = (from.y + to.y)/2;
-
-            if(get_board_value(board,middle)){ /*verifica esistenza pedina in mezzo*/
-                if(get_id_player(get_board_value(board,middle)) == get_id_player(get_board_value(board,from)))
-                    success = 0; /*se amica, annulla mossa*/
-                else
-                    capture(board,from,to); /*se nemica cattura*/
-            }
-            else
-                success = 0;
-        }
-        else{
-            success = 0;
+            capture(b,from,to); /*se nemica cattura*/
         }
         
-        if(success && (to.y == 6 || to.y == 0)){ /*Controllo per l'aumento del grado della pedina*/
-            int tb;
-            if(to.y == 6)
-                tb = 1;
-            if(to.y == 0)
-                tb = 0;
-                
-            if(!(tb ^ get_id_player(get_board_value(board,to))))
-                set_grade(get_board_value(board,to), Officer);
-        }
+        increase_grade(b,to);
         
     }
+    
     return success;
 }
 
@@ -433,38 +481,37 @@ int distance(point from, point to){
  * Questa funzione si occupa di catturare le pedine indicate.
  * Si assume la correttezza delle coordinate inserite, la legalità della mossa è verificata nella funzione move(...).
 */
-void capture(pedina **board, point from, point to){ /*Correggi con funzioni ausiliarie*/
 
+// richiamata solo nella my_move
+void capture(pedina **b, point from, point to){ /*Correggi con funzioni ausiliarie*/
     point mid;
+    pedina *prisoner;
+    pedina *soldier;
+    
     mid.x = (from.x+to.x)/2;
     mid.y = (to.y+from.y)/2;
-    pedina *prisoner = get_board_value(board,mid);
-    pedina *soldier = get_board_value(board,from);
-
-    /*printf("\n MX %d, MY %d, FX %d, FY %d, TX %d, TY %d\n", mid,from.x,from.y,to.x,to.y);
-    printf("\n PRISONER %d, SOLDIER %d\n",prisoner->middle,prisoner->down );*/
+    
+    prisoner = get_board_value(b,mid);
+    soldier = get_board_value(b,from);
 
     if(prisoner->middle || prisoner->down){ /*In questo ramo la pedina catturata ha pedine sottostanti*/
-        /*printf("\n ENTRA NELL'IF CAPTURE ");*/
         if(get_id_player(prisoner->middle) == get_id_player(soldier) && prisoner->down && get_id_player(prisoner->down) == get_id_player(soldier)) {/*Se entrambe le pedine catturate dal prigioniero sono alleate*/
-            /*printf("\n ENTRA NELL'IF 1.1 ");*/
             prisoner->middle->middle = prisoner->down;
-            set_board_value(board,mid,prisoner->middle);
+            set_board_value(b,mid,prisoner->middle);
         }
-        else if(get_id_player(prisoner->middle) == get_id_player(soldier) && !(prisoner->down)){/*Se la pedina prigioniera è ha solo un prigioniero, alleato, l'altra è vuota*/
-            /*printf("\n ENTRA  NELL'IF 1.2\n");*/
-            set_board_value(board,mid,prisoner->middle);
+        else if(get_id_player(prisoner->middle) == get_id_player(soldier) && !(prisoner->down)){/*Se la pedina prigioniera ha solo un prigioniero, alleato, l'altra è vuota*/
+            set_board_value(b,mid,prisoner->middle);
         }
         else if(get_id_player(prisoner->down) == get_id_player(soldier)){/*Se una delle pedine catturate dal prigioniero è alleata e l'altra è nemica*/
             prisoner->down->middle = prisoner->middle;
-            set_board_value(board,mid,prisoner->down);
+            set_board_value(b,mid,prisoner->down);
         }
         else{/*La pedina catturata ha sotto una pedina, nemica*/
             if(!(soldier->down))
                 soldier->down = prisoner->middle;
 
-            free(get_board_value(board,mid));
-            set_board_value(board,mid,0);
+            free(get_board_value(b,mid));
+            set_board_value(b,mid,0);
         }
 
         if(soldier->middle){
@@ -477,18 +524,20 @@ void capture(pedina **board, point from, point to){ /*Correggi con funzioni ausi
         prisoner->down = 0;
     }
     else{ /*In questo ramo la pedina catturata non ha pedine sottostanti*/
-        set_board_value(board,mid,0);
+        set_board_value(b,mid,0);
 
         if(soldier->middle && !(soldier->down)){  /*Sistema la pedina catturata nella pedina del catturante*/
+            printf("\n VOLTE IN SOLDIER DOWN CAPTURE\n");
             soldier->down = prisoner;
         }
         else {
+            printf("\n VOLTE IN SOLDIER MIDDLE CAPTURE\n");
             soldier->middle = prisoner;
         }
     }
 
-    set_board_value(board,from,0);
-    set_board_value(board,to,soldier);
+    set_board_value(b,from,0);
+    set_board_value(b,to,soldier);
 }
 
 /* Verifica il grado della pedina mossa:
@@ -529,26 +578,26 @@ int gradeCheck(pedina **board, point from, point to){ /*IMPLEMENTA UP/DOWN*/
 int can_eat(pedina **board, point p){
     
     int success;
+    id_p current_player;
+    gr current_grade;
+    
     success = 0;
     
-        id_p current_player;
-        gr current_grade;
+    current_grade = get_grade(get_board_value(board,p));
+    current_player = get_id_player(get_board_value(board,p));
     
-        current_grade = get_grade(get_board_value(board,p));
-        current_player = get_id_player(get_board_value(board,p));
-    
-        if(is_inside(p.x+2,p.y+2) && !get_board_value_immediate(board,p.x+2,p.y+2) && get_board_value_immediate(board,p.x+1,p.y+1) && right_path(Down,current_grade,current_player)){ /*Controllo (p.x+2,p.y+2)*/
+    if(is_inside(p.x+2,p.y+2) && !get_board_value_immediate(board,p.x+2,p.y+2) && get_board_value_immediate(board,p.x+1,p.y+1) && right_path(Down,current_grade,current_player)){ /*Controllo (p.x+2,p.y+2)*/
             success = get_id_player(get_board_value_immediate(board,p.x + 1,p.y + 1)) != current_player;
-        }
-        else if(is_inside(p.x+2,p.y-2) && !get_board_value_immediate(board,p.x+2,p.y-2) && get_board_value_immediate(board,p.x+1,p.y-1) && right_path(Up,current_grade,current_player)){
+    }
+    else if(is_inside(p.x+2,p.y-2) && !get_board_value_immediate(board,p.x+2,p.y-2) && get_board_value_immediate(board,p.x+1,p.y-1) && right_path(Up,current_grade,current_player)){
             success = get_id_player(get_board_value_immediate(board,p.x + 1,p.y - 1)) != current_player;
-        }
-        else if(is_inside(p.x-2,p.y-2) && !get_board_value_immediate(board,p.x-2,p.y-2) && get_board_value_immediate(board,p.x-1,p.y-1) && right_path(Up,current_grade,current_player)){
+    }
+    else if(is_inside(p.x-2,p.y-2) && !get_board_value_immediate(board,p.x-2,p.y-2) && get_board_value_immediate(board,p.x-1,p.y-1) && right_path(Up,current_grade,current_player)){
             success = get_id_player(get_board_value_immediate(board,p.x - 1,p.y - 1)) != current_player;
-        }
-        else if(is_inside(p.x-2,p.y+2) && !get_board_value_immediate(board,p.x-2,p.y+2) && get_board_value_immediate(board,p.x-1,p.y+1) && right_path(Down,current_grade,current_player)){
+    }
+    else if(is_inside(p.x-2,p.y+2) && !get_board_value_immediate(board,p.x-2,p.y+2) && get_board_value_immediate(board,p.x-1,p.y+1) && right_path(Down,current_grade,current_player)){
             success = get_id_player(get_board_value_immediate(board,p.x - 1,p.y + 1)) != current_player;
-        }
+    }
             
     return success;
 }
@@ -599,8 +648,6 @@ int existMandatory(pedina **board, point from, point to){
     if(get_board_value(board,from)){ /*Controllo esistenza*/
         
         current_player = get_id_player(get_board_value(board,from));
-        
-        printf("\nPedina partenza:\tcan_eat: %d\nMosse obbligatorie:\n", can_eat(board,from));
     
         if(distance(from,to) != 2 || !can_eat(board,from)){/*Se la pedina di partenza non sta mangiando*/
             point p;
@@ -609,13 +656,11 @@ int existMandatory(pedina **board, point from, point to){
                     p.x = i;
                     p.y = j;
                     if(get_board_value(board,p) && (get_id_player(get_board_value(board,p)) == current_player) && can_eat(board,p)){
-                        printf("%d,%d \n",p);
                         success = 1; /*esite pedina(i,j) && è amica && può mangiare*/
                         break;
                     }
                 }
             }
-            printf("\n");
         }
     }
 

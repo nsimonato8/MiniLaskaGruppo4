@@ -1,34 +1,56 @@
-#include<stdio.h>
-#include "ml_lib.h"
 
-#define NUMERO_PEDINE 11
+#ifndef Autoplay_h
+#define Autoplay_h
+
+#include<stdio.h>
+#include<limits.h>
+#include"ml_lib.h"
+
+#define NUMERO_PEDINE 7
+#define MOSSE 8
+#define DEPTH_MAX 7
 
 typedef struct s_node t_node;
+typedef struct s_node_list *t_node_list;
+typedef enum mod {MIN, MAX} mode;
 
 /*alfa -> [-1,1]*/
 
 struct s_node { /*coppia valore,mossa*/
-    int alfa; /*indice */
     point start;
     point end;
-    pedina *data;
+    int value;
 };
 
-void catchInput_Autoplay(pedina **board, int *cord, t_node *db, int turn);
+struct s_node_list {
+    t_node data;
+    t_node_list next;
+};
+
+int catchInput_Autoplay(pedina **board, int turn);
 
 int can_be_eaten(pedina **board, point p);
 
-void check_son(pedina **board, t_node *res, int x, int y, t_node *node, int *alfa, int depth, int turn);
+int evaluate(pedina **board);
 
-int evaluate(pedina **board, t_node node);
+void print_t_node(t_node t);
 
-t_node minimax(pedina **board, t_node node, int depth, int turn);
+void print_list(t_node_list i);
 
-t_node select_pedina(t_node db[NUMERO_PEDINE]);
+int prepend(t_node_list *l, t_node val);
 
-void fill_db(t_node *db, pedina **board);
+void destroy_list(t_node_list l);
 
-void create_db(t_node *db);
+int append(t_node_list *l, t_node val);
 
-void print_datab(t_node *db);
+t_node get_from_list(t_node_list l, mode x);
 
+point* get_dir(void);
+
+t_node_list get_moves(pedina **board, int turn);
+
+int minimax(pedina **board, t_node move, int depth, int turn);
+
+void print_list(t_node_list i);
+
+#endif /* Autoplay_h */
