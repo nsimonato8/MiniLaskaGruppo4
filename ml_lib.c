@@ -80,6 +80,7 @@ int is_valid_input(char input[5]){
     return is_valid_letter(input[0]) && is_valid_number(input[1]) && is_valid_letter(input[2]) && is_valid_number(input[3]);
 }
 
+/*Somma i valori di due punti*/
 point add_point(point p, point l){
     p.x += l.x;
     p.y += l.y;
@@ -212,7 +213,27 @@ int catchInput(int cord[4]){
     cord[3] = input[3] - '0' - 1;
     
     return success;
+}
+
+/*
+ * FUNZIONE CHE PRENDE IN INPUT LA SELEZIONE DELLA MODALITA' DI GIOCO
+*/
+int getMode(void){
+    int mode;
+    printf("\nPer selezionare la modalità player 1 vs player 2 premi '1';\n\nPer selezionare la modalità player vs CPU premi '2';\n\nModalità: ");
+    scanf("%d",&mode);
+    return mode;
+}
+
+/*Ritorna il livello di difficoltà della CPU*/
+int getDepth(void){
+    int depth;
     
+    printf("\nInserisci la difficoltà della CPU: ");
+    scanf("%d",&depth);
+    printf("\n\n");
+    
+    return depth;
 }
 
 /*---------------------------------SEZIONE FUNZIONI OUTPUT---------------------------------*/

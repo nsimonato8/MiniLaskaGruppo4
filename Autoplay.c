@@ -17,7 +17,9 @@
 /*
 * Invoca minimax e restituisce la mossa (start,end) migliore
 */
-int catchInput_Autoplay(pedina **board, int turn){
+
+//inserito nella firma int depth
+int catchInput_Autoplay(pedina **board, int turn, int depth){
     
     t_node result;
     t_node_list possible_moves = NULL, i;
@@ -32,8 +34,9 @@ int catchInput_Autoplay(pedina **board, int turn){
         pedina** new_board;
                 
         new_board = cloneMatrix(board);
-                
-        i->data.value = minimax(new_board,i->data,DEPTH_MAX,turn);
+        
+        //inserita la profondita/difficoltà della CPU
+        i->data.value = minimax(new_board,i->data,depth,turn);
         destroyMatrix(new_board);
     }
     

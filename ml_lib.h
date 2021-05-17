@@ -206,12 +206,11 @@ point add_point(point p, point l);
 *
 *     Ritorna un puntatore di tipo \a pedina** ad una matrice bidimensionale di puntatori a pedina linearizzata.
 */
-pedina **createMatrix();
+pedina **createMatrix(void);
 
 /*! \fn cloneMatrix(pedina **board, pedina **new_board)
 *   \brief Clona la matrice contenuta in board nella matrice new_board
 *    \param board matrice linearizzata della scacchiera
-*    \param new_board matrice in cui verrà clonato il contenuto di board
 *
 *     Copia il contenuto di board in new_board
 */
@@ -245,11 +244,25 @@ void fillBoard(pedina **board);
 /*! \fn catchInput(int *cord, pedina **board)
 *   \brief Legge l'input da tastiera
 *    \param cord array contenente le coordinate di partenza e destinazione della pedina
-*   \param board matrice linearizzata della scacchiera
 *
 *     Legge l'input dall'utente e traduce le coordinate in int, che vengono inseriti in un array apposito.
 */
 int catchInput(int *cord /*, pedina **board */);
+
+
+/*! \fn int getMode(void)
+*   \brief Selettore delle due modalità di gioco
+*
+*     Funzione che chiede di selezionare modalità player vs player oppure player vs CPU
+*/
+int getMode(void);
+
+/*! \fn getDepth(void)
+*   \brief Ritorna il livello di difficolta della CPU
+*    Chiede al player di inserire il livello di difficolta della CPU
+*/
+int getDepth(void);
+
 
 /**@}*/
 
@@ -293,7 +306,7 @@ void printStatus(int turn);
 *
 *    Stampa le regole del gioco.
 */
-void printRules();
+void printRules(void);
 
 /*! \fn victory(id_p winner)
 *    \brief Schermata di vittoria
@@ -395,9 +408,9 @@ void increase_grade(pedina **board, point soldier);
 /*! \fn isWinner(pedina **p, id_p player)
 *   \brief Verifica che il giocatore \a player abbia vinto
 *   \param board matrice linearizzata della scacchiera
-*   \param idPlayer giocatore selezionato
+ *   \param player giocatore selezionato
 *
-*    Verifica che il giocatore \a idPlayer abbia vinto.
+ *    Verifica che playertore \a idPlayer abbia vinto.
 *    Restituisce 1 se idPlayer ha vinto, altrimenti 0.
 */
 int isWinner(pedina **board, id_p player);
